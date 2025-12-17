@@ -28,7 +28,11 @@
             color: var(--text-color);
             background-color: var(--bg-color);
         }
-
+        
+        .bold-text {
+            font-weight: bold;
+        }
+        
         header {
             background-color: var(--card-bg);
             box-shadow: var(--shadow);
@@ -377,7 +381,7 @@
                 <img src="https://vbmspic.video.friday.tw/GROUP/3821/3821_10436.jpg" alt="求婚大作戰" class="post-image">
                 <div class="post-content">
                     <div class="post-meta">
-                        <span class="post-category">Drama</span>
+                        <span class="post-category"><p class="bold-text">Drama</span></p>
                     </div>
                     <a href="/article1.html" class="article-link">
                       <h3>《求婚大作戰》觀後感</h3>
@@ -468,24 +472,7 @@
                     </svg>
                 </a>
             </div>
-            <p class="copyright">© 2023 TechBlog. 版權所有。</p>
         </div>
     </footer>
 </body>
 </html>
-// 自動生成文章列表 (需在 index.html 底部添加)
-document.addEventListener('DOMContentLoaded', () => {
-  const articles = [
-    { title: '文章1', date: '2023-10-20', link: 'article1.html' }
-  ];
-  
-  const container = document.getElementById('articles-container');
-  articles.forEach(article => {
-    container.innerHTML += `
-      <article>
-        <h3><a href="${article.link}">${article.title}</a></h3>
-        <time>${article.date}</time>
-      </article>
-    `;
-  });
-});
