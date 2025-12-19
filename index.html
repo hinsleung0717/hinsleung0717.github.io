@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> lkhmemories </title>
+    <title>lkhmemories</title>
     <style>
         :root {
             --primary: #1a5877;
             --secondary: #10b981;
-            --accent: #ef4444;
             --dark: #1e293b;
             --light: #f8fafc;
             --gray: #64748b;
@@ -18,7 +17,6 @@
             --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
             --radius-sm: 0.25rem;
             --radius-md: 0.5rem;
-            --radius-lg: 1rem;
         }
 
         * {
@@ -41,47 +39,42 @@
             padding: 0 1.5rem;
         }
 
-        /* Header */
         header {
-            background-color: var(--card-bg);
-            box-shadow: var(--shadow-sm);
+            background-color: var(--dark);
+            box-shadow: var(--shadow-lg);
             position: sticky;
             top: 0;
             z-index: 100;
+            padding: 1rem 0;
         }
 
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 0;
         }
 
         .logo {
             font-size: 2.2rem;
             font-weight: 700;
-            color: var(--primary);
+            color: white;
             text-decoration: none;
             font-style: italic;
-            border-radius: 8px;
             display: flex;
             align-items: center;
             gap: 0.5rem;
             letter-spacing: 1px;
             font-family: 'Times New Roman', Times, serif;
+            transition: transform 0.3s;
         }
 
-        .logo .lkh {
-            text-transform: uppercase;
-        }
-
-        .logo .memories {
-            font-size: 1rem;
+        .logo:hover {
+            transform: translateY(-2px);
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             list-style: none;
             font-family: 'Times New Roman', Times, serif;
         }
@@ -89,33 +82,21 @@
         .nav-links a {
             text-decoration: none;
             font-style: italic;
-            color: var(--dark);
+            color: white;
             font-weight: 500;
-            transition: color 0.2s;
+            transition: all 0.3s ease;
             position: relative;
             font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-md);
         }
 
         .nav-links a:hover {
-            color: var(--primary);
+            color: var(--secondary);
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -0.5rem;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Posts */
         .posts {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
@@ -166,7 +147,6 @@
             font-size: 0.75rem;
             font-weight: 1000;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
         }
 
         .post-title {
@@ -199,28 +179,10 @@
             font-weight: 600;
             text-decoration: none;
             font-size: 0.875rem;
-            transition: color 0.2s;
         }
 
-        .read-more:hover {
-            color: var(--primary-light);
-        }
-
-        .read-more svg {
-            margin-left: 0.5rem;
-            width: 1rem;
-            height: 1rem;
-            transition: transform 0.3s;
-        }
-
-        .read-more:hover svg {
-            transform: translateX(0.25rem);
-        }
-
-        /* Portfolio Section */
         .portfolio {
             padding: 4rem 0;
-            background-color: var(--light);
         }
 
         .section-title {
@@ -229,17 +191,7 @@
             font-size: 2rem;
             font-weight: 700;
             color: var(--dark);
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            margin: 1rem auto 0;
-            border-radius: 2px;
+            font-family: 'Times New Roman', Times, serif;
         }
 
         .portfolio-grid {
@@ -261,137 +213,32 @@
             box-shadow: var(--shadow-lg);
         }
 
+        .portfolio-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            padding: 0.5rem;
+        }
+
         .portfolio-image {
             width: 100%;
             height: 200px;
             object-fit: cover;
-        }
-
-        .portfolio-content {
-            padding: 1.5rem;
+            border-radius: var(--radius-sm);
         }
 
         .portfolio-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-        }
-
-        .portfolio-description {
+            font-size: 1rem;
             color: var(--gray);
-            font-size: 0.9375rem;
-            margin-bottom: 1rem;
-        }
-
-        .portfolio-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .portfolio-tag {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background-color: var(--light);
-            color: var(--primary);
-            border-radius: var(--radius-sm);
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-
-        .portfolio-link {
-            display: inline-flex;
-            align-items: center;
-            color: var(--primary);
-            font-weight: 500;
-            text-decoration: none;
-            font-size: 0.875rem;
-            transition: color 0.2s;
-        }
-
-        .portfolio-link:hover {
-            color: var(--primary-light);
-        }
-
-        .portfolio-link svg {
-            margin-left: 0.5rem;
-            width: 1rem;
-            height: 1rem;
-            transition: transform 0.3s;
-        }
-
-        .portfolio-link:hover svg {
-            transform: translateX(0.25rem);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--card-bg);
-            padding: 3rem 0;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+            padding: 0.5rem 1rem;
             text-align: center;
+            margin-top: 0.5rem;
+            font-weight: normal;
+            border-top: 1px solid rgba(0,0,0,0.1);
         }
 
-        .footer-links {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-            list-style: none;
-        }
-
-        .footer-links a {
-            color: var(--gray);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 2.5rem;
-            height: 2.5rem;
-            background-color: var(--light);
-            border-radius: 50%;
-            color: var(--dark);
-            transition: all 0.3s;
-        }
-
-        .social-link:hover {
-            background-color: var(--primary);
-            color: var(--light);
-            transform: translateY(-0.25rem);
-        }
-
-        .social-icon {
-            width: 1.25rem;
-            height: 1.25rem;
-        }
-
-        .copyright {
-            color: var(--gray);
-            font-size: 0.875rem;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
@@ -399,31 +246,20 @@
             }
 
             .nav-links {
+                flex-direction: column;
+                align-items: center;
                 gap: 1rem;
-            }
-
-            .hero-title {
-                font-size: 2.25rem;
-            }
-
-            .hero-text {
-                font-size: 1.125rem;
-            }
-
-            .posts, .portfolio-grid {
-                grid-template-columns: 1fr;
             }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <div class="container">
             <nav class="navbar">
                 <a href="#" class="logo">
-                    <span class="lkh">LKH</span>
-                    <span class="memories">memories</span>
+                    <span>LKH</span>
+                    <span>memories</span>
                 </a>
                 <ul class="nav-links">
                     <li><a href="#">HOME</a></li>
@@ -437,7 +273,6 @@
 
     <main class="container">
         <div class="posts">
-            <!-- 文章卡片 1 -->
             <article class="post-card">
                 <img src="https://vbmspic.video.friday.tw/GROUP/3821/3821_10436.jpg" alt="求婚大作戰" class="post-image">
                 <div class="post-content">
@@ -446,17 +281,11 @@
                         <span>2025-12-17</span>
                     </div>
                     <h3 class="post-title"><a href="/article1.html">《求婚大作戰》觀後感</a></h3>
-                    <p class="post-excerpt">《求婚大作戰》是2007年播出的一部圍繞著「如果能回到過去，人生是否會有所不同」而展開的愛情電視劇。時空穿越這個設定或許早已不新鮮... </p>
-                    <a href="/article1.html" class="read-more">
-                        閱讀更多
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M5 12h14M12 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
+                    <p class="post-excerpt">《求婚大作戰》是2007年播出的一部圍繞著「如果能回到過去，人生是否會有所不同」而展開的愛情電視劇。時空穿越這個設定或許早已不新鮮...</p>
+                    <a href="/article1.html" class="read-more">閱讀更多</a>
                 </div>
             </article>
 
-            <!-- 文章卡片 2 -->
             <article class="post-card">
                 <img src="https://source.unsplash.com/random/600x400/?react" alt="React" class="post-image">
                 <div class="post-content">
@@ -466,16 +295,10 @@
                     </div>
                     <h3 class="post-title"><a href="#">React 18 效能優化技巧</a></h3>
                     <p class="post-excerpt">學習如何使用 React 18 的新特性如 Concurrent Rendering 和 Automatic Batching 來提升應用程式效能...</p>
-                    <a href="#" class="read-more">
-                        閱讀更多
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M5 12h14M12 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
+                    <a href="#" class="read-more">閱讀更多</a>
                 </div>
             </article>
 
-            <!-- 文章卡片 3 -->
             <article class="post-card">
                 <img src="https://source.unsplash.com/random/600x400/?webdesign" alt="Web Design" class="post-image">
                 <div class="post-content">
@@ -485,124 +308,41 @@
                     </div>
                     <h3 class="post-title"><a href="#">現代 CSS 佈局完全指南</a></h3>
                     <p class="post-excerpt">從 Flexbox 到 Grid，再到 Container Queries，掌握所有現代 CSS 佈局技術的最佳實踐...</p>
-                    <a href="#" class="read-more">
-                        閱讀更多
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M5 12h14M12 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
+                    <a href="#" class="read-more">閱讀更多</a>
                 </div>
             </article>
         </div>
     </main>
 
-    <!-- 新增的作品集區塊 -->
     <section class="portfolio">
         <div class="container">
-            <h2 class="section-title">我的作品集</h2>
+            <h2 class="section-title">My Portfolio</h2>
             <div class="portfolio-grid">
-                <!-- 作品 1 -->
                 <div class="portfolio-item">
-                    <img src="1.jpg" alt="網站設計作品" class="portfolio-image">
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title"> DIY postcard 1.0 </h3>
-                        <p class="portfolio-description">為科技公司設計的現代化響應式網站，採用最新的前端技術實現流暢的用戶體驗。</p>
-                        <div class="portfolio-tags">
-                            <span class="portfolio-tag">HTML/CSS</span>
-                            <span class="portfolio-tag">JavaScript</span>
-                            <span class="portfolio-tag">React</span>
-                        </div>
-                        <a href="#" class="portfolio-link">
-                            查看詳情
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
+                    <div class="portfolio-images">
+                        <img src="1.jpg" alt="作品圖片1" class="portfolio-image">
+                        <img src="2.jpg" alt="作品圖片2" class="portfolio-image">
                     </div>
+                    <p class="portfolio-title">"DIY postcard 1.0"</p>
                 </div>
 
-                <!-- 作品 2 -->
                 <div class="portfolio-item">
-                    <img src="https://source.unsplash.com/random/600x400/?app" alt="應用程式設計" class="portfolio-image">
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">任務管理應用</h3>
-                        <p class="portfolio-description">一款個人任務管理工具，具有直觀的界面和強大的組織功能，幫助用戶提高生產力。</p>
-                        <div class="portfolio-tags">
-                            <span class="portfolio-tag">Vue.js</span>
-                            <span class="portfolio-tag">Firebase</span>
-                            <span class="portfolio-tag">UI/UX</span>
-                        </div>
-                        <a href="#" class="portfolio-link">
-                            查看詳情
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
+                    <div class="portfolio-images">
+                        <img src="https://source.unsplash.com/random/600x400/?app" alt="作品圖片1" class="portfolio-image">
+                        <img src="https://source.unsplash.com/random/600x400/?mobile" alt="作品圖片2" class="portfolio-image">
                     </div>
+                    <p class="portfolio-title">"任務管理應用"</p>
                 </div>
 
-                <!-- 作品 3 -->
                 <div class="portfolio-item">
-                    <img src="https://source.unsplash.com/random/600x400/?dashboard" alt="數據儀表板" class="portfolio-image">
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">數據可視化儀表板</h3>
-                        <p class="portfolio-description">為金融機構設計的交互式數據可視化工具，實時展示關鍵業務指標和分析結果。</p>
-                        <div class="portfolio-tags">
-                            <span class="portfolio-tag">D3.js</span>
-                            <span class="portfolio-tag">TypeScript</span>
-                            <span class="portfolio-tag">Chart.js</span>
-                        </div>
-                        <a href="#" class="portfolio-link">
-                            查看詳情
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
+                    <div class="portfolio-images">
+                        <img src="https://source.unsplash.com/random/600x400/?dashboard" alt="作品圖片1" class="portfolio-image">
+                        <img src="https://source.unsplash.com/random/600x400/?analytics" alt="作品圖片2" class="portfolio-image">
                     </div>
+                    <p class="portfolio-title">"數據可視化儀表板"</p>
                 </div>
             </div>
         </div>
     </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <ul class="footer-links">
-                    <li><a href="#">首頁</a></li>
-                    <li><a href="#">文章</a></li>
-                    <li><a href="#">作品集</a></li>
-                    <li><a href="#">關於</a></li>
-                    <li><a href="#">聯絡</a></li>
-                </ul>
-                <div class="social-links">
-                    <a href="#" class="social-link">
-                        <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                        </svg>
-                    </a>
-                    <a href="#" class="social-link">
-                        <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
-                        </svg>
-                    </a>
-                    <a href="#" class="social-link">
-                        <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                        </svg>
-                    </a>
-                    <a href="#" class="social-link">
-                        <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                            <rect x="2" y="9" width="4" height="12"></rect>
-                            <circle cx="4" cy="4" r="2"></circle>
-                        </svg>
-                    </a>
-                </div>
-                <p class="copyright">© 2023 TechBlog. 保留所有權利。</p>
-            </div>
-        </div>
-    </footer>
 </body>
 </html>
