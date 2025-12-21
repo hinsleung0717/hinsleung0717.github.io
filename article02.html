@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> BLUE HOUR </title>
+    <title>BLUE HOUR</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600;700&display=swap');
-        
         :root {
             --primary-color: #1a5877;
             --secondary-color: #7d715d;
@@ -16,14 +14,13 @@
         }
         
         body {
-            font-family: 'Noto Sans TC', sans-serif;
+            font-family: 'Times New Roman', Times, serif;
             line-height: 1.8;
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
             color: var(--text-color);
             background-color: var(--bg-color);
-            letter-spacing: 0.5px;
         }
         
         .post {
@@ -40,7 +37,6 @@
             font-weight: 700;
             text-align: center;
             box-shadow: 0 4px 12px rgba(237, 237, 237, 1);
-            letter-spacing: 1px;
         }
         
         .post-meta {
@@ -58,68 +54,47 @@
         .post-content p {
             margin-bottom: 1.5em;
             text-align: justify;
-            hyphens: auto;
         }
         
-        .post-content img {
-            max-width: 100%;
+        .image-row {
+            display: flex;
+            gap: 30px;
+            margin: 40px 0;
+            align-items: center;
+        }
+        
+        .text-content {
+            flex: 1;
+        }
+        
+        .image-wrapper {
+            flex: 1;
+        }
+        
+        .image-wrapper img {
+            width: 100%;
             height: auto;
-            display: block;
-            margin: 40px auto;
             border-radius: 12px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
         
-        h2 {
-            font-family: 'Noto Serif TC', serif;
-            font-weight: 600;
-            color: var(--secondary-color);
-            margin: 2.5em 0 1em;
-            font-size: 1.6rem;
+        .video-container {
             position: relative;
-            padding-left: 15px;
-            letter-spacing: 1px;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 比例 */
+            margin: 40px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
         
-        h2::before {
-            content: "";
+        .video-container iframe {
             position: absolute;
+            top: 0;
             left: 0;
-            top: 0.3em;
-            height: 1.2em;
-            width: 5px;
-            background-color: var(--primary-color);
-            border-radius: 3px;
-        }
-        
-        h2#Intro,
-        h2#Why-first,
-        h2#Why-is-it-impressive,
-        h2#paragraph01,
-        h2#paragraph02,
-        h2#paragraph03,
-        h2#My-favorite-quote {
-            font-style: italic;
-        }
-        
-        blockquote {
-            color: var(--light-text);
-            font-size: 0.9rem;
-            border-left: 4px solid var(--primary-color);
-            padding: 15px 20px;
-            margin: 30px 0;
-            font-style: italic;
-            background-color: rgba(237, 237, 237, 1);
-            border-radius: 0 8px 8px 0;
-            line-height: 1.7;
-        }
-        
-        .quote-section footer {
-            text-align: right;
-            font-style: normal;
-            color: var(--light-text);
-            margin-top: 1.5em;
-            font-size: 0.9rem;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
         
         a {
@@ -134,21 +109,9 @@
             text-decoration: underline;
         }
         
-        figure {
-            margin: 40px 0;
-        }
-        
-        figcaption {
-            font-size: 0.9rem;
-            color: var(--light-text);
-            text-align: center;
-            margin-top: 10px;
-        }
-        
         @media (max-width: 768px) {
             body {
                 padding: 15px;
-                line-height: 1.7;
             }
             
             .post-title {
@@ -156,8 +119,16 @@
                 padding: 15px 20px;
             }
             
-            h2 {
-                font-size: 1.4rem;
+            .image-row {
+                flex-direction: column;
+            }
+            
+            .text-content, .image-wrapper {
+                width: 100%;
+            }
+            
+            .image-wrapper img {
+                margin-top: 20px;
             }
         }
     </style>
@@ -165,21 +136,38 @@
 <body>
     <a href="/">← HOME</a>
     <div class="post">
-        <h1 class="post-title"> BLUE HOUR </h1>
-        <div class="post-meta">lkhmemories — Dec 16, 2025 <span id="post-date"></span></div>
+        <h1 class="post-title">BLUE HOUR</h1>
+        <div class="post-meta">lkhmemories — Dec 16, 2025</div>
         <div class="post-content">
+            <div class="image-row">
+                <div class="text-content">
+                    <p>The term "blue hour," derived from the French l'heure bleue. It describes a brief phase of twilight, occurring either in the morning or the evening, most commonly around nautical twilight, when the Sun lies well below the horizon. At this time, the remaining ambient light takes on a distinctly blue tone, one that differs from the blue of a clear daytime sky.</p>
+                </div>
+            </div>
             
-            <p>The term “blue hour,” derived from the French l’heure bleue. It describes a brief phase of twilight, occurring either in the morning or the evening, most commonly around nautical twilight, when the Sun lies well below the horizon. At this time, the remaining ambient light takes on a distinctly blue tone, one that differs from the blue of a clear daytime sky.</p>
-            
-            <p>The blue hour is especially treasured by photographers and is often considered part of the broader “magic hour.” It typically appears about 30 minutes after sunset, before darkness fully sets in. Physically, this effect arises as sunlight travels through the atmosphere: wavelengths in the 575–603 nm range are strongly absorbed by the ozone layer through Chappuis absorption, allowing shorter blue wavelengths to dominate.</p>
-            
-            <p>Combined with atmospheric scattering, this process spreads blue light evenly across the sky, lending the landscape a serene, almost dreamlike quality.</p>
-            
-            <p>Here are a few blue hour moments, captured through my lens.</p>
-                <img src="/article02.1.jpg" alt="BLUE HOUR"/>
-                <img src="/article02.2.jpg" alt="BLUE HOUR"/>
-            <p> If you are watching a sunset, stay a little longer—wait another half hour. When the blue hour finally unfolds before your eyes, that quiet, deepening light will make every moment of waiting feel beautifully meaningful. </p>
+            <div class="image-row">
+                <div class="text-content">
+                    <p>The blue hour is especially treasured by photographers and is often considered part of the broader “magic hour.” It typically appears about 30 minutes after sunset, before darkness fully sets in. Physically, this effect arises as sunlight travels through the atmosphere: wavelengths in the 575–603 nm range are strongly absorbed by the ozone layer through Chappuis absorption, allowing shorter blue wavelengths to dominate. Combined with atmospheric scattering, this process spreads blue light evenly across the sky, lending the landscape a serene, almost dreamlike quality.</p>
+                    <p>Here are a few blue hour moments captured through my lens. </p>
+                </div>
+                <div class="image-wrapper">
+                    <img src="/article02.1.jpg" alt="Blue hour sky">                
+                    <img src="/article02.2.jpg" alt="Blue hour landscape">
+                </div>
+            </div>
 
+            <p> Links TV - a travel blogger I greatly admire, has also produced a dedicated video exploring and capturing Japan’s blue hour. </p>
+            <!-- 新增的YouTube影片區塊 -->
+            <div class="video-container">
+                <iframe 
+                    src="https://youtu.be/bGWQJqxKzU4?si=4_H6sm-1U3KF4rt1" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            
+            <p>If you are watching a sunset, stay a little longer—wait another half hour. When the blue hour finally unfolds before your eyes, that quiet, deepening light will make every moment of waiting feel beautifully meaningful.</p>
         </div>
     </div>
 </body>
