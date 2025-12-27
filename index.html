@@ -67,6 +67,13 @@
             font-family: 'Times New Roman', Times, serif;
             transition: transform 0.3s;
         }
+        
+        /* 添加圖片樣式 */
+        .logo img {
+            height: 40px; /* 與行內樣式保持一致 */
+            width: auto;
+            border-radius: 50%; /* 可選，如果logo是圓形的 */
+        }
 
         .logo:hover {
             transform: translateY(-2px);
@@ -322,10 +329,12 @@
     </style>
 </head>
 <body>
+    <!-- 修改header部分 -->
     <header>
         <div class="container">
             <nav class="navbar">
-                <a href="logo.jpg" class="logo">
+                <a href="#" class="logo">
+                    <img src="logo.jpg" alt="lkh memories logo" style="height: 40px;"> <!-- 添加logo圖片 -->
                     <span>lkh</span>
                     <span>memories</span>
                 </a>
