@@ -181,7 +181,6 @@
             font-size: 0.875rem;
         }
 
-        /* 修改後的 Portfolio 樣式 */
         .portfolio {
             padding: 4rem 0;
         }
@@ -197,7 +196,7 @@
 
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 維持兩欄 */
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
         }
 
@@ -211,16 +210,16 @@
 
         .portfolio-images {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* 兩張圖片並排 */
+            grid-template-columns: 1fr 1fr;
             gap: 0.5rem;
             padding: 0.5rem;
         }
 
         .portfolio-image {
             width: 100%;
-            height: 300px; /* 固定高度 */
-            object-fit: contain; /* 完整顯示圖片不裁剪 */
-            background-color: #f5f5f5; /* 添加背景色 */
+            height: 300px;
+            object-fit: contain;
+            background-color: #f5f5f5;
             border-radius: var(--radius-sm);
         }
 
@@ -235,84 +234,60 @@
             font-weight: normal;
             border-top: 1px solid rgba(0,0,0,0.1);
         }
-    .favorite-albums {
-        padding: 2rem 0; /* 減少上下間距 */
-        background-color: #f8f9fa;
-    }
-    
-    .albums-container {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem; /* 減少項目間距 */
-    }
-    
-    .album-item {
-        background-color: var(--card-bg);
-        border-radius: var(--radius-md);
-        overflow: hidden;
-        box-shadow: var(--shadow-sm);
-        transition: all 0.3s ease;
-        padding: 1rem; /* 減少內邊距 */
-    }
-    
-    .album-header {
-        display: flex;
-        align-items: center;
-    }
-    
-    .album-cover {
-        width: 80px; /* 縮小專輯封面尺寸 */
-        height: 80px;
-        object-fit: cover;
-        border-radius: var(--radius-sm); /* 改為輕微圓角 */
-        margin-right: 1rem;
-    }
-    
-.album-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-    
-    .album-title {
-        font-size: 1rem; /* 調整字體大小 */
-        font-weight: 600;
-        color: var(--primary);
-        font-family: 'Times New Roman', Times, serif;
-    }
-    
-    .album-artist {
-        font-size: 0.875rem;
-        color: var(--gray);
-        margin-top: 0.25rem;
-    }
-        
-        @media (max-width: 768px) {
-            .singer-header {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .singer-image {
-                margin-right: 0;
-                margin-bottom: 1rem;
-            }
-        }
-      .album-lyrics {
-      margin-top: 1rem;
-      font-size: 0.875rem;
-      color: var(--gray);
-      font-style: italic;
-      line-height: 1.5;
-      padding-left: 0.5rem;
-      border-left: 2px solid var(--secondary);
-      }
 
-      .album-lyrics p {
-          margin-bottom: 0.5rem;
-      }
-      
+        .favorite-albums {
+            padding: 2rem 0;
+            background-color: #f8f9fa;
+        }
+        
+        .albums-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .album-item {
+            background-color: var(--card-bg);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            padding: 1rem;
+        }
+        
+        .album-header {
+            display: flex;
+            align-items: center;
+        }
+        
+        .album-cover {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            margin-right: 1rem;
+        }
+        
+        .album-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .album-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+        .album-artist {
+            font-size: 0.875rem;
+            color: var(--gray);
+            margin-top: 0.25rem;
+        }
+        
         footer {
             background-color: var(--dark);
             color: white;
@@ -340,7 +315,6 @@
                 gap: 1rem;
             }
             
-            /* 手機版改為單欄 */
             .portfolio-grid {
                 grid-template-columns: 1fr;
             }
@@ -357,9 +331,9 @@
                 </a>
                 <ul class="nav-links">
                     <li><a href="#">HOME</a></li>
-                    <li><a href="#">ARTICLE</a></li>
+                    <li><a href="blog.html">BLOG</a></li>
                     <li><a href="#portfolio">PORTFOLIO</a></li>
-                    <li><a href="#recommended-songs">SONGS</a></li>  <!-- 新增的 SONGS 按鈕 -->
+                    <li><a href="#recommended-songs">SONGS</a></li>
                     <li><a href="#">ABOUT</a></li>
                 </ul>
             </nav>
@@ -389,7 +363,7 @@
                         <span>2025-12-16</span>
                     </div>
                     <h3 class="post-title"><a href="/article02.html">藍調時刻 Blue Hour</a></h3>
-                    <p class="post-excerpt">The term “blue hour,” derived from the French l’heure bleue. It describes a brief phase of twilight, occurring either in the morning...</p>
+                    <p class="post-excerpt">The term "blue hour," derived from the French l'heure bleue. It describes a brief phase of twilight, occurring either in the morning...</p>
                     <a href="/article02.html" class="read-more">閱讀更多</a>
                 </div>
             </article>
@@ -398,6 +372,7 @@
                 <img src="https://static01.nyt.com/images/2009/02/22/arts/22lim_600.jpg?quality=75&auto=webp&disable=upscale" alt="Meaningness" class="post-image">
                 <div class="post-content">
                     <div class="post-meta">
+                    <span class="post-category">影視</span>
                         <span>2025-12-15</span>
                     </div>
                     <h3 class="post-title"><a href="/article03.html">Meaningness(1)</a></h3>
@@ -408,7 +383,7 @@
         </div>
     </main>
 
-    <section class="portfolio" id="portfolio">  <!-- 添加 id -->
+    <section class="portfolio" id="portfolio">
         <div class="container">
           <h2 class="section-title">My <i>Portfolio</i></h2>
             <div class="portfolio-grid">
@@ -422,52 +397,54 @@
             </div>
         </div>
     </section>
-<section class="favorite-albums" id="recommended-songs">
-    <div class="container">
-        <h2 class="section-title">Recommended <i>r&bs</i></h2>
-        <div class="albums-container">
-            <div class="album-item">
-                <div class="album-header">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSKgD6HnMYrPkc16-2bd3Iu64AfoHdOgRr6g&s" alt="Never Enough" class="album-cover">
-                    <div class="album-info">
-                        <h3 class="album-title">NEVER ENOUGH</h3>
-                        <p class="album-artist">by Daniel Caesar</p>
+
+    <section class="favorite-albums" id="recommended-songs">
+        <div class="container">
+            <h2 class="section-title">Recommended <i>r&bs</i></h2>
+            <div class="albums-container">
+                <div class="album-item">
+                    <div class="album-header">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSKgD6HnMYrPkc16-2bd3Iu64AfoHdOgRr6g&s" alt="Never Enough" class="album-cover">
+                        <div class="album-info">
+                            <h3 class="album-title">NEVER ENOUGH</h3>
+                            <p class="album-artist">by Daniel Caesar</p>
+                        </div>
                     </div>
                 </div>
+                
+                <div class="album-item">
+                    <div class="album-header">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/2/28/Channel_ORANGE.jpg" alt="CHANNEL ORANGE" class="album-cover">
+                        <div class="album-info">
+                            <h3 class="album-title">CHANNEL ORANGE</h3>
+                            <p class="album-artist">by Frank Ocean</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="album-item">
+                    <div class="album-header">
+                        <img src="music03.jpg" alt="丸ノ内サディスティック" class="album-cover">
+                        <div class="album-info">
+                            <h3 class="album-title">丸ノ内サディスティック</h3>
+                            <p class="album-artist">by Sheena Ringo</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="album-item">
+                    <div class="album-header">
+                        <img src="https://s.eslite.com/upload/product/o/2682162219001/20220420012229959307.jpg" alt="GABRIEL" class="album-cover">
+                        <div class="album-info">
+                            <h3 class="album-title">GABRIEL</h3>
+                            <p class="album-artist">by Keshi</p>
+                        </div>
+                    </div>
+                </div>          
             </div>
-            
-            <div class="album-item">
-                <div class="album-header">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/2/28/Channel_ORANGE.jpg" alt="CHANNEL ORANGE" class="album-cover">
-                    <div class="album-info">
-                        <h3 class="album-title">CHANNEL ORANGE</h3>
-                        <p class="album-artist">by Frank Ocean</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="album-item">
-                <div class="album-header">
-                    <img src="music03.jpg" alt="丸ノ内サディスティック" class="album-cover">
-                    <div class="album-info">
-                        <h3 class="album-title">丸ノ内サディスティック</h3>
-                        <p class="album-artist">by Sheena Ringo</p>
-                    </div>
-                </div>
-            </div>
-            <div class="album-item">
-                <div class="album-header">
-                    <img src="https://s.eslite.com/upload/product/o/2682162219001/20220420012229959307.jpg" alt="GABRIEL" class="album-cover">
-                    <div class="album-info">
-                        <h3 class="album-title">GABRIEL</h3>
-                        <p class="album-artist">by Keshi</p>
-                    </div>
-                </div>
-            </div>          
         </div>
-    </div>
-</section>
-        <footer>
+    </section>
+
+    <footer>
         <div class="container">
             <p class="copyright">© 2025 lkhmemories</p>
         </div>
