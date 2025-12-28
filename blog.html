@@ -67,6 +67,13 @@
             font-family: 'Times New Roman', Times, serif;
             transition: transform 0.3s;
         }
+        
+        /* 添加圖片樣式 */
+        .logo img {
+            height: 40px; /* 與行內樣式保持一致 */
+            width: auto;
+            border-radius: 50%; /* 可選，如果logo是圓形的 */
+        }
 
         .logo:hover {
             transform: translateY(-2px);
@@ -182,15 +189,16 @@
     <header>
         <div class="container">
             <nav class="navbar">
-                <a href="index.html" class="logo">
-                    <i class="fas fa-camera-retro"></i>
-                    <span>lkh memories</span>
+                <a href="#" class="logo">
+                    <img src="logo.jpg" alt="lkh memories logo" style="height: 40px;"> <!-- 添加logo圖片 -->
+                    <span>lkh</span>
+                    <span>memories</span>
                 </a>
                 <ul class="nav-links">
-                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="#">HOME</a></li>
                     <li><a href="blog.html">BLOG</a></li>
-                    <li><a href="index.html#portfolio">PORTFOLIO</a></li>
-                    <li><a href="index.html#recommended-songs">SONGS</a></li>
+                    <li><a href="#portfolio">PORTFOLIO</a></li>
+                    <li><a href="#recommended-songs">SONGS</a></li>
                     <li><a href="#">ABOUT</a></li>
                 </ul>
             </nav>
