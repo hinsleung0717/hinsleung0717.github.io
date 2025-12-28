@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEANINGNESS</title>
+    <title>Meaningness</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600;700&display=swap');
 
@@ -88,12 +88,11 @@
             flex: 1;
         }
         
-        .image-wrapper {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
+.image-wrapper img {
+    max-width: 500px;
+    margin: 20px auto;
+    display: block;
+}
         
         .image-wrapper img {
             width: 100%;
@@ -101,7 +100,28 @@
             border-radius: 12px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
-        
+        figure.image-wrapper {
+    margin: 20px 0;
+    text-align: center;
+}
+
+figure.image-wrapper img {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+figcaption {
+    margin-top: 10px;
+    font-size: 0.85rem;  /* 更小的字體大小 */
+    color: var(--light-text);
+    font-style: italic;
+    text-align: center;  /* 文字置中 */
+    max-width: 80%;     /* 限制文字寬度 */
+    margin-left: auto;  /* 配合 max-width 達到置中效果 */
+    margin-right: auto;
+    line-height: 1.4;   /* 調整行高 */
+}
         .video-container {
             position: relative;
             width: 100%;
@@ -167,19 +187,22 @@
 <body>
     <a href="/" class="home-link">← HOME</a>
     <div class="post">
-        <h1 class="post-title">Meaningness(1)</h1>
+        <h1 class="post-title">意義 Meaningness(1)</h1>
         <div class="post-meta">lkhmemories — Dec 16, 2025</div>
         <div class="post-content">
-                    <p><b><i>What's the meaning of life?</i></b> (This is not an essay arguing for a definitive answer; it simply shares non-personal perspectives from different angles.)</p>
-                    <p>In the documentary Examined Life, <b><i>Cornel West</i></b> responds to this question:</p>
-                    <p><i> "I think the problem of meaning is very important. <b><i>Nihilism</b></i> is a serious challenge. <b><i>Meaninglessness</b></i> is a serious challenge. Even making sense of meaninglessness itself is a kind of discipline and achievement. The problem, of course, is that you never reach it. It's not a static, stationary telos — not an end or final aim. It's a process that one never reaches. It's <b>Sisyphean</b>. You're pushing the rock up the hill looking for better meanings or grander, more ennobling, more enabling meanings, but you never reach it. <b>In that sense you die without having the whole, in the language of romantic discourse.</b>" </i></p>
-                    <p><b><i>The Myth of Sisyphus (French: Le mythe de Sisyphe)</i></b> is a philosophical essay <b><i>Albert Camus</i></b> published in 1942 that develops a theory of the absurd: the tension between humanity’s fundamental need for meaning and the universe’s indifferent, irrational silence. The central claim is that acknowledging this condition does not justify suicide; instead, it calls for lucid resistance.</p>
-                    <p>The absurd arises from the collision between our “thirst for meaning” and the world’s refusal to answer. This confrontation must be faced directly, without recourse to transcendence, illusion, or metaphysical consolation.</p>
-                    <p>Several possible responses to an absurd life are then examined. In the final chapter, the human condition is compared to the fate of Sisyphus from Greek mythology. Condemned to push a boulder up a mountain only to see it roll back down just before reaching the summit, Sisyphus is trapped in an endless and seemingly meaningless task. <b><i>Yet the conclusion is paradoxical: “The struggle itself toward the heights is enough to fill a man’s heart. One must imagine Sisyphus happy.”</i></b></p> 
-                    <p><b><i>This eternal, futile labor becomes an image of modern existence—of individuals confined to repetitive, mechanical work in factories and offices. </i></b>Contemporary laborers, who spend their lives performing the same tasks, share an equally absurd fate. Crucially, this condition becomes tragic only once its absurdity is consciously recognized.</p>
-                    <p>The absurdity of life is presented as <b>unavoidable</b>, much like the routines of living, working, studying, and taking examinations. The task, therefore, is not to deny the absurd but to learn how to live with it. Any grasp of meaning remains permanently insufficient; it can never fully mend the fractures of existence. Even when meaning is demanded, it offers no definitive answers. Yet precisely because it is absent, the pursuit continues.</p>
+                    <p><b><i>What's the meaning of life?</b> (This is not an essay arguing for a definitive answer; it simply shares non-personal perspectives from different angles.)</i></p>
+                    <p>In the documentary "Examined Life", <b><i>Cornel West</i></b> responds to this question:</p>
+<div class="image-wrapper">
+    <img src="https://static01.nyt.com/images/2009/02/22/arts/22lim_600.jpg?year=2009&h=336&w=600&s=5b1888e303b1ab83b292349f49000ae8393b2867b02848148e22804daac3f489&k=ZQJBKqZ0VN" alt="Examined Life documentary poster">
+</div>    
+          <p><i> "I think the problem of meaning is very important. <b><i>Nihilism</b></i> is a serious challenge. <b><i>Meaninglessness</b></i> is a serious challenge. Even making sense of meaninglessness itself is a kind of discipline and achievement. The problem, of course, is that you never reach it. It's not a static, stationary telos — not an end or final aim. It's a process that one never reaches. It's <b>Sisyphean</b>. You're pushing the rock up the hill looking for better meanings or grander, more ennobling, more enabling meanings, but you never reach it. <b>In that sense you die without having the whole, in the language of romantic discourse.</b>" </i></p>
+            <h2><b><i>Sisyphus</i></b></h2>        
+          <p>Such a description leads almost directly to the philosophy of the <b><i>absurd</b></i> articulated by <b><i>Albert Camus</b></i> in <b><i>The Myth of Sisyphus</b></i>. What Camus calls the <b><i>“absurd”</b></i> arises precisely from the conflict between humanity’s intense longing for meaning and the universe’s persistent silence in response. The world does not answer, yet human beings continue to ask; this irreconcilable confrontation constitutes the core condition of modern existence. Camus emphasizes that, in the face of the absurd, one must neither turn to religion, metaphysics, or any form of transcendent consolation, nor resort to suicide as a means of escape.<b><i> The only honest response is to endure the absurd with full lucidity and to persist in revolt.</b></i></p>
+          <p><b>IN THE FINAL CHAPTER</b> of the book, Camus turns to the figure of Sisyphus from Greek mythology as a symbol of the human condition. Condemned to push a boulder up a mountain only to watch it roll back down again, Sisyphus appears to be engaged in a meaningless task. Yet Camus arrives at a paradoxical conclusion:<b><i> “The struggle itself toward the heights is enough to fill a man’s heart. One must imagine Sisyphus happy.”</b></i> This happiness does not arise from any final outcome, but from the conscious acceptance and affirmation of an absurd fate.</p>
+                    <p>Camus further extends the figure of Sisyphus into modern society: <b><i>people who repeat the same forms of labor in factories, offices, schools, and examination halls share an equally absurd fate.</b></i> This condition of life is not tragic in itself; the true tragedy emerges only when one becomes aware of the absurd and yet chooses to deny or flee from it. Like the daily rhythms of living, the absurd is unavoidable. The question, therefore, is not how to eliminate it, but how to learn to live alongside it.</p> 
                     <p>Action persists because human beings continually attempt to compensate for this essential lack. At the core of existence lies a structural deficiency that cannot be resolved. <b><i>Meaning, then, is not something to be discovered once and for all; it is something to be sought continuously, sustaining the movement of life itself.</i></b></p>
-                    <p>Read more about the thought of Cornel West. https://www.nytimes.com/2009/02/22/movies/22lim.html?smid=url-share</p>
+          <p>Read more about the thought of Cornel West:</p>
+          <p>https://www.nytimes.com/2009/02/22/movies/22lim.html?smid=url-share</p>
 
         </div>
     </div>
