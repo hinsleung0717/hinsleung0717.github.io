@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>象牙塔尖的仲夏夢｜加州的溫度</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600;700&display=swap');
+
+        :root {
+            --primary-color: #1a5877;
+            --secondary-color: #7d715d;
+            --text-color: #333;
+            --light-text: #666;
+            --bg-color: #f9f9f7;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+        
+        .post {
+            margin-bottom: 60px;
+        }
+        
+        .post-title {
+            color: white;
+            background-color: var(--primary-color);
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(237, 237, 237, 1);
+            font-family: 'Noto Sans TC', serif;
+        }
+        
+        .post-meta {
+            color: var(--light-text);
+            font-size: 0.9em;
+            margin: 15px 0 30px;
+            text-align: center;
+            font-weight: 300;
+            font-family: 'Noto Sans TC', serif;
+        }
+        
+        .post-content {
+            font-size: 1.05rem;
+            font-family: "Times New Roman", Times, serif;
+        }
+        
+        .post-content p {
+            margin-bottom: 1.5em;
+            text-align: justify;
+        }
+        
+        .home-link {
+            font-family: 'Noto Sans TC', serif;
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+              h2 {
+            font-family: 'Noto Serif TC', serif;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin: 2.5em 0 1em;
+            font-size: 1.6rem;
+            position: relative;
+            padding-left: 15px;
+            letter-spacing: 1px;
+        }
+        
+        h2::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.3em;
+            height: 1.2em;
+            width: 5px;
+            background-color: var(--primary-color);
+            border-radius: 3px;
+        }
+        
+        h2#What,
+        h2#Why-first,
+        h2#Why-is-it-impressive,
+        h2#paragraph01,
+        h2#paragraph02,
+        h2#paragraph03,
+        h2#My-favorite-quote {
+            font-style: italic;
+        }
+        .home-link:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+        
+        .image-row {
+            display: flex;
+            gap: 30px;
+            margin: 40px 0;
+            align-items: flex-start; /* 修改为flex-start而不是center */
+        }
+
+        .text-content {
+            flex: 1;
+            align-self: flex-start; /* 确保文字内容始终顶部对齐 */
+        }
+
+        .image-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: flex-start; /* 图片容器也顶部对齐 */
+        }
+        
+        .image-wrapper img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+          margin-bottom: 0;
+        }
+.post-content .caption-font {
+    font-size: 0.85rem;
+    color: var(--light-text);
+    font-style: italic;
+    line-height: 1.4;
+}
+
+.image-caption {
+    font-size: 0.85rem;
+    color: var(--light-text);
+    text-align: center;
+    margin-top: 8px;
+    font-style: italic;
+    line-height: 1.4;
+}
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 比例 */
+            margin: 40px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .post-title {
+                font-size: 1.8rem;
+                padding: 15px 20px;
+            }
+            
+            .image-row {
+                flex-direction: column;
+            }
+            
+            .text-content, .image-wrapper {
+                width: 100%;
+            }
+            
+            .image-wrapper img {
+                margin-top: 20px;
+            }
+        }
+      blockquote {
+            color: var(--light-text);
+            font-size: 0.9rem;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px 20px;
+            margin: 30px 0;
+            font-style: italic;
+            background-color: rgba(237, 237, 237, 1);
+            border-radius: 0 8px 8px 0;
+            line-height: 1.7;
+        }
+        
+        .quote-section footer {
+            text-align: right;
+            font-style: normal;
+            color: var(--light-text);
+            margin-top: 1.5em;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="home-link">← HOME</a>
+    <div class="post">
+        <h1 class="post-title">象牙塔尖的仲夏夢｜加州的溫度</h1>
+        <div class="post-meta">lkhmemories — Dec 30, 2025</div>
+        <div class="post-content">
+          <p>走在校園裡，我從一開始的旁觀者，慢慢學會加入別人的閒聊，也被接納成為其中的一部分。這裡的溫度，不只是天氣的溫度，更多是人與人之間那種可以自由靠近、互相扶持的暖——它構成了我在加州最立體、也最溫暖的回憶。這些記憶由小片段累積成線，然後再交織成一整段可以回望的旅程。</p>
+        <p>課堂上可以隨意發表意見；professor們習慣用鼓勵代替批判，哪怕是初次發言的人也會被當成值得傾聽的聲音。起初我還不敢開口，擔心說錯、害怕被忽略；但身邊那些熱心的同學和老師，給了我勇氣和自信——學會做自己想做的事，說自己想說的話，勇於追求想要的生活。期末週我們常常在 discussion room 一起討論、摸索到深夜，那種「不是一個人在努力」的感覺，成了我努力時最大的支持。這樣的支持不只是學業上的互助，更像是一種生活的相互認可：有人願意陪你加班到深夜，也有人願意在你失落時伸出手。在伯克萊，你永遠不是只有一個人。</p>
+          
+          <div class="image-row">
+            <div class="text-content">
+                    <p>我清楚記得第一天沒有床單枕套的窘境：在 Target 找不到所需用品時，我和另一位同樣迷惘的夏校同學決定一起尋找。正當我們迷茫時，一位在遛狗的老奶奶耐心地停下來幫我們查地圖、說明最近能買到的店家，甚至指引該坐哪輛公交、該往哪個方向走。她用半個小時的耐心，讓兩個初來乍到的人覺得這座城市並不那麼陌生。</p>
+            </div>
+       <div class="image-wrapper">
+               <img src="article0701.jpg" alt="Blue hour sky">
+       </div>
+    </div>
+                    <p>我記得到伯克利的第一個周末，本來要去舊金山玩，卻因為朋友臨時有事改了計劃。那天我決定去 West Berkeley 的 North Face outlet 逛逛，順路經過 Berkeley Village，看到幾張看起來像亞洲人的面孔，心裡猶豫要不要過去搭話。聽到他們講中文時，我差一點又退縮；但後來我還是邁步上前，沒有選擇離開。那一刻的勇敢，換來了意想不到的療癒：他們其中有人是伯克利的 researchers，也有交大的學長，我們聊得很投機，他們的主動與熱情讓我更有自信，也保留了一種認識陌生人的底氣。那晚我們一起吃燒烤、包粽子，最後還去品酒——那些小小的相遇，成了我在異地生活中的重要節點。</p>
+          <img src="article0702.jpg" alt="Blue hour sky">
+                    <img src="article0703.jpg" alt="Blue hour sky">
+
+                    <div class="image-row">
+            <div class="text-content">
+                    <p>可城市的溫柔不止於校園。翻到一張在Santa Barbara的照片，我想起最後一場落日，住在附近的一對爺爺奶奶主動跟我們聊天，告訴我們那是一年中最美的晚霞，還熱情幫我們拍照。那一刻，光線把每個輪廓拉長，把笑聲拉得柔軟，讓人明白旅行與生活中最值得收藏的，往往是這些未經安排的溫柔瞬間。</p>
+            </div>
+       <div class="image-wrapper">
+               <img src="article0704.jpg" alt="Blue hour sky">
+       </div>
+    </div>
+                      <div class="text-content">
+          <p>撇開政治，這座加州城市確實歡迎來自不同地方的人：有 Chinatown、Japantown、Koreatown、Little Italy，不同社群與文化在此並存。剛好遇到 Pride 活動的日子，街上各色表演與慶典讓我深刻體會到包容的力量。這種多元不只是一種表象，而是滲透在日常互動中——你會因為不同語言、不同穿著、不同習慣而認識新朋友，彼此也學到如何在差異中找到共同點。</p>
+            </div>
+       <div class="image-wrapper">
+               <img src="article0705.jpg" alt="Blue hour sky">
+       </div>
+    </div>
+          <p>我很喜歡 Virginia Woolf 那句話：「I am rooted, but I flow」。一個人如果願意持續學習、更新自己的認知，那麼內心便會常保新鮮、常生新枝。你不必每天移動身體去旅行，內心的更新就能讓生活在不斷變換的風景中自我更新。根是立足、是來處；流是向外、是延展。能在根與流間自如切換，才有餘力去擁抱更多的人與事。生命就是一場盛大的流動，在不斷更新的風景里和不同的人相遇、交談、告別像小溪一樣匯聚又分開。我想，我的心必須一直留在自由里，在路上繼續生長。</p>
+<p>緣分總是讓人驚訝：看似毫不相干的兩條線，因為某個交集而產生了連結，從而演變為友誼、親情或愛情。很多時候，這些交集來得突然而短暫，有些人在生活裡只出現一次，便再也不見；有些告別看似平常，卻成了最後一面。在加州的日子教我一件事：勇敢踏出第一步，去和陌生人說一句話；放慢腳步，去感受別人給你的善意。根讓你安定，流讓你自由——兩者並不矛盾，而是共同支撐一個能持續生長的自我。未來還有很多路要走、很多人要遇見，我希望自己的心能一直保持那份自由，在路上繼續伸展枝條，迎接下一個溫柔的瞬間。</p>
+</div>
+</body>
+</html>        
