@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公益廣告</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600;700&display=swap');
+
+        :root {
+            --primary-color: #1a5877;
+            --secondary-color: #7d715d;
+            --text-color: #333;
+            --light-text: #666;
+            --bg-color: #f9f9f7;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+        
+        .post {
+            margin-bottom: 60px;
+        }
+        
+        .post-title {
+            color: white;
+            background-color: var(--primary-color);
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(237, 237, 237, 1);
+            font-family: 'Noto Sans TC', serif;
+        }
+        
+        .post-meta {
+            color: var(--light-text);
+            font-size: 0.9em;
+            margin: 15px 0 30px;
+            text-align: center;
+            font-weight: 300;
+            font-family: 'Noto Sans TC', serif;
+        }
+        
+        .post-content {
+            font-size: 1.05rem;
+            font-family: "Times New Roman", Times, serif;
+        }
+        
+        .post-content p {
+            margin-bottom: 1.5em;
+            text-align: justify;
+        }
+        
+        .home-link {
+            font-family: 'Noto Sans TC', serif;
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+              h2 {
+            font-family: 'Noto Serif TC', serif;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin: 2.5em 0 1em;
+            font-size: 1.6rem;
+            position: relative;
+            padding-left: 15px;
+            letter-spacing: 1px;
+        }
+        
+        h2::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.3em;
+            height: 1.2em;
+            width: 5px;
+            background-color: var(--primary-color);
+            border-radius: 3px;
+        }
+        
+        h2#What,
+        h2#Why-first,
+        h2#Why-is-it-impressive,
+        h2#paragraph01,
+        h2#paragraph02,
+        h2#paragraph03,
+        h2#My-favorite-quote {
+            font-style: italic;
+        }
+        .home-link:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+        
+        .image-row {
+            display: flex;
+            gap: 30px;
+            margin: 40px 0;
+            align-items: flex-start; /* 修改为flex-start而不是center */
+        }
+
+        .text-content {
+            flex: 1;
+            align-self: flex-start; /* 确保文字内容始终顶部对齐 */
+        }
+
+        .image-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: flex-start; /* 图片容器也顶部对齐 */
+        }
+        
+        .image-wrapper img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+          margin-bottom: 0;
+        }
+.post-content .caption-font {
+    font-size: 0.85rem;
+    color: var(--light-text);
+    font-style: italic;
+    line-height: 1.4;
+}
+
+.image-caption {
+    font-size: 0.85rem;
+    color: var(--light-text);
+    text-align: center;
+    margin-top: 8px;
+    font-style: italic;
+    line-height: 1.4;
+}
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 比例 */
+            margin: 40px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .post-title {
+                font-size: 1.8rem;
+                padding: 15px 20px;
+            }
+            
+            .image-row {
+                flex-direction: column;
+            }
+            
+            .text-content, .image-wrapper {
+                width: 100%;
+            }
+            
+            .image-wrapper img {
+                margin-top: 20px;
+            }
+        }
+      blockquote {
+            color: var(--light-text);
+            font-size: 0.9rem;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px 20px;
+            margin: 30px 0;
+            font-style: italic;
+            background-color: rgba(237, 237, 237, 1);
+            border-radius: 0 8px 8px 0;
+            line-height: 1.7;
+        }
+        
+        .quote-section footer {
+            text-align: right;
+            font-style: normal;
+            color: var(--light-text);
+            margin-top: 1.5em;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="home-link">← HOME</a>
+    <div class="post">
+        <h1 class="post-title">公益廣告</h1>
+        <div class="post-meta">lkhmemories — Dec 30, 2025</div>
+        <div class="post-content">
+          <p><i>**這篇文章只是分享我對香港與上海公益廣告的觀察，並非評斷哪一座城市做得更好，而是記錄在日常生活中所看見的不同城市語言。</p></i>
+          <p>偶爾，我會在通勤途中放下手機，抬起頭，留意身邊的人與城市的細節。最近，我開始注意到那些藏在街頭巷尾的公益廣告——地鐵站的牆面、巴士車廂的一角、巴士站牌旁不經意的一張海報。它們不佔據視線，也不要求回應，卻在匆忙的人流之中，靜靜存在。</p>
+        <p>正是這種不打擾，讓我意識到公益廣告其實很誠實地反映了一座城市的氣質。它們陪伴人們通勤與短暫的停留，也在不知不覺中透露出城市如何理解公共空間與彼此的關係。</p>
+          
+          <div class="image-row">
+            <div class="text-content">
+                    <p>香港是一座生活節奏非常快的城市，人們行色匆匆、言語簡短，在高密度的生活裡很少停下腳步寒暄，看似冷漠，但城市仍選擇在最日常的角落替他們說話。地鐵站與巴士站裡那些安靜存在的公益訊息，它們不要求立即回應，只是在提醒——即使步伐很快，城市仍沒有忘記那些走得比較慢的人。</p>
+              <p>相較之下，上海作為中國的經濟中心，長期被賦予效率、現代化與競爭力的象徵意義。成熟的金融體系與清晰的治理邏輯，讓城市展現出強烈的秩序感與目標導向。公共訊息多以「市民」與「社會責任」為主語，強調規範與共同目標，以確保城市高效運作。</p>
+            <p>這樣的差異，讓我開始重新思考弱勢群體在城市中的位置。他們並非被暫時收留的對象，而是原本就生活在城市裡的人。公益廣告的重要性，不在於標記誰需要被幫助，而是提醒多數人：我們共享同一套公共空間與生活節奏，任何人的處境，都可能在某個時刻成為自己的現實。真正的社會融入，不是施予，而是承認。當弱勢能在公共視野中被看見、被尊重，城市所建立的便是一種彼此承認、相互依存的關係，而非單向的幫助。</p>
+            <p>街頭巷尾的公益廣告，往往就是在做這樣的提醒。它提醒下班後疲憊不堪的打工人，在漫長通勤之後，這份倦意是被理解的；也提醒那些因日常瑣事而情緒低落的人，他們的感受並不微不足道；同時也讓弱勢社群知道，他們並不是孤單地存在著。這些訊息或許只是短短一句話，卻常在最不設防的時刻，留下被陪伴的感覺。</p>
+            <p>一座城市是否具有「人文溫度」，不取決於它喊過多少關懷口號，而在於那些無法為城市創造效率或形象的人，是否仍能在公共空間中被認真對待。這種溫度不是宏大的敘事，而是一種持續而可被感知的存在，體現在城市是否願意為脆弱者放慢一步、為沉默者留出位置。當一座城市願意在公共空間中反覆呈現弱勢者的日常與情感，它其實是在對抗割裂，提醒人們：彼此之間並非只隔著規則，而是共享同一種脆弱的人性。相反地，當公益訊息主要服務於秩序與效率，城市固然會變得整齊可預測，卻也可能讓人學會遵守規範，卻忽略彼此的困境。</p>
+            <p>真正成熟的城市，並不是沒有割裂，而是願意承認割裂的存在，並持續嘗試修補它。而修補的第一步，往往不是新的制度或口號，而是讓那些被忽略的人重新進入公共敘事之中，被當作「人」，而非「問題」看待。</p>
+              
+            </div>
+       <div class="image-wrapper">
+               <img src="article0801.jpg" alt="Blue hour sky">
+                  <p class="image-caption"> 香港 </p>
+
+                        <img src="article0802.jpg" alt="Blue hour sky">
+
+         <p class="image-caption"> 上海 </p>
+       </div>
+    </div>
+                      <p><i>若說經濟發展決定了一座城市能走多遠，那麼人文關懷，則決定了這座城市願意帶著多少人一起走。</p></i>
+           
+</div>
+</body>
+</html>        
