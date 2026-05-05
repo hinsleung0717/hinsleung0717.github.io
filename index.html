@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>lkhmemories</title>
     <style>
-        :root {
+        /* 保持原有的CSS样式不变，只添加新样式 */
+               :root {
             --primary: #1a5877;
             --secondary: #10b981;
             --dark: #1e293b;
@@ -353,16 +354,65 @@
             .portfolio-grid {
                 grid-template-columns: 1fr;
             }
+        } 
+        /* 新增分类相关样式 */
+        .category-container {
+            margin-bottom: 2.5rem;
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background-color: var(--card-bg);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+        
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+        .category-count {
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+        }
+        
+        .category-posts {
+            display: none;
+            grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+            gap: 1.8rem;
+        }
+        
+        .category-posts.active {
+            display: grid;
+        }
+        
+        .category-toggle {
+            transition: transform 0.3s ease;
+        }
+        
+        .category-toggle.active {
+            transform: rotate(180deg);
         }
     </style>
 </head>
 <body>
-    <!-- 修改header部分 -->
+    <!-- 保持header部分不变 -->
     <header>
         <div class="container">
             <nav class="navbar">
                 <a href="#" class="logo">
-                    <img src="logo.jpg" alt="lkh memories logo" style="height: 40px;"> <!-- 添加logo圖片 -->
+                    <img src="logo.jpg" alt="lkh memories logo" style="height: 40px;">
                     <span>lkh</span>
                     <span>memories</span>
                 </a>
@@ -378,96 +428,153 @@
         </div>
     </header>
 
-   <main class="container">
+    <main class="container">
         <div class="posts">
-            <article class="post-card">
-                <div class="post-content">
-                    <h3 class="post-title"><a href="/article08.html"> 公益廣告 </a></h3>
-                                      <div class="post-meta">
-                        <span class="post-category"> ad </span>
-                        <span>2025-12-30</span>
-                    </div>
-                    <p class="post-excerpt">偶爾，我會在通勤途中放下手機，抬起頭，留意身邊的人與城市的細節。最近，我開始注意到那些藏在街頭巷尾的公益廣告...</p>
+            <!-- 按分类组织的文章列表 -->
+            <div class="category-container" data-category="ad">
+                <div class="category-header">
+                    <h2 class="category-title">广告</h2>
+                    <div class="category-count">1 篇文章</div>
+                    <div class="category-toggle">▼</div>
                 </div>
-            </article>
-            <article class="post-card">
-                <div class="post-content">
-                    <h3 class="post-title"><a href="/article07.html"> 象牙塔尖的仲夏夢｜加州的溫度 </a></h3>
-                                      <div class="post-meta">
-                        <span class="post-category"> travel </span>
-                        <span>2025-12-30</span>
-                    </div>
-                    <p class="post-excerpt">這裡的溫度，不只是天氣的溫度，更多是人與人之間那種可以自由靠近、互相扶持的暖...</p>
+                <div class="category-posts">
+                    <article class="post-card">
+                        <div class="post-content">
+                            <h3 class="post-title"><a href="/article08.html"> 公益廣告 </a></h3>
+                            <div class="post-meta">
+                                <span class="post-category"> ad </span>
+                                <span>2025-12-30</span>
+                            </div>
+                            <p class="post-excerpt">偶爾，我會在通勤途中放下手機，抬起頭，留意身邊的人與城市的細節。最近，我開始注意到那些藏在街頭巷尾的公益廣告...</p>
+                        </div>
+                    </article>
                 </div>
-            </article>
-            <article class="post-card">
-                <div class="post-content">
-                    <h3 class="post-title"><a href="/article06.html"> 全知讀者視角 1 第四面墻 </a></h3>
-                                      <div class="post-meta">
-                        <span class="post-category"> Novel </span>
-                        <span>2025-12-30</span>
-                    </div>
-                    <p class="post-excerpt">「第四面牆」這個詞是我從《全知讀者視角》（韓文：전지적 독자 시점）認識的—一部我從高中就開始看的小說。要談這個概念，先從作品本身簡要介紹起...</p>
-                </div>
-            </article>
-            <article class="post-card">
-                <div class="post-content">
-                    <h3 class="post-title"><a href="/article05.html">意義 Meaningness｜Soul</a></h3>
-                                      <div class="post-meta">
-                        <span class="post-category"> Movie </span>
-                        <span>2025-12-27</span>
-                    </div>
-                    <p class="post-excerpt">What's the meaning of life? In a movie called "Soul", it tells:...</p>
-                </div>
-            </article>
-            <article class="post-card">
-                <div class="post-content">
-                    <h3 class="post-title"><a href="/article04.html">象牙塔尖的仲夏夢｜夢的起始</a></h3>
-                                      <div class="post-meta">
-                        <span class="post-category"> Travel </span>
-                        <span>2025-12-27</span>
-                    </div>
-                    <p class="post-excerpt">加州大學柏克萊分校（UC Berkeley）是一所公立大學，與斯坦福、哈佛、耶魯、麻省這類私立名校不同。它在美國公立大學中常年名列前茅，在 QS 全球排名也長期位於前二十。我參加的項目是 Berkeley 的 Summer Session...</p>
-                </div>
-            </article>
+            </div>
             
-            <article class="post-card">
-                <div class="post-content">
-
-                    <h3 class="post-title"><a href="/article01.html">求婚大作戰</a></h3>
-                                      <div class="post-meta">
-                        <span class="post-category"> Drama </span>
-                        <span>2025-12-17</span>
-                    </div>  
-                  <p class="post-excerpt">《求婚大作戰》是2007年播出的一部圍繞著「如果能回到過去，人生是否會有所不同」而展開的愛情電視劇。時空穿越這個設定或許早已不新鮮...</p>
+            <div class="category-container" data-category="travel">
+                <div class="category-header">
+                    <h2 class="category-title">旅行</h2>
+                    <div class="category-count">3 篇文章</div>
+                    <div class="category-toggle">▼</div>
                 </div>
-            </article>
-
-            <article class="post-card">
-                <div class="post-content">
-                    <h3 class="post-title"><a href="/article02.html">藍調時刻 Blue Hour</a></h3>
-                                      <div class="post-meta">
-                        <span class="post-category"> Travel </span>
-                        <span>2025-12-16</span>
-                    </div>  
-                  <p class="post-excerpt">When I travel, I often find that the most memorable moments are not the landmarks themselves, but the quiet intervals in between...</p>
+                <div class="category-posts">
+                    <article class="post-card">
+                        <div class="post-content">
+                            <h3 class="post-title"><a href="/article07.html"> 象牙塔尖的仲夏夢｜加州的溫度 </a></h3>
+                            <div class="post-meta">
+                                <span class="post-category"> travel </span>
+                                <span>2025-12-30</span>
+                            </div>
+                            <p class="post-excerpt">這裡的溫度，不只是天氣的溫度，更多是人與人之間那種可以自由靠近、互相扶持的暖...</p>
+                        </div>
+                    </article>
+                    <article class="post-card">
+                        <div class="post-content">
+                            <h3 class="post-title"><a href="/article04.html">象牙塔尖的仲夏夢｜夢的起始</a></h3>
+                            <div class="post-meta">
+                                <span class="post-category"> Travel </span>
+                                <span>2025-12-27</span>
+                            </div>
+                            <p class="post-excerpt">加州大學柏克萊分校（UC Berkeley）是一所公立大學，與斯坦福、哈佛、耶魯、麻省這類私立名校不同。它在美國公立大學中常年名列前茅，在 QS 全球排名也長期位於前二十。我參加的項目是 Berkeley 的 Summer Session...</p>
+                        </div>
+                    </article>
+                    <article class="post-card">
+                        <div class="post-content">
+                            <h3 class="post-title"><a href="/article02.html">藍調時刻 Blue Hour</a></h3>
+                            <div class="post-meta">
+                                <span class="post-category"> Travel </span>
+                                <span>2025-12-16</span>
+                            </div>  
+                            <p class="post-excerpt">When I travel, I often find that the most memorable moments are not the landmarks themselves, but the quiet intervals in between...</p>
+                        </div>
+                    </article>
                 </div>
-            </article>
-
-            <article class="post-card">
-                <div class="post-content">
-
-                    <h3 class="post-title"><a href="/article03.html"> 意義 Meaningness｜Examined Life </a></h3>
-                                      <div class="post-meta">
-                    <span class="post-category"> Documentary </span>
-                        <span>2025-12-15</span>
-                    </div>  
-                  <p class="post-excerpt"> What's the meaning of life? I don’t think this is a question that comes with a final answer...</p>
+            </div>
+            
+            <div class="category-container" data-category="novel">
+                <div class="category-header">
+                    <h2 class="category-title">小说</h2>
+                    <div class="category-count">1 篇文章</div>
+                    <div class="category-toggle">▼</div>
                 </div>
-            </article>
+                <div class="category-posts">
+                    <article class="post-card">
+                        <div class="post-content">
+                            <h3 class="post-title"><a href="/article06.html"> 全知讀者視角 1 第四面墻 </a></h3>
+                            <div class="post-meta">
+                                <span class="post-category"> Novel </span>
+                                <span>2025-12-30</span>
+                            </div>
+                            <p class="post-excerpt">「第四面牆」這個詞是我從《全知讀者視角》（韓文：전지적 독자 시점）認識的—一部我從高中就開始看的小說。要談這個概念，先從作品本身簡要介紹起...</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            
+            <div class="category-container" data-category="movie">
+                <div class="category-header">
+                    <h2 class="category-title">电影</h2>
+                    <div class="category-count">1 篇文章</div>
+                    <div class="category-toggle">▼</div>
+                </div>
+                <div class="category-posts">
+                    <article class="post-card">
+                        <div class="post-content">
+                            <h3 class="post-title"><a href="/article05.html">意義 Meaningness｜Soul</a></h3>
+                            <div class="post-meta">
+                                <span class="post-category"> Movie </span>
+                                <span>2025-12-27</span>
+                            </div>
+                            <p class="post-excerpt">What's the meaning of life? In a movie called "Soul", it tells:...</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            
+            <div class="category-container" data-category="drama">
+                <div class="category-header">
+                    <h2 class="category-title">剧集</h2>
+                    <div class="category-count">1 篇文章</div>
+                    <div class="category-toggle">▼</div>
+                </div>
+                <div class="category-posts">
+                    <article class="post-card">
+                        <div class="post-content">
+                            <h3 class="post-content">
+                                <h3 class="post-title"><a href="/article01.html">求婚大作戰</a></h3>
+                                <div class="post-meta">
+                                    <span class="post-category"> Drama </span>
+                                    <span>2025-12-17</span>
+                                </div>  
+                                <p class="post-excerpt">《求婚大作戰》是2007年播出的一部圍繞著「如果能回到過去，人生是否會有所不同」而展開的愛情電視劇。時空穿越這個設定或許早已不新鮮...</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            
+            <div class="category-container" data-category="documentary">
+                <div class="category-header">
+                    <h2 class="category-title">纪录片</h2>
+                    <div class="category-count">1 篇文章</div>
+                    <div class="category-toggle">▼</div>
+                </div>
+                <div class="category-posts">
+                    <article class="post-card">
+                        <div class="post-content">
+                            <h3 class="post-title"><a href="/article03.html"> 意義 Meaningness｜Examined Life </a></h3>
+                            <div class="post-meta">
+                                <span class="post-category"> Documentary </span>
+                                <span>2025-12-15</span>
+                            </div>  
+                            <p class="post-excerpt"> What's the meaning of life? I don’t think this is a question that comes with a final answer...</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
         </div>
     </main>
-    <section class="portfolio" id="portfolio">
+        <section class="portfolio" id="portfolio">
         <div class="container">
           <h2 class="section-title">My <i>Portfolio</i></h2>
             <div class="portfolio-grid">
@@ -533,5 +640,23 @@
             <p class="copyright">© 2025 lkhmemories</p>
         </div>
     </footer>
-</body>
+
+        <script>
+        // 添加分类切换功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryHeaders = document.querySelectorAll('.category-header');
+            
+            categoryHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const categoryPosts = this.nextElementSibling;
+                    const toggleIcon = this.querySelector('.category-toggle');
+                    
+                    // 切换显示/隐藏
+                    categoryPosts.classList.toggle('active');
+                    toggleIcon.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+    </body>
 </html>
