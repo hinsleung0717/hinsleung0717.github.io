@@ -356,10 +356,15 @@
             }
         } 
         /* 新增分类相关样式 */
+                /* 修改分类容器样式 */
         .category-container {
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
         
+        /* 修改分类标题样式 */
         .category-header {
             display: flex;
             align-items: center;
@@ -369,11 +374,19 @@
             border-radius: var(--radius-md);
             box-shadow: var(--shadow-sm);
             cursor: pointer;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .category-header:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
         
         .category-title {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
             color: var(--primary);
             font-family: 'Times New Roman', Times, serif;
@@ -384,30 +397,68 @@
             color: white;
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
-            font-size: 0.875rem;
+            font-size: 0.75rem;
         }
         
+        /* 修改文章列表样式为向右扩展 */
         .category-posts {
             display: none;
-            grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
-            gap: 1.8rem;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            width: calc(100vw - 1200px);
+            min-width: 800px;
+            padding-left: 1.5rem;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
         .category-posts.active {
             display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+            gap: 1.8rem;
+            opacity: 1;
         }
         
         .category-toggle {
             transition: transform 0.3s ease;
+            font-size: 0.9rem;
         }
         
         .category-toggle.active {
-            transform: rotate(180deg);
+            transform: rotate(90deg);
         }
+        
+        /* 添加高亮效果 */
+        .category-container.active .category-header {
+            background-color: rgba(26, 88, 119, 0.1);
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .category-posts {
+                width: calc(100vw - 300px);
+                min-width: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .category-posts {
+                position: static;
+                width: 100%;
+                padding-left: 0;
+                margin-top: 1rem;
+            }
+            
+            .category-container.active .category-header {
+                margin-bottom: 1rem;
+            }
+        }
+
     </style>
 </head>
 <body>
-    <!-- 保持header部分不变 -->
     <header>
         <div class="container">
             <nav class="navbar">
@@ -430,12 +481,12 @@
 
     <main class="container">
         <div class="posts">
-            <!-- 按分类组织的文章列表 -->
+            <!-- 广告分类 -->
             <div class="category-container" data-category="ad">
                 <div class="category-header">
                     <h2 class="category-title">广告</h2>
                     <div class="category-count">1 篇文章</div>
-                    <div class="category-toggle">▼</div>
+                    <div class="category-toggle">▶</div>
                 </div>
                 <div class="category-posts">
                     <article class="post-card">
@@ -451,11 +502,12 @@
                 </div>
             </div>
             
+            <!-- 旅行分类 -->
             <div class="category-container" data-category="travel">
                 <div class="category-header">
                     <h2 class="category-title">旅行</h2>
                     <div class="category-count">3 篇文章</div>
-                    <div class="category-toggle">▼</div>
+                    <div class="category-toggle">▶</div>
                 </div>
                 <div class="category-posts">
                     <article class="post-card">
@@ -491,11 +543,12 @@
                 </div>
             </div>
             
+            <!-- 小说分类 -->
             <div class="category-container" data-category="novel">
                 <div class="category-header">
                     <h2 class="category-title">小说</h2>
                     <div class="category-count">1 篇文章</div>
-                    <div class="category-toggle">▼</div>
+                    <div class="category-toggle">▶</div>
                 </div>
                 <div class="category-posts">
                     <article class="post-card">
@@ -511,11 +564,12 @@
                 </div>
             </div>
             
+            <!-- 电影分类 -->
             <div class="category-container" data-category="movie">
                 <div class="category-header">
                     <h2 class="category-title">电影</h2>
                     <div class="category-count">1 篇文章</div>
-                    <div class="category-toggle">▼</div>
+                    <div class="category-toggle">▶</div>
                 </div>
                 <div class="category-posts">
                     <article class="post-card">
@@ -531,33 +585,33 @@
                 </div>
             </div>
             
+            <!-- 剧集分类 -->
             <div class="category-container" data-category="drama">
                 <div class="category-header">
                     <h2 class="category-title">剧集</h2>
                     <div class="category-count">1 篇文章</div>
-                    <div class="category-toggle">▼</div>
+                    <div class="category-toggle">▶</div>
                 </div>
                 <div class="category-posts">
                     <article class="post-card">
                         <div class="post-content">
-                            <h3 class="post-content">
-                                <h3 class="post-title"><a href="/article01.html">求婚大作戰</a></h3>
-                                <div class="post-meta">
-                                    <span class="post-category"> Drama </span>
-                                    <span>2025-12-17</span>
-                                </div>  
-                                <p class="post-excerpt">《求婚大作戰》是2007年播出的一部圍繞著「如果能回到過去，人生是否會有所不同」而展開的愛情電視劇。時空穿越這個設定或許早已不新鮮...</p>
-                            </div>
+                            <h3 class="post-title"><a href="/article01.html">求婚大作戰</a></h3>
+                            <div class="post-meta">
+                                <span class="post-category"> Drama </span>
+                                <span>2025-12-17</span>
+                            </div>  
+                            <p class="post-excerpt">《求婚大作戰》是2007年播出的一部圍繞著「如果能回到過去，人生是否會有所不同」而展開的愛情電視劇。時空穿越這個設定或許早已不新鮮...</p>
                         </div>
                     </article>
                 </div>
             </div>
             
+            <!-- 纪录片分类 -->
             <div class="category-container" data-category="documentary">
                 <div class="category-header">
                     <h2 class="category-title">纪录片</h2>
                     <div class="category-count">1 篇文章</div>
-                    <div class="category-toggle">▼</div>
+                    <div class="category-toggle">▶</div>
                 </div>
                 <div class="category-posts">
                     <article class="post-card">
@@ -567,13 +621,14 @@
                                 <span class="post-category"> Documentary </span>
                                 <span>2025-12-15</span>
                             </div>  
-                            <p class="post-excerpt"> What's the meaning of life? I don’t think this is a question that comes with a final answer...</p>
+                            <p class="post-excerpt"> What's the meaning of life? I don't think this is a question that comes with a final answer...</p>
                         </div>
                     </article>
                 </div>
             </div>
         </div>
     </main>
+
         <section class="portfolio" id="portfolio">
         <div class="container">
           <h2 class="section-title">My <i>Portfolio</i></h2>
@@ -641,22 +696,49 @@
         </div>
     </footer>
 
-        <script>
-        // 添加分类切换功能
+            <script>
+        // 修改分类切换功能
         document.addEventListener('DOMContentLoaded', function() {
-            const categoryHeaders = document.querySelectorAll('.category-header');
+            const categoryContainers = document.querySelectorAll('.category-container');
             
-            categoryHeaders.forEach(header => {
-                header.addEventListener('click', function() {
-                    const categoryPosts = this.nextElementSibling;
-                    const toggleIcon = this.querySelector('.category-toggle');
+            // 点击分类标题时切换
+            categoryContainers.forEach(container => {
+                const header = container.querySelector('.category-header');
+                const posts = container.querySelector('.category-posts');
+                const toggleIcon = container.querySelector('.category-toggle');
+                
+                header.addEventListener('click', function(e) {
+                    // 如果点击的是链接，不处理
+                    if (e.target.tagName === 'A') return;
                     
-                    // 切换显示/隐藏
-                    categoryPosts.classList.toggle('active');
+                    // 关闭其他所有打开的类别
+                    categoryContainers.forEach(otherContainer => {
+                        if (otherContainer !== container) {
+                            otherContainer.classList.remove('active');
+                            otherContainer.querySelector('.category-posts').classList.remove('active');
+                            otherContainer.querySelector('.category-toggle').classList.remove('active');
+                        }
+                    });
+                    
+                    // 切换当前类别
+                    container.classList.toggle('active');
+                    posts.classList.toggle('active');
                     toggleIcon.classList.toggle('active');
                 });
             });
+            
+            // 点击页面其他区域时关闭所有类别
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.category-container')) {
+                    categoryContainers.forEach(container => {
+                        container.classList.remove('active');
+                        container.querySelector('.category-posts').classList.remove('active');
+                        container.querySelector('.category-toggle').classList.remove('active');
+                    });
+                }
+            });
         });
     </script>
+
     </body>
 </html>
