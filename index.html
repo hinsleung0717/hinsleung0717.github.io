@@ -103,15 +103,20 @@
         /* 分类容器样式 */
         .posts {
             padding: 2rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
         }
         
         .category-container {
-            margin-bottom: 2rem;
+            position: relative;
             border-radius: var(--radius-lg);
             overflow: hidden;
             box-shadow: var(--shadow-md);
             background-color: var(--card-bg);
             transition: var(--transition);
+            height: 180px; /* 与post卡片相同高度 */
+            width: calc(50% - 0.75rem); /* post宽度的一半 */
         }
         
         .category-container:hover {
@@ -127,7 +132,8 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            min-height: 80px;
+            height: 100%;
+            width: 100%;
         }
         
         /* 添加背景图片和透明度 */
@@ -140,7 +146,7 @@
             bottom: 0;
             background-size: cover;
             background-position: center;
-            opacity: 0.5; /* 50% 透明度 */
+            opacity: 0.75; /* 75% 透明度 */
             z-index: 1;
         }
         
@@ -184,6 +190,15 @@
             text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
         }
         
+        .category-count {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            position: relative;
+            z-index: 2;
+        }
         
         /* 大箭头样式 */
         .category-toggle {
@@ -202,14 +217,23 @@
         
         .category-posts {
             display: none;
-            padding: 0 1.5rem 1.5rem;
-            animation: fadeIn 0.3s ease;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            width: 200%;
+            height: 100%;
+            background-color: white;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+            z-index: 10;
+            animation: slideIn 0.3s ease;
         }
         
         .category-container:hover .category-posts {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
         }
         
         .post-card {
@@ -218,6 +242,7 @@
             overflow: hidden;
             box-shadow: var(--shadow-sm);
             transition: var(--transition);
+            height: 100%;
         }
         
         .post-card:hover {
@@ -226,12 +251,12 @@
         }
         
         .post-content {
-            padding: 1.25rem;
+            padding: 1rem;
         }
         
         .post-title {
-            font-size: 1.1rem;
-            margin-bottom: 0.75rem;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
         }
         
         .post-title a {
@@ -247,8 +272,8 @@
         .post-meta {
             display: flex;
             align-items: center;
-            margin-bottom: 0.75rem;
-            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.75rem;
             color: #666;
         }
         
@@ -257,17 +282,19 @@
             color: white;
             padding: 0.2rem 0.6rem;
             border-radius: 4px;
-            margin-right: 0.75rem;
+            margin-right: 0.5rem;
+            font-size: 0.7rem;
         }
         
         .post-excerpt {
             color: #555;
-            line-height: 1.5;
+            line-height: 1.4;
+            font-size: 0.8rem;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
         }
         
         /* 页脚样式 */
@@ -303,29 +330,6 @@
             color: var(--accent);
         }
         
-        .post-card {
-        background-color: var(--card-bg);
-        border-radius: var(--radius-md);
-        overflow: hidden;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        position: relative;
-    }
-
-    .post-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, var(--primary), var(--secondary));
-    }
-
-    .post-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-    }
         /* 响应式设计 */
         @media (max-width: 768px) {
             .navbar {
@@ -340,17 +344,20 @@
                 margin: 0 0.5rem;
             }
             
-            .category-header {
-                flex-direction: column;
-                align-items: flex-start;
+            .posts {
+                grid-template-columns: 1fr;
             }
             
-            .category-title-wrapper {
-                margin-bottom: 0.5rem;
+            .category-container {
+                width: 100%;
             }
             
             .category-container:hover .category-posts {
-                grid-template-columns: 1fr;
+                position: relative;
+                left: 0;
+                width: 100%;
+                margin-top: 1rem;
+                border-radius: var(--radius-lg);
             }
             
             .footer-content {
@@ -361,134 +368,6 @@
             .footer-links {
                 margin-top: 1rem;
             }
-            
-            .post-card {
-            border-radius: var(--radius-sm);
-        }
-    }
-
-        .portfolio {
-            padding: 4rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--dark);
-            font-family: 'Times New Roman', Times, serif;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .portfolio-item {
-            background-color: var(--card-bg);
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-        }
-
-        .portfolio-images {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
-            padding: 0.5rem;
-        }
-
-        .portfolio-image {
-            width: 100%;
-            height: 300px;
-            object-fit: contain;
-            background-color: #f5f5f5;
-            border-radius: var(--radius-sm);
-        }
-
-        .portfolio-title {
-            font-size: 1rem;
-            color: var(--gray);
-            font-family: 'Times New Roman', Times, serif;
-            font-style: italic;
-            padding: 0.5rem 1rem;
-            text-align: center;
-            margin-top: 0.5rem;
-            font-weight: normal;
-            border-top: 1px solid rgba(0,0,0,0.1);
-        }
-
-        .favorite-albums {
-            padding: 2rem 0;
-            background-color: #f8f9fa;
-        }
-        
-        .albums-container {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        
-        .album-item {
-            background-color: var(--card-bg);
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-            padding: 1rem;
-        }
-        
-        .album-header {
-            display: flex;
-            align-items: center;
-        }
-        
-        .album-cover {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: var(--radius-sm);
-            margin-right: 1rem;
-        }
-        
-        .album-info {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        
-        .album-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--primary);
-            font-family: 'Times New Roman', Times, serif;
-        }
-        
-        .album-artist {
-            font-size: 0.875rem;
-            color: var(--gray);
-            margin-top: 0.25rem;
-        }
-        
-        footer {
-            background-color: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 4rem;
-            font-family: 'Times New Roman', Times, serif;
-            font-style: italic;
-        }
-
-        .copyright {
-            font-size: 1rem;
-            letter-spacing: 1px;
-        }
-
         }
     </style>
 </head>
@@ -520,6 +399,7 @@
                 <div class="category-header">
                     <div class="category-title-wrapper">
                         <h2 class="category-title">广告</h2>
+                        <div class="category-count">1 篇文章</div>
                     </div>
                     <div class="category-toggle">▶</div>
                 </div>
@@ -542,6 +422,7 @@
                 <div class="category-header">
                     <div class="category-title-wrapper">
                         <h2 class="category-title">旅行</h2>
+                        <div class="category-count">3 篇文章</div>
                     </div>
                     <div class="category-toggle">▶</div>
                 </div>
@@ -584,6 +465,7 @@
                 <div class="category-header">
                     <div class="category-title-wrapper">
                         <h2 class="category-title">小说</h2>
+                        <div class="category-count">1 篇文章</div>
                     </div>
                     <div class="category-toggle">▶</div>
                 </div>
@@ -606,18 +488,19 @@
                 <div class="category-header">
                     <div class="category-title-wrapper">
                         <h2 class="category-title">电影</h2>
+                        <div class="category-count">1 篇文章</div>
                     </div>
                     <div class="category-toggle">▶</div>
                 </div>
                 <div class="category-posts">
                     <article class="post-card">
                         <div class="post-content">
-                            <h3 class="post-title"><a href="/article05.html">意義 Meaningness｜Soul</a></h>
+                            <h3 class="post-title"><a href="/article05.html">意義 Meaningness｜Soul</a></h3>
                             <div class="post-meta">
-                                <span class="postategory">Movie</span>
+                                <span class="post-category">Movie</span>
                                 <span>2025-12-27</span>
                             </div>
-                            <p class="post-excerpt">What's the meaning of life? In a movie called "Soul", it tells:...</p>
+                            <p class="post极cerpt">What's the meaning of life? In a movie called "Soul", it tells:...</p>
                         </div>
                     </article>
                 </div>
@@ -628,6 +511,7 @@
                 <div class="category-header">
                     <div class="category-title-wrapper">
                         <h2 class="category-title">剧集</h2>
+                        <div class="category-count">1 篇文章</div>
                     </div>
                     <div class="category-toggle">▶</div>
                 </div>
@@ -650,8 +534,9 @@
                 <div class="category-header">
                     <div class="category-title-wrapper">
                         <h2 class="category-title">纪录片</h2>
+                        <div class="category-count">1 篇文章</div>
                     </div>
-                    <div class="category-toggle">》</div>
+                    <div class="category-toggle">▶</div>
                 </div>
                 <div class="category-posts">
                     <article class="post-card">
