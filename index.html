@@ -102,41 +102,59 @@
         
         /* 分类容器样式 */
         .posts {
-            padding: 2rem 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
+            padding: 2.5rem 0;
         }
         
-        .category-container {
-            position: relative;
+        .categories-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .categories-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .categories-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.8rem;
+        }
+        
+        .category-card {
+            background-color: var(--card-bg);
             border-radius: var(--radius-lg);
             overflow: hidden;
             box-shadow: var(--shadow-md);
-            background-color: var(--card-bg);
             transition: var(--transition);
-            height: 180px; /* 与post卡片相同高度 */
-            width: calc(50% - 0.75rem); /* post宽度的一半 */
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
         
-        .category-container:hover {
-            transform: translateY(-5px);
+        .category-card:hover {
+            transform: translateY(-8px);
             box-shadow: var(--shadow-lg);
         }
         
         .category-header {
+            position: relative;
+            height: 160px;
+            overflow: hidden;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 1.25rem 1.5rem;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            height: 100%;
-            width: 100%;
+            justify-content: center;
         }
         
-        /* 添加背景图片和透明度 */
         .category-header::before {
             content: '';
             position: absolute;
@@ -146,201 +164,150 @@
             bottom: 0;
             background-size: cover;
             background-position: center;
-            opacity: 0.75; /* 75% 透明度 */
-            z-index: 1;
+            filter: brightness(0.85);
+            transition: transform 0.5s ease;
+        }
+        
+        .category-card:hover .category-header::before {
+            transform: scale(1.05);
         }
         
         /* 为不同分类设置不同的背景图片 */
-        .category-container[data-category="ad"] .category-header::before {
+        .category-card[data-category="ad"] .category-header::before {
             background-image: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
         }
         
-        .category-container[data-category="travel"] .category-header::before {
+        .category-card[data-category="travel"] .category-header::before {
             background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
         }
         
-        .category-container[data-category="novel"] .category-header::before {
+        .category-card[data-category="novel"] .category-header::before {
             background-image: url('https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
         }
         
-        .category-container[data-category="movie"] .category-header::before {
+        .category-card[data-category="movie"] .category-header::before {
             background-image: url('https://images.unsplash.com/photo-1489599102910-59206b8ca314?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
         }
         
-        .category-container[data-category="drama"] .category-header::before {
+        .category-card[data-category="drama"] .category-header::before {
             background-image: url('https://images.unsplash.com/photo-1549576490-b0b2831a4c54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
         }
         
-        .category-container[data-category="documentary"] .category-header::before {
+        .category-card[data-category="documentary"] .category-header::before {
             background-image: url('https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
         }
         
         .category-title-wrapper {
             position: relative;
             z-index: 2;
-            display: flex;
-            align-items: center;
+            text-align: center;
+            padding: 1rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+            width: 100%;
         }
         
         .category-title {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            color: var(--dark);
-            margin-right: 1rem;
-            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            margin: 0;
         }
         
-        
-        /* 大箭头样式 */
-        .category-toggle {
-            position: relative;
-            z-index: 2;
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-left: 1rem;
-            transition: var(--transition);
-            font-weight: bold;
+        .category-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
         
-        .category-container:hover .category-toggle {
-            transform: translateX(5px);
+        .posts-count {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
         }
         
-    .category-posts {
-        display: none;
-        position: absolute;
-        left: 100%;
-        top: 0;
-        width: 200%;
-        height: 100%;
-        background-color: white;
-        padding: 1.5rem;
-        box-shadow: var(--shadow-lg);
-        border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-        z-index: 10;
-        animation: slideIn 0.3s ease;
-    }
-        
-    .category-container:hover .category-posts {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 1rem;
-    }
-        
-        .post-card {
-            background-color: white;
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
+        .post-previews {
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
         }
         
-        .post-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-md);
+        .post-preview {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f0f0f0;
         }
         
-        .post-content {
-            padding: 1.25rem;
+        .post-preview:last-child {
+            border-bottom: none;
         }
         
-        .post-title {
-            font-size: 1.1rem;
-            margin-bottom: 0.75rem;
+        .post-preview-title {
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
         }
         
-        .post-title a {
+        .post-preview-title a {
             color: var(--dark);
             text-decoration: none;
             transition: var(--transition);
+            display: block;
         }
         
-        .post-title a:hover {
+        .post-preview-title a:hover {
             color: var(--primary);
         }
         
-        .post-meta {
+        .post-preview-meta {
             display: flex;
             align-items: center;
-            margin-bottom: 0.75rem;
-            font-size: 0.875rem;
-            color: #666;
+            font-size: 0.8rem;
+            color: #888;
         }
         
-        .post-category {
+        .post-preview-category {
             background-color: var(--secondary);
             color: white;
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            margin-right: 0.75rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 12px;
+            margin-right: 0.5rem;
+            font-size: 0.7rem;
         }
         
-        .post-excerpt {
-            color: #555;
-            line-height: 1.5;
+        .view-all-btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+            transition: var(--transition);
+            text-align: center;
+            margin-top: auto;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .view-all-btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
         }
         
         /* 页脚样式 */
         footer {
             background-color: var(--dark);
             color: white;
+            text-align: center;
             padding: 2rem 0;
-            margin-top: 3rem;
+            margin-top: 4rem;
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
         }
-        
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .footer-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-right: 1.5rem;
-        }
-        
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .footer-links a:hover {
-            color: var(--accent);
-        }
-        
-        .post-card {
-        background-color: var(--card-bg);
-        border-radius: var(--radius-md);
-        overflow: hidden;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        position: relative;
-    }
 
-    .post-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, var(--primary), var(--secondary));
-    }
+        .copyright {
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
 
-    .post-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-    }
         /* 响应式设计 */
         @media (max-width: 768px) {
             .navbar {
@@ -363,28 +330,7 @@
             .category-title-wrapper {
                 margin-bottom: 0.5rem;
             }
-            
-        .category-container:hover .category-posts {
-            position: relative;
-            left: 0;
-            width: 100%;
-            margin-top: 1rem;
-            border-radius: var(--radius-lg);
         }
-            
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .footer-links {
-                margin-top: 1rem;
-            }
-            
-            .post-card {
-            border-radius: var(--radius-sm);
-        }
-    }
 
         .portfolio {
             padding: 4rem 0;
@@ -492,23 +438,6 @@
             color: var(--gray);
             margin-top: 0.25rem;
         }
-        
-        footer {
-            background-color: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 4rem;
-            font-family: 'Times New Roman', Times, serif;
-            font-style: italic;
-        }
-
-        .copyright {
-            font-size: 1rem;
-            letter-spacing: 1px;
-        }
-
-        }
     </style>
 </head>
 <body>
@@ -534,161 +463,156 @@
 
     <main class="container">
         <div class="posts">
-            <!-- 广告分类 -->
-            <div class="category-container" data-category="ad">
-                <div class="category-header">
-                    <div class="category-title-wrapper">
-                        <h2 class="category-title">广告</h2>
-                    </div>
-                    <div class="category-toggle">▶</div>
-                </div>
-                <div class="category-posts">
-                    <article class="post-card">
-                        <div class="post-content">
-                            <h3 class="post-title"><a href="/article08.html">公益廣告</a></h3>
-                            <div class="post-meta">
-                                <span class="post-category">ad</span>
-                                <span>2025-12-30</span>
-                            </div>
-                            <p class="post-excerpt">偶爾，我會在通勤途中放下手機，抬起頭，留意身邊的人與城市的細節。最近，我開始注意到那些藏在街頭巷尾的公益廣告...</p>
-                        </div>
-                    </article>
-                </div>
+            <div class="categories-header">
+                <h1 class="categories-title">文章分类</h1>
+                <p class="categories-subtitle">探索不同主题的文章和思考，点击分类查看相关内容</p>
             </div>
             
-            <!-- 旅行分类 -->
-            <div class="category-container" data-category="travel">
-                <div class="category-header">
-                    <div class="category-title-wrapper">
-                        <h2 class="category-title">旅行</h2>
+            <div class="categories-grid">
+                <div class="category-card" data-category="ad">
+                    <div class="category-header">
+                        <div class="category-title-wrapper">
+                            <h2 class="category-title">广告</h2>
+                        </div>
                     </div>
-                    <div class="category-toggle">▶</div>
-                </div>
-                <div class="category-posts">
-                    <article class="post-card">
-                        <div class="post-content">
-                            <h3 class="post-title"><a href="/article07.html">象牙塔尖的仲夏夢｜加州的溫度</a></h3>
-                            <div class="post-meta">
-                                <span class="post-category">travel</span>
-                                <span>2025-12-30</span>
+                    <div class="category-content">
+                        <div class="posts-count">1 篇文章</div>
+                        <div class="post-previews">
+                            <div class="post-preview">
+                                <h3 class="post-preview-title"><a href="/article08.html">公益廣告</a></h3>
+                                <div class="post-preview-meta">
+                                    <span class="post-preview-category">ad</span>
+                                    <span>2025-12-30</span>
+                                </div>
                             </div>
-                            <p class="post-excerpt">這裡的溫度，不只是天氣的溫度，更多是人與人之間那種可以自由靠近、互相扶持的暖...</p>
                         </div>
-                    </article>
-                    <article class="post-card">
-                        <div class="post-content">
-                            <h3 class="post-title"><a href="/article04.html">象牙塔尖的仲夏夢｜夢的起始</a></h3>
-                            <div class="post-meta">
-                                <span class="post-category">Travel</span>
-                                <span>2025-12-27</span>
+                        <a href="#" class="view-all-btn">查看所有文章</a>
+                    </div>
+                </div>
+                
+                <div class="category-card" data-category="travel">
+                    <div class="category-header">
+                        <div class="category-title-wrapper">
+                            <h2 class="category-title">旅行</h2>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <div class="posts-count">3 篇文章</div>
+                        <div class="post-previews">
+                            <div class="post-preview">
+                                <h3 class="post-preview-title"><a href="/article07.html">象牙塔尖的仲夏夢｜加州的溫度</a></h3>
+                                <div class="post-preview-meta">
+                                    <span class="post-preview-category">travel</span>
+                                    <span>2025-12-30</span>
+                                </div>
                             </div>
-                            <p class="post-excerpt">加州大學柏克萊分校（UC Berkeley）是一所公立大學，與斯坦福、哈佛、耶魯、麻省這類私立名校不同。它在美國公立大學中常年名列前茅，在 QS 全球排名也長期位於前二十。我參加的項目是 Berkeley 的 Summer Session...</p>
-                        </div>
-                    </article>
-                    <article class="post-card">
-                        <div class="post-content">
-                            <h3 class="post-title"><a href="/article02.html">藍調時刻 Blue Hour</a></h3>
-                            <div class="post-meta">
-                                <span class="post-category">Travel</span>
-                                <span>2025-12-16</span>
-                            </div>  
-                            <p class="post-excerpt">When I travel, I often find that the most memorable moments are not the landmarks themselves, but the quiet intervals in between...</p>
-                        </div>
-                    </article>
-                </div>
-            </div>
-            
-            <!-- 小说分类 -->
-            <div class="category-container" data-category="novel">
-                <div class="category-header">
-                    <div class="category-title-wrapper">
-                        <h2 class="category-title">小说</h2>
-                    </div>
-                    <div class="category-toggle">▶</div>
-                </div>
-                <div class="category-posts">
-                    <article class="post-card">
-                        <div class="post-content">
-                            <h3 class="post-title"><a href="/article06.html">全知讀者視角 1 第四面墻</a></h3>
-                            <div class="post-meta">
-                                <span class="post-category">Novel</span>
-                                <span>2025-12-30</span>
+                            <div class="post-preview">
+                                <h3 class="post-preview-title"><a href="/article04.html">象牙塔尖的仲夏夢｜夢的起始</a></h3>
+                                <div class="post-preview-meta">
+                                    <span class="post-preview-category">Travel</span>
+                                    <span>2025-12-27</span>
+                                </div>
                             </div>
-                            <p class="post-excerpt">「第四面牆」這個詞是我從《全知讀者視角》（韓文：전지적 독자 시점）認識的—一部我從高中就開始看的小說。要談這個概念，先從作品本身簡要介紹起...</p>
-                        </div>
-                    </article>
-                </div>
-            </div>
-            
-            <!-- 电影分类 -->
-            <div class="category-container" data-category="movie">
-                <div class="category-header">
-                    <div class="category-title-wrapper">
-                        <h2 class="category-title">电影</h2>
-                    </div>
-                    <div class="category-toggle">▶</div>
-                </div>
-                <div class="category-posts">
-                    <article class="post-card">
-                        <div class="post-content">
-                            <h3 class="post-title"><a href="/article05.html">意義 Meaningness｜Soul</a></h>
-                            <div class="post-meta">
-                                <span class="postategory">Movie</span>
-                                <span>2025-12-27</span>
+                            <div class="post-preview">
+                                <h3 class="post-preview-title"><a href="/article02.html">藍調時刻 Blue Hour</a></h3>
+                                <div class="post-preview-meta">
+                                    <span class="post-preview-category">Travel</span>
+                                    <span>2025-12-16</span>
+                                </div>
                             </div>
-                            <p class="post-excerpt">What's the meaning of life? In a movie called "Soul", it tells:...</p>
                         </div>
-                    </article>
-                </div>
-            </div>
-            
-            <!-- 剧集分类 -->
-            <div class="category-container" data-category="drama">
-                <div class="category-header">
-                    <div class="category-title-wrapper">
-                        <h2 class="category-title">剧集</h2>
+                        <a href="#" class="view-all-btn">查看所有文章</a>
                     </div>
-                    <div class="category-toggle">▶</div>
                 </div>
-                <div class="category-posts">
-                    <article class="post-card">
-                        <div class="post-content">
-                            <h3 class="post-title"><a href="/article01.html">求婚大作戰</a></h3>
-                            <div class="post-meta">
-                                <span class="post-category">Drama</span>
-                                <span>2025-12-17</span>
-                            </div>  
-                            <p class="post-excerpt">《求婚大作戰》是2007年播出的一部圍繞著「如果能回到過去，人生是否會有所不同」而展開的愛情電視劇。時空穿越這個設定或許早已不新鮮...</p>
+                
+                <div class="category-card" data-category="novel">
+                    <div class="category-header">
+                        <div class="category-title-wrapper">
+                            <h2 class="category-title">小说</h2>
                         </div>
-                    </article>
-                </div>
-            </div>
-            
-            <!-- 纪录片分类 -->
-            <div class="category-container" data-category="documentary">
-                <div class="category-header">
-                    <div class="category-title-wrapper">
-                        <h2 class="category-title">纪录片</h2>
                     </div>
-                    <div class="category-toggle">》</div>
-                </div>
-                <div class="category-posts">
-                    <article class="post-card">
-                        <div class="post-content">
-                            <h3 class="post-title"><a href="/article03.html">意義 Meaningness｜Examined Life</a></h3>
-                            <div class="post-meta">
-                                <span class="post-category">Documentary</span>
-                                <span>2025-12-15</span>
-                            </div>  
-                            <p class="post-excerpt">What's the meaning of life? I don’t think this is a question that comes with a final answer...</p>
+                    <div class="category-content">
+                        <div class="posts-count">1 篇文章</div>
+                        <div class="post-previews">
+                            <div class="post-preview">
+                                <h3 class="post-preview-title"><a href="/article06.html">全知讀者視角 1 第四面墻</a></h3>
+                                <div class="post-preview-meta">
+                                    <span class="post-preview-category">Novel</span>
+                                    <span>2025-12-30</span>
+                                </div>
+                            </div>
                         </div>
-                    </article>
+                        <a href="#" class="view-all-btn">查看所有文章</a>
+                    </div>
+                </div>
+                
+                <div class="category-card" data-category="movie">
+                    <div class="category-header">
+                        <div class="category-title-wrapper">
+                            <h2 class="category-title">电影</h2>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <div class="posts-count">1 篇文章</div>
+                        <div class="post-previews">
+                            <div class="post-preview">
+                                <h3 class="post-preview-title"><a href="/article05.html">意義 Meaningness｜Soul</a></h3>
+                                <div class="post-preview-meta">
+                                    <span class="post-preview-category">Movie</span>
+                                    <span>2025-12-27</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="view-all-btn">查看所有文章</a>
+                    </div>
+                </div>
+                
+                <div class="category-card" data-category="drama">
+                    <div class="category-header">
+                        <div class="category-title-wrapper">
+                            <h2 class="category-title">剧集</h2>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <div class="posts-count">1 篇文章</div>
+                        <div class="post-previews">
+                            <div class="post-preview">
+                                <h3 class="post-preview-title"><a href="/article01.html">求婚大作戰</a></h3>
+                                <div class="post-preview-meta">
+                                    <span class="post-preview-category">Drama</span>
+                                    <span>2025-12-17</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="view-all-btn">查看所有文章</a>
+                    </div>
+                </div>
+                
+                <div class="category-card" data-category="documentary">
+                    <div class="category-header">
+                        <div class="category-title-wrapper">
+                            <h2 class="category-title">纪录片</h2>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <div class="posts-count">1 篇文章极简</div>
+                        <div class="post-previews">
+                            <div class="post-preview">
+                                <h3 class="post-preview-title"><a href="/article03.html">意義 Meaningness｜Examined Life</a></h3>
+                                <div class="post-preview-meta">
+                                    <span class="post-preview-category">Documentary</span>
+                                    <span>2025-12-15</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="view-all-btn">查看所有文章</a>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 
-        <section class="portfolio" id="portfolio">
+    <section class="portfolio" id="portfolio">
         <div class="container">
           <h2 class="section-title">My <i>Portfolio</i></h2>
             <div class="portfolio-grid">
@@ -754,7 +678,5 @@
             <p class="copyright">© 2025 lkhmemories</p>
         </div>
     </footer>
-
-
-    </body>
+</body>
 </html>
