@@ -3,683 +3,712 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lkhmemories - 分类浏览</title>
+    <title>lkhmemories - 質感生活日誌</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1a5877;
-            --secondary: #4a9bbd;
-            --accent: #f5b461;
-            --light: #f9f9f9;
-            --dark: #333;
-            --card-bg: #ffffff;
-            --radius-sm: 4px;
-            --radius-md: 8px;
-            --radius-lg: 16px;
-            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
+            /* 現代化低飽和度色彩配置 */
+            --bg-color: #FAFAFA;
+            --surface-color: #FFFFFF;
+            --text-main: #1A1A1A;
+            --text-muted: #737373;
+            --primary: #2C3E50;
+            --accent: #D4A373; /* 溫暖的莫蘭迪色系作為點綴 */
+            --border-color: #EAEAEA;
+            
+            /* 圓角與陰影 */
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.03);
+            --shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f5f7fa;
-            padding: 0;
-            margin: 0;
+            font-family: 'Plus Jakarta Sans', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            line-height: 1.7;
+            color: var(--text-main);
+            background-color: var(--bg-color);
+            -webkit-font-smoothing: antialiased;
         }
-        
+
+        /* 標題使用襯線字體增添文學質感 */
+        h1, h2, .serif {
+            font-family: 'Noto Serif TC', serif;
+        }
+
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 2rem;
         }
-        
-        /* 导航栏样式 */
+
+        /* --- 導航列 (毛玻璃特效) --- */
         header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            padding: 1rem 0;
-            box-shadow: var(--shadow-md);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            background: rgba(250, 250, 250, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            transition: var(--transition);
         }
-        
+
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
             text-decoration: none;
-            color: white;
+            color: var(--text-main);
             font-weight: 700;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
         }
-        
+
         .logo img {
-            height: 40px;
-            margin-right: 10px;
+            height: 36px;
+            width: 36px;
+            margin-right: 12px;
             border-radius: 50%;
+            object-fit: cover;
         }
-        
+
         .logo span:last-child {
-            color: var(--accent);
+            color: var(--text-muted);
+            font-weight: 400;
         }
-        
+
         .nav-links {
             display: flex;
             list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 1.5rem;
-        }
-        
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            padding: 0.5rem 0.75rem;
-            border-radius: var(--radius-sm);
-        }
-        
-        .nav-links a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        
-        /* 分类容器样式 */
-        .posts {
-            padding: 2.5rem 0;
-        }
-        
-        .categories-header {
-            text-align: center;
-            margin-bottom: 2.5rem;
-        }
-        
-        .categories-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-        
-        .categories-subtitle {
-            color: #666;
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 1.8rem;
-        }
-        
-        .category-card {
-            background-color: var(--card-bg);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .category-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .category-header {
-            position: relative;
-            height: 160px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .category-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-size: cover;
-            background-position: center;
-            filter: brightness(0.85);
-            transition: transform 0.5s ease;
-        }
-        
-        .category-card:hover .category-header::before {
-            transform: scale(1.05);
-        }
-        
-        /* 为不同分类设置不同的背景图片 */
-        .category-card[data-category="ad"] .category-header::before {
-            background-image: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
-        }
-        
-        .category-card[data-category="travel"] .category-header::before {
-            background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
-        }
-        
-        .category-card[data-category="novel"] .category-header::before {
-            background-image: url('https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
-        }
-        
-        .category-card[data-category="movie"] .category-header::before {
-            background-image: url('https://images.unsplash.com/photo-1489599102910-59206b8ca314?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
-        }
-        
-        .category-card[data-category="drama"] .category-header::before {
-            background-image: url('https://images.unsplash.com/photo-1549576490-b0b2831a4c54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
-        }
-        
-        .category-card[data-category="documentary"] .category-header::before {
-            background-image: url('https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
-        }
-        
-        .category-title-wrapper {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            padding: 1rem;
-            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
-            width: 100%;
-        }
-        
-        .category-title {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: white;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-            margin: 0;
-        }
-        
-        .category-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .posts-count {
-            color: var(--secondary);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-        
-        .post-previews {
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-        
-        .post-preview {
-            padding: 0.8rem 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        .post-preview:last-child {
-            border-bottom: none;
-        }
-        
-        .post-preview-title {
-            font-size: 1rem;
-            margin-bottom: 0.4rem;
-        }
-        
-        .post-preview-title a {
-            color: var(--dark);
-            text-decoration: none;
-            transition: var(--transition);
-            display: block;
-        }
-        
-        .post-preview-title a:hover {
-            color: var(--primary);
-        }
-        
-        .post-preview-meta {
-            display: flex;
-            align-items: center;
-            font-size: 0.8rem;
-            color: #888;
-        }
-        
-        .post-preview-category {
-            background-color: var(--secondary);
-            color: white;
-            padding: 0.15rem 0.5rem;
-            border-radius: 12px;
-            margin-right: 0.5rem;
-            font-size: 0.7rem;
-        }
-        
-        .view-all-btn {
-            display: inline-block;
-            background-color: var(--primary);
-            color: white;
-            text-decoration: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: var(--radius-sm);
-            font-weight: 500;
-            transition: var(--transition);
-            text-align: center;
-            margin-top: auto;
-        }
-        
-        .view-all-btn:hover {
-            background-color: var(--secondary);
-            transform: translateY(-2px);
-        }
-        
-        /* 页脚样式 */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 4rem;
-            font-family: 'Times New Roman', Times, serif;
-            font-style: italic;
-        }
-
-        .copyright {
-            font-size: 1rem;
-            letter-spacing: 1px;
-        }
-
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-            }
-            
-            .nav-links {
-                margin-top: 1rem;
-            }
-            
-            .nav-links li {
-                margin: 0 0.5rem;
-            }
-            
-            .category-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .category-title-wrapper {
-                margin-bottom: 0.5rem;
-            }
-        }
-
-        .portfolio {
-            padding: 4rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--dark);
-            font-family: 'Times New Roman', Times, serif;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
         }
 
-        .portfolio-item {
-            background-color: var(--card-bg);
-            border-radius: var(--radius-md);
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* --- 頁首歡迎區塊 (Hero Section) --- */
+        .hero {
+            padding: 6rem 0 4rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* --- 分類卡片網格 --- */
+        .section-header {
+            margin-bottom: 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 5rem;
+        }
+
+        .category-card {
+            background: var(--surface-color);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
             overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: transparent;
+        }
+
+        .category-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .category-content {
+            padding: 1.8rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cat-badge {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-card h2 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .post-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .post-list li {
+            margin-bottom: 0.8rem;
+        }
+
+        .post-list a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            transition: var(--transition);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .post-list a:hover {
+            color: var(--text-main);
+            padding-left: 5px; /* 懸浮微動效 */
+        }
+
+        .post-date {
+            font-size: 0.8rem;
+            color: #AAA;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+/* --- Words 卡片式網格設計 --- */
+.words-grid {
+    display: grid;
+    /* 自動適應寬度，桌面版一排 3~4 個，手機版自動變 1~2 個 */
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.word-card {
+    background-color: rgba(0, 0, 0, 0.015); /* 極淡的灰色底，維持乾淨 */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: var(--radius-md, 8px);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* 讓內容在上下兩端 */
+    min-height: 140px; /* 限制最小高度，讓排列整齊 */
+    transition: all 0.3s ease;
+}
+
+/* 滑鼠懸停時微動效，增加精緻感 */
+.word-card:hover {
+    transform: translateY(-4px);
+    background-color: #ffffff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    border-color: var(--accent, #e67e22); /* 懸停時邊框變成你的點綴色 */
+}
+
+.word-card-text {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #2c3e50;
+    margin: 0 0 1.5rem 0;
+}
+
+/* 卡片底部標籤與日期 */
+.word-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px dashed rgba(0, 0, 0, 0.08);
+    padding-top: 0.8rem;
+}
+
+.word-tag {
+    font-size: 0.8rem;
+    color: var(--accent, #e67e22); /* 使用你的點綴色 */
+    font-weight: 500;
+}
+
+.word-date {
+    font-size: 0.8rem;
+    color: #999999;
+}
+
+/* 暗黑模式 */
+@media (prefers-color-scheme: dark) {
+    .word-card {
+        background-color: rgba(255, 255, 255, 0.02);
+        border-color: rgba(255, 255, 255, 0.08);
+    }
+    .word-card:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+    .word-card-text {
+        color: #e0e0e0;
+    }
+}
+        /* --- Portfolio 區塊 --- */
+        .portfolio-section {
+            padding: 4rem 0;
+            background-color: var(--surface-color);
+            border-radius: var(--radius-lg);
+            margin-bottom: 5rem;
+        }
+
+        .portfolio-display {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            padding: 0 2rem;
         }
 
         .portfolio-images {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
-            padding: 0.5rem;
-        }
-
-        .portfolio-image {
-            width: 100%;
-            height: 300px;
-            object-fit: contain;
-            background-color: #f5f5f5;
-            border-radius: var(--radius-sm);
-        }
-
-        .portfolio-title {
-            font-size: 1rem;
-            color: var(--gray);
-            font-family: 'Times New Roman', Times, serif;
-            font-style: italic;
-            padding: 0.5rem 1rem;
-            text-align: center;
-            margin-top: 0.5rem;
-            font-weight: normal;
-            border-top: 1px solid rgba(0,0,0,0.1);
-        }
-
-        .favorite-albums {
-            padding: 2rem 0;
-            background-color: #f8f9fa;
-        }
-        
-        .albums-container {
             display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        
-        .album-item {
-            background-color: var(--card-bg);
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-            padding: 1rem;
-        }
-        
-        .album-header {
-            display: flex;
-            align-items: center;
-        }
-        
-        .album-cover {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: var(--radius-sm);
-            margin-right: 1rem;
-        }
-        
-        .album-info {
+            gap: 1rem;
             flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
         }
-        
-        .album-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--primary);
-            font-family: 'Times New Roman', Times, serif;
+
+        .portfolio-images img {
+            width: 50%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-subtle);
         }
-        
-        .album-artist {
-            font-size: 0.875rem;
-            color: var(--gray);
-            margin-top: 0.25rem;
+
+        .portfolio-text {
+            flex: 1;
+        }
+
+        .portfolio-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-text p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--text-main);
+            color: var(--text-main);
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .btn-outline:hover {
+            background: var(--text-main);
+            color: var(--surface-color);
+        }
+
+        /* --- 音樂推薦清單 --- */
+/* --- 更新後的音樂推薦區塊 (海報卡片設計) --- */
+.tunes-grid {
+    display: grid;
+    /* 設定網格，桌面版大約一排顯示 4 張，手機版會自動變成 2 張或 1 張 */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.tune-card {
+    position: relative;
+    display: block;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    /* 豎長方形比例 (類似電影海報或 IG Story 比例) */
+    aspect-ratio: 3 / 4; 
+    text-decoration: none;
+    box-shadow: var(--shadow-subtle);
+    transition: var(--transition);
+}
+
+.tune-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* 背景圖片設定 */
+.tune-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.6s ease;
+    z-index: 1;
+}
+
+/* 滑鼠懸浮時，背景圖微微放大，增加沉浸感 */
+.tune-card:hover .tune-cover {
+    transform: scale(1.05);
+}
+
+/* 底部黑色漸層遮罩，確保白色文字與按鈕清晰可見 */
+.tune-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 100%);
+    z-index: 2;
+}
+
+/* 卡片內容 (按鈕與文字) */
+.tune-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-end; /* 底部對齊 */
+    gap: 1rem;
+    z-index: 3;
+}
+
+/* 播放按鈕設計 */
+.play-btn {
+    width: 44px;
+    height: 44px;
+    background-color: var(--accent); /* 使用你設定的溫暖點綴色 */
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* 播放鍵的三角形圖示 */
+.play-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    margin-left: 3px; /* 微調三角形，讓視覺置中 */
+}
+
+.tune-card:hover .play-btn {
+    transform: scale(1.1);
+    background-color: #fff;
+    color: var(--accent);
+}
+
+/* 音樂資訊文字 */
+.tune-info {
+    flex-grow: 1;
+}
+
+.tune-artist {
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+    line-height: 1.2;
+}
+
+.tune-title {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin: 0;
+}
+.tune-badge {
+    position: absolute;
+    top: 1.5rem;  /* 與下方的 padding 呼應 */
+    left: 1.5rem;
+    z-index: 3;   /* 確保顯示在遮罩層 (z-index: 2) 的上方 */
+    color: #ffffff;
+    font-weight: 700; /* 粗體 */
+    font-size: 0.85rem;
+    letter-spacing: 0.1em; /* 稍微拉開字距，更有進口雜誌的精緻感 */
+    text-transform: uppercase; /* 如果是英文自動轉大寫 */
+    
+    /* 核心：文字陰影（防止遇到白色專輯封面時文字看不見） */
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 1px 2px rgba(0, 0, 0, 0.4);
+    
+    pointer-events: none; /* 讓滑鼠點擊可以穿透，不影響卡片點擊跳轉 */
+}
+/* 手機版適應 */
+@media (max-width: 768px) {
+    .tunes-grid {
+        grid-template-columns: repeat(2, 1fr); /* 手機版並排兩張 */
+        gap: 1rem;
+    }
+    .tune-content {
+        padding: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+}
+
+        /* --- 響應式設計 --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* 在手機版隱藏導航，實務上會做漢堡選單 */
+            }
+            .portfolio-display {
+                flex-direction: column;
+            }
+            .portfolio-images img {
+                height: 250px;
+            }
         }
     </style>
 </head>
 <body>
+
     <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="#" class="logo">
-                    <img src="https://via.placeholder.com/40" alt="lkh memories logo">
-                    <span>lkh</span>
-                    <span>memories</span>
-                </a>
-                <ul class="nav-links">
-                    <li><a href="#">HOME</a></li>
-                    <li><a href="blog.html">BLOG</a></li>
-                    <li><a href="blog.html">WORDS</a></li>
-                    <li><a href="#portfolio">PORTFOLIO</a></li>
-                    <li><a href="#recommended-songs">SONGS</a></li>
-                    <li><a href="about.html">ABOUT</a></li>
-                </ul>
-            </nav>
+        <div class="container navbar">
+            <a href="#" class="logo">
+                <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=100&q=80" alt="logo">
+                <span>lkh</span><span>memories</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#tunes">Tunes</a></li>
+            </ul>
         </div>
     </header>
 
     <main class="container">
-        <div class="posts">
-            <div class="categories-header">
-                <h1 class="categories-title">文章分類</h1>
-                <p class="categories-subtitle">探索不同主題的文章和思考，點擊分類查看相關內容</p>
+        <section class="hero">
+            <h1 class="serif">Stories & Memories</h1>
+            <p>記錄生活碎片、影視觀後感與旅行的軌跡，將靈光乍現的瞬間凝固於此。</p>
+        </section>
+
+        <section id="blog">
+            <div class="section-header">
+                <h2 class="section-title serif">Featured Writings</h2>
             </div>
             
             <div class="categories-grid">
-                <div class="category-card" data-category="ad">
-                    <div class="category-header">
-                        <div class="category-title-wrapper">
-                            <h2 class="category-title">生活·上海</h2>
-                        </div>
-                    </div>
+                <article class="category-card">
+                    <img src="https://images.unsplash.com/photo-1549576490-b0b2831a4c54?auto=format&fit=crop&w=800&q=80" alt="生活上海" class="category-img">
                     <div class="category-content">
-                        <div class="posts-count">1 篇文章</div>
-                        <div class="post-previews">
-                            <div class="post-preview">
-                                <h3 class="post-preview-title"><a href="/article08.html">公益廣告</a></h3>
-                                <div class="post-preview-meta">
-                                    <span class="post-preview-category">Shanghai</span>
-                                    <span>2025-12-30</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#" class="view-all-btn">查看所有文章</a>
+                        <span class="cat-badge">Life & City</span>
+                        <h2 class="serif">生活·上海</h2>
+                        <ul class="post-list">
+                            <li><a href="/article08.html"><span>公益廣告</span> <span class="post-date">12.30</span></a></li>
+                        </ul>
                     </div>
-                </div>
-                
-                <div class="category-card" data-category="travel">
-                    <div class="category-header">
-                        <div class="category-title-wrapper">
-                            <h2 class="category-title">流浪加州</h2>
-                        </div>
-                    </div>
-                    <div class="category-content">
-                        <div class="posts-count">3 篇文章</div>
-                        <div class="post-previews">
-                            <div class="post-preview">
-                                <h3 class="post-preview-title"><a href="/article07.html">加州溫度</a></h3>
-                                <div class="post-preview-meta">
-                                    <span class="post-preview-category">Travel</span>
-                                    <span>2025-12-30</span>
-                                </div>
-                            </div>
-                            <div class="post-preview">
-                                <h3 class="post-preview-title"><a href="/article04.html">起始</a></h3>
-                                <div class="post-preview-meta">
-                                    <span class="post-preview-category">Travel</span>
-                                    <span>2025-12-27</span>
-                                </div>
-                            </div>
-                            <div class="post-preview">
-                                <h3 class="post-preview-title"><a href="/article02.html">藍調時刻 Blue Hour</a></h3>
-                                <div class="post-preview-meta">
-                                    <span class="post-preview-category">Travel</span>
-                                    <span>2025-12-16</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#" class="view-all-btn">查看所有文章</a>
-                    </div>
-                </div>
-                
-                <div class="category-card" data-category="novel">
-                    <div class="category-header">
-                        <div class="category-title-wrapper">
-                            <h2 class="category-title">全知讀者視角</h2>
-                        </div>
-                    </div>
-                    <div class="category-content">
-                        <div class="posts-count">1 篇文章</div>
-                        <div class="post-previews">
-                            <div class="post-preview">
-                                <h3 class="post-preview-title"><a href="/article06.html">第四面墻</a></h3>
-                                <div class="post-preview-meta">
-                                    <span class="post-preview-category">Novel</span>
-                                    <span>2025-12-30</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#" class="view-all-btn">查看所有文章</a>
-                    </div>
-                </div>
-                
-                <div class="category-card" data-category="movie">
-                    <div class="category-header">
-                        <div class="category-title-wrapper">
-                            <h2 class="category-title">影視</h2>
-                        </div>
-                    </div>
-                    <div class="category-content">
-                        <div class="posts-count">1 篇文章</div>
-                        <div class="post-previews">
-                            <div class="post-preview">
-                                <h3 class="post-preview-title"><a href="/article05.html">意義 Meaningness｜Soul</a></h3>
-                                <div class="post-preview-meta">
-                                    <span class="post-preview-category">Movie</span>
-                                    <span>2025-12-27</span>
-                                </div>
-                            <div class="post-preview">
-                              <h3 class="post-preview-title"><a href="/article01.html">求婚大作戰</a></h3>
-                              <div class="post-preview-meta">
-                                  <span class="post-preview-category">Drama</span>
-                                  <span>2025-12-17</span>
-                                  </div>
-                                                          <div class="post-previews">
+                </article>
 
-                                                        <div class="post-preview">
-                                <h3 class="post-preview-title"><a href="/article03.html">意義 Meaningness｜Examined Life</a></h3>
-                                <div class="post-preview-meta">
-                                    <span class="post-preview-category">Documentary</span>
-                                    <span>2025-12-15</span>
-                                </div>
-                            </div>
-                            </div>
-                            </div>
-                            </div>
-                        </div>
-                        <a href="#" class="view-all-btn">查看所有文章</a>
-                    </div>
-                </div>
-                
-                <div class="category-card" data-category="drama">
-                    <div class="category-header">
-                        <div class="category-title-wrapper">
-                            <h2 class="category-title">交大日記</h2>
-                        </div>
-                    </div>
+                <article class="category-card">
+                    <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80" alt="流浪加州" class="category-img">
                     <div class="category-content">
-                        <div class="posts-count">1 篇文章</div>
+                        <span class="cat-badge">Travel</span>
+                        <h2 class="serif">流浪加州</h2>
+                        <ul class="post-list">
+                            <li><a href="/article07.html"><span>加州溫度</span> <span class="post-date">12.30</span></a></li>
+                            <li><a href="/article04.html"><span>起始</span> <span class="post-date">12.27</span></a></li>
+                            <li><a href="/article02.html"><span>藍調時刻 Blue Hour</span> <span class="post-date">12.16</span></a></li>
+                        </ul>
+                    </div>
+                </article>
 
-                        </div>
-                        <a href="#" class="view-all-btn">查看所有文章</a>
-                    </div>
-                </div>
-                
-                <div class="category-card" data-category="documentary">
-                    <div class="category-header">
-                        <div class="category-title-wrapper">
-                            <h2 class="category-title">纪录片</h2>
-                        </div>
-                    </div>
+                <article class="category-card">
+                    <img src="https://images.unsplash.com/photo-1489599102910-59206b8ca314?auto=format&fit=crop&w=800&q=80" alt="影視紀錄" class="category-img">
                     <div class="category-content">
-                        <div class="posts-count">1 篇文章</div>
-                        <div class="post-previews">
-                        </div>
-                        <a href="#" class="view-all-btn">查看所有文章</a>
+                        <span class="cat-badge">Reviews</span>
+                        <h2 class="serif">影視與紀錄</h2>
+                        <ul class="post-list">
+                            <li><a href="/article06.html"><span>第四面墻 (全知讀者視角)</span> <span class="post-date">12.30</span></a></li>
+                            <li><a href="/article05.html"><span>意義 Meaningness｜Soul</span> <span class="post-date">12.27</span></a></li>
+                            <li><a href="/article01.html"><span>求婚大作戰</span> <span class="post-date">12.17</span></a></li>
+                            <li><a href="/article03.html"><span>意義 Meaningness｜Examined Life</span> <span class="post-date">12.15</span></a></li>
+                        </ul>
                     </div>
-                </div>
+                </article>
+            </div>
+        </section>
+<section id="words" style="margin-bottom: 4rem;">
+    <div class="section-header">
+        <h2 class="section-title serif">Words</h2>
+    </div>
+    
+    <div class="words-grid">
+        <div class="word-card">
+            <p class="word-card-text serif">「有時候，靜止不動，也是一種前進的方式。」</p>
+            <div class="word-card-footer">
+                <span class="word-tag">#生活</span>
+                <span class="word-date">06.06</span>
             </div>
         </div>
+
+        <div class="word-card">
+            <p class="word-card-text serif">“Never enough.” 那不是貪婪，而是對生命純粹可能性的無盡索求。</p>
+            <div class="word-card-footer">
+                <span class="word-tag">#音樂隨想</span>
+                <span class="word-date">05.20</span>
+            </div>
+        </div>
+
+        <div class="word-card">
+            <p class="word-card-text serif">「醫學是一門需要冷靜理智的科學，但面對生命時，請記得保留一絲文學的浪漫。」</p>
+            <div class="word-card-footer">
+                <span class="word-tag">#格言</span>
+                <span class="word-date">04.15</span>
+            </div>
+        </div>
+
+        <div class="word-card">
+            <p class="word-card-text serif">「把普通的日子過得精緻，本身就是一件很了不起的藝術。」</p>
+            <div class="word-card-footer">
+                <span class="word-tag">#隨筆</span>
+                <span class="word-date">03.12</span>
+            </div>
+        </div>
+    </div>
+</section>
+        <section id="portfolio" class="portfolio-section">
+            <div class="portfolio-display">
+                <div class="portfolio-text">
+                    <span class="cat-badge">Featured Work</span>
+                    <h3 class="serif">My First DIY Postcard</h3>
+                    <p>將鏡頭捕捉到的日常風景，轉化為實體的明信片設計。從排版到印刷，記錄下視覺傳達的初步嘗試。</p>
+                    <a href="#" class="btn-outline">View Details</a>
+                </div>
+                <div class="portfolio-images">
+                    <img src="https://images.unsplash.com/photo-1527742564972-0089eaf0490b?auto=format&fit=crop&w=600&q=80" alt="Postcard Design 1">
+                    <img src="https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=600&q=80" alt="Postcard Design 2">
+                </div>
+            </div>
+        </section>
+
+<!-- 音樂推薦區塊 (豎屏海報樣式) -->
+<section id="tunes" style="margin-bottom: 4rem;">
+            <div class="section-header">
+                <h2 class="section-title serif">On Repeat</h2>
+            </div>
+            
+            <div class="tunes-grid">
+                <a href="daniel-caesar-intro.html" class="tune-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSKgD6HnMYrPkc16-2bd3Iu64AfoHdOgRr6g&s" alt="NEVER ENOUGH" class="tune-cover">
+                    <div class="tune-overlay"></div>
+                    
+                    <div class="tune-badge">RECOMMEND</div> 
+                    
+                    <div class="tune-content">
+                        <div class="play-btn">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                        <div class="tune-info">
+                            <div class="tune-artist">Daniel Caesar</div>
+                            <div class="tune-title">NEVER ENOUGH</div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="frank-ocean-intro.html" class="tune-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/2/28/Channel_ORANGE.jpg" alt="CHANNEL ORANGE" class="tune-cover">
+                    <div class="tune-overlay"></div>
+                    
+                    <div class="tune-badge">FAVORITE</div>
+                    
+                    <div class="tune-content">
+                        <div class="play-btn">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                        <div class="tune-info">
+                            <div class="tune-artist">Frank Ocean</div>
+                            <div class="tune-title">CHANNEL ORANGE</div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="sheena-ringo-intro.html" class="tune-card">
+                    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" alt="丸ノ内サディスティック" class="tune-cover">
+                    <div class="tune-overlay"></div>
+                    
+                    <div class="tune-badge">CLASSIC</div>
+                    
+                    <div class="tune-content">
+                        <div class="play-btn">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                        <div class="tune-info">
+                            <div class="tune-artist">Sheena Ringo</div>
+                            <div class="tune-title">丸ノ内サディスティック</div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="keshi-intro.html" class="tune-card">
+                    <img src="https://s.eslite.com/upload/product/o/2682162219001/20220420012229959307.jpg" alt="GABRIEL" class="tune-cover">
+                    <div class="tune-overlay"></div>
+                    
+                    <div class="tune-badge">RECENT</div>
+                    
+                    <div class="tune-content">
+                        <div class="play-btn">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                        <div class="tune-info">
+                            <div class="tune-artist">Keshi</div>
+                            <div class="tune-title">GABRIEL</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
     </main>
-
-    <section class="portfolio" id="portfolio">
-        <div class="container">
-          <h2 class="section-title">My <i>Portfolio</i></h2>
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <div class="portfolio-images">
-                        <img src="portfolio01.jpg" alt="作品圖片1" class="portfolio-image">
-                        <img src="portfolio02.jpg" alt="作品圖片2" class="portfolio-image">
-                    </div>
-                    <p class="portfolio-title">"<strong>MY FIRST DIY</strong> postcard"</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="favorite-albums" id="recommended-songs">
-        <div class="container">
-            <h2 class="section-title">Recommended <i>r&bs</i></h2>
-            <div class="albums-container">
-                <div class="album-item">
-                    <div class="album-header">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSKgD6HnMYrPkc16-2bd3Iu64AfoHdOgRr6g&s" alt="Never Enough" class="album-cover">
-                        <div class="album-info">
-                            <h3 class="album-title">NEVER ENOUGH</h3>
-                            <p class="album-artist">by Daniel Caesar</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="album-item">
-                    <div class="album-header">
-                        <img src="https://upload.wikimedia.org/wikipedia/en/2/28/Channel_ORANGE.jpg" alt="CHANNEL ORANGE" class="album-cover">
-                        <div class="album-info">
-                            <h3 class="album-title">CHANNEL ORANGE</h3>
-                            <p class="album-artist">by Frank Ocean</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="album-item">
-                    <div class="album-header">
-                        <img src="music03.jpg" alt="丸ノ内サディスティック" class="album-cover">
-                        <div class="album-info">
-                            <h3 class="album-title">丸ノ内サディスティック</h3>
-                            <p class="album-artist">by Sheena Ringo</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="album-item">
-                    <div class="album-header">
-                        <img src="https://s.eslite.com/upload/product/o/2682162219001/20220420012229959307.jpg" alt="GABRIEL" class="album-cover">
-                        <div class="album-info">
-                            <h3 class="album-title">GABRIEL</h3>
-                            <p class="album-artist">by Keshi</p>
-                        </div>
-                    </div>
-                </div>          
-            </div>
-        </div>
-    </section>
 
     <footer>
         <div class="container">
-            <p class="copyright">© 2025 lkhmemories</p>
+            <p>© 2025 lkhmemories. All rights reserved.</p>
         </div>
     </footer>
+
 </body>
 </html>
