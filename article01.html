@@ -4,56 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>求婚大作戰 - lkhmemories</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;500;600;700&display=swap');
-        
         :root {
-            /* 延續部落格整體的文藝沉穩色調 */
-            --primary: #1a5877;      /* 深海藍 */
-            --secondary: #7d715d;    /* 大地灰褐 */
-            --dark: #1e293b;         /* 深石墨灰 */
-            --light: #f8fafc;        /* 溫潤的米白底色 */
-            --gray: #64748b;         /* 鋼鐵灰 */
-            --border-color: rgba(0, 0, 0, 0.06);
+            /* 延續新版低飽和、文藝沉穩色彩配置 */
+            --bg-color: #FAFAFA;
+            --surface-color: #FFFFFF;
+            --text-main: #1A1A1A;
+            --text-muted: #737373;
+            --primary: #2C3E50;       /* 內斂的石墨深灰藍 */
+            --accent: #D4A373;        /* 溫暖柔和的莫蘭迪金（核心點綴色） */
+            --border-color: #EAEAEA;
             
-            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            /* 全局設計規範 */
+            --radius-md: 12px;
+            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.02);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
-            line-height: 1.8;
-            color: var(--dark);
-            background-color: var(--light);
+            font-family: 'Plus Jakarta Sans', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            line-height: 1.85; /* 微調行高，大幅提升長文閱讀舒適度 */
+            color: var(--text-main);
+            background-color: var(--bg-color);
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 襯線體：用於標題、引言與時間，營造文學故事感 */
-        .serif {
-            font-family: "Times New Roman", Georgia, "Noto Serif TC", serif;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 760px; /* 最佳散文閱讀寬度 */
-            margin: 0 auto;
-            padding: 3rem 1.5rem 6rem;
+        /* 襯線體：用於文章標題、小標、引言與時間，營造故事溫度 */
+        h1, h2, .serif {
+            font-family: 'Noto Serif TC', serif;
         }
 
-        /* --- 返回首頁按鈕 --- */
+        .container {
+            width: 100%;
+            max-width: 760px; /* 完美散文黃金比例寬度 */
+            margin: 0 auto;
+            padding: 4rem 1.5rem 6rem;
+        }
+
+        /* --- 返回部落格/首頁按鈕 --- */
         .back-home {
             display: inline-flex;
             align-items: center;
-            color: var(--gray);
+            color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.9rem;
-            letter-spacing: 0.05em;
-            margin-bottom: 3.5rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            margin-bottom: 4rem;
+            text-transform: uppercase;
             transition: var(--transition);
         }
 
@@ -64,91 +73,91 @@
         }
 
         .back-home:hover {
-            color: var(--primary);
+            color: var(--accent);
         }
 
         .back-home:hover span {
-            transform: translateX(-4px); /* 微笑的向左位移動畫 */
+            transform: translateX(-4px); /* 高級的向左位移動畫 */
         }
-        
+
         /* --- 文章標頭區塊 --- */
         .post-header {
             text-align: center;
-            margin-bottom: 3.5rem;
+            margin-bottom: 4rem;
         }
         
         .post-title {
-            color: var(--dark);
-            font-size: 2.4rem;
+            color: var(--text-main);
+            font-size: 2.5rem;
             font-weight: 500;
             letter-spacing: 0.02em;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
             line-height: 1.4;
         }
         
         .post-meta {
-            color: var(--gray);
-            font-size: 0.9rem;
-            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
             font-weight: 400;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 0.8rem;
+            gap: 1rem;
         }
 
         .post-meta::before, .post-meta::after {
             content: '';
-            width: 20px;
+            width: 16px;
             height: 1px;
-            background-color: rgba(0,0,0,0.1);
+            background-color: var(--border-color);
         }
-        
+
         /* --- 文章主體內容 --- */
         .post-content {
             font-size: 1.05rem;
-            color: var(--dark);
+            color: var(--text-main);
         }
         
         .post-content p {
-            margin-bottom: 1.8rem;
+            margin-bottom: 2rem;
             text-align: justify;
             text-justify: inter-ideograph;
         }
 
         /* 圖片與圖說排版 */
         figure {
-            margin: 3rem 0;
+            margin: 3.5rem 0;
         }
         
         .post-content img {
             width: 100%;
             height: auto;
             display: block;
-            border-radius: 6px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-subtle);
         }
         
         figcaption {
             font-size: 0.85rem;
-            color: var(--gray);
+            color: var(--text-muted);
             text-align: center;
-            margin-top: 0.8rem;
-            letter-spacing: 0.05em;
+            margin-top: 1rem;
+            letter-spacing: 0.03em;
         }
         
         /* 小標題 H2 設計 */
         h2 {
-            font-size: 1.45rem;
+            font-size: 1.5rem;
             font-weight: 500;
             color: var(--primary);
-            margin: 3.5rem 0 1.5rem;
-            letter-spacing: 0.03em;
+            margin: 4.5rem 0 1.8rem;
+            letter-spacing: 0.02em;
             position: relative;
-            padding-bottom: 0.6rem;
+            padding-bottom: 0.8rem;
         }
 
-        /* 優雅的漸層下襯線代替原本厚重的左側邊框 */
+        /* 高級、乾淨的低飽和細下襯線線條 */
         h2::after {
             content: "";
             position: absolute;
@@ -156,43 +165,49 @@
             bottom: 0;
             height: 1px;
             width: 100%;
-            background: linear-gradient(to right, var(--primary) 15%, rgba(0,0,0,0.04) 15%);
+            background: linear-gradient(to right, var(--accent) 12%, var(--border-color) 12%);
         }
         
-        /* 修正原本語法錯誤的清單項目 */
+        /* 條列項目樣式優化 */
         .highlight-list {
             list-style: none;
-            margin: 2rem 0 2rem 1rem;
+            margin: 2rem 0 2,5rem 1rem;
         }
 
         .highlight-list li {
             position: relative;
             padding-left: 1.5rem;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.9rem;
             font-style: italic;
-            color: var(--secondary);
-            font-weight: 500;
+            color: var(--text-muted);
+            font-weight: 400;
+            transition: var(--transition);
         }
 
         .highlight-list li::before {
             content: "•";
             position: absolute;
             left: 0;
-            color: var(--primary);
+            color: var(--accent);
             font-weight: bold;
         }
+
+        .highlight-list li:hover {
+            color: var(--text-main);
+        }
         
-        /* --- 經典對白引用區塊 (雙語優化排版) --- */
+        /* --- 經典對白引用區塊 (現代文學雙語排版) --- */
         .quote-container {
-            margin: 3.5rem 0;
-            border-left: 2px solid var(--primary);
-            padding: 0.5rem 0 0.5rem 1.8rem;
-            background-color: rgba(26, 88, 119, 0.02); /* 極淡的暖藍色底 */
-            border-radius: 0 6px 6px 0;
+            margin: 4.5rem 0;
+            border-left: 2px solid var(--accent);
+            padding: 0.5rem 0 0.5rem 2rem;
+            background-color: #FDFBF7; /* 極淡、溫潤的莫蘭迪紙張底色 */
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            box-shadow: var(--shadow-subtle);
         }
 
         .quote-block {
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
         }
 
         .quote-block:last-child {
@@ -202,48 +217,54 @@
         /* 中文樣式 */
         .quote-zh {
             font-size: 1.05rem;
-            color: var(--dark);
-            margin-bottom: 0.8rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            text-align: justify;
         }
 
-        /* 英文樣式：稍微縮小、顏色調淡、字距拉開，形成高級層次感 */
+        /* 英文樣式：稍微縮小、顏色調淡、字距拉開，拉出優美的層次感 */
         .quote-en {
             font-size: 0.9rem;
-            color: var(--gray);
-            line-height: 1.6;
-            margin-bottom: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            letter-spacing: 0.01em;
         }
 
         .quote-author {
             text-align: right;
-            font-size: 0.85rem;
-            color: var(--secondary);
-            letter-spacing: 0.05em;
             display: block;
-            margin-top: 0.3rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
         }
         
         /* --- RWD 行動裝置回應式微調 --- */
         @media (max-width: 768px) {
             .container {
-                padding: 2rem 1.2rem 4rem;
+                padding: 3rem 1.2rem 4rem;
             }
             
             .back-home {
-                margin-bottom: 2rem;
+                margin-bottom: 2.5rem;
             }
 
             .post-title {
-                font-size: 1.85rem;
+                font-size: 1.95rem;
             }
             
             h2 {
-                font-size: 1.3rem;
-                margin: 2.5rem 0 1.2rem;
+                font-size: 1.35rem;
+                margin: 3.5rem 0 1.5rem;
             }
 
             .quote-container {
                 padding-left: 1.2rem;
+                margin: 3.5rem 0;
             }
         }
     </style>
@@ -251,8 +272,8 @@
 <body>
 
     <main class="container">
-        <!-- 返回按鈕 -->
-        <a href="/" class="back-home serif"><span>←</span> HOME</a>
+        <!-- 返回部落格首頁 -->
+        <a href="/blog.html" class="back-home"><span>←</span> Back to Blog</a>
         
         <article class="post">
             <!-- 文章標頭 -->
@@ -328,7 +349,6 @@
                 
                 <p>健一次次失敗，不是因為命運殘酷，而是因為他仍然是那個熟悉的自己：</p>
                 
-                <!-- 優化後的條列項目 -->
                 <ul class="highlight-list serif">
                     <li>該說出口的話，選擇用玩笑帶過</li>
                     <li>該承擔的情緒，用「再等等」拖延</li>
@@ -339,7 +359,7 @@
 
                 <h2 id="My-favorite-quote" class="serif">My favorite quote</h2>
                 
-                <!-- ✨ 具備雜誌張力的雙語對白區塊 -->
+                <!-- ✨ 具備線上文學雜誌張力的雙語對白區塊 -->
                 <div class="quote-container">
                     <!-- 第一組對白 -->
                     <div class="quote-block">
@@ -359,7 +379,6 @@
                     <div class="quote-block">
                         <p class="quote-zh">也許我們這一生，都等不到那位教堂精靈。但《求婚大作戰》至少讓我意識到一件事：人生真正無法重來的，往往不是時間，而是那些已經被我們親手錯過的勇氣。如果此刻你心裡也有一句遲遲沒有說出口的話，希望你不必等到回頭時，才發現那其實是最後一次機會。</p>
                         <p class="quote-en">Perhaps none of us will ever meet that church fairy in our lifetime. Yet Operation Love made me realize one thing: what truly cannot be rewound is not time itself, but the courage we have let slip away. If there is a line you still haven’t found the courage to say, I hope you won’t wait until you look back and discover it was your last chance.</p>
-                        <!-- 第三組無落款，保持結尾的乾淨與餘韻 -->
                     </div>
                 </div>
             </div>
