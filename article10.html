@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>逃避雖可恥但有用 - lkhmemories</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* 延續新版低飽和、文藝沉穩色彩配置 */
+            --bg-color: #FAFAFA;
+            --surface-color: #FFFFFF;
+            --text-main: #1A1A1A;
+            --text-muted: #737373;
+            --primary: #2C3E50;       /* 內斂的石墨深灰藍 */
+            --accent: #D4A373;        /* 溫暖柔和的莫蘭迪金（核心點綴色） */
+            --border-color: #EAEAEA;
+            
+            /* 全局設計規範 */
+            --radius-md: 12px;
+            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.02);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            line-height: 1.85; /* 微調行高，大幅提升長文閱讀舒適度 */
+            color: var(--text-main);
+            background-color: var(--bg-color);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 襯線體：用於文章標題、小標、引言與時間，營造故事溫度 */
+        h1, h2, .serif {
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 760px; /* 完美散文黃金比例寬度 */
+            margin: 0 auto;
+            padding: 4rem 1.5rem 6rem;
+        }
+
+        /* --- 返回部落格/首頁按鈕 --- */
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            margin-bottom: 4rem;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .back-home span {
+            display: inline-block;
+            transition: var(--transition);
+            margin-right: 0.5rem;
+        }
+
+        .back-home:hover {
+            color: var(--accent);
+        }
+
+        .back-home:hover span {
+            transform: translateX(-4px); /* 高級的向左位移動畫 */
+        }
+
+        /* --- 文章標頭區塊 --- */
+        .post-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .post-title {
+            color: var(--text-main);
+            font-size: 2.5rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+        
+        .post-meta {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            font-weight: 400;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .post-meta::before, .post-meta::after {
+            content: '';
+            width: 16px;
+            height: 1px;
+            background-color: var(--border-color);
+        }
+
+        /* --- 文章主體內容 --- */
+        .post-content {
+            font-size: 1.05rem;
+            color: var(--text-main);
+        }
+        
+        .post-content p {
+            margin-bottom: 2rem;
+            text-align: justify;
+            text-justify: inter-ideograph;
+        }
+
+        /* 圖片與圖說排版 */
+        figure {
+            margin: 3.5rem 0;
+        }
+        
+        .post-content img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-subtle);
+        }
+        
+        figcaption {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 1rem;
+            letter-spacing: 0.03em;
+        }
+        
+        /* 小標題 H2 設計 */
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--primary);
+            margin: 4.5rem 0 1.8rem;
+            letter-spacing: 0.02em;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        /* 高級、乾淨的低飽和細下襯線線條 */
+        h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 1px;
+            width: 100%;
+            background: linear-gradient(to right, var(--accent) 12%, var(--border-color) 12%);
+        }
+        
+        /* 條列項目樣式優化 */
+        .highlight-list {
+            list-style: none;
+            margin: 2rem 0 2,5rem 1rem;
+        }
+
+        .highlight-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.9rem;
+            font-style: italic;
+            color: var(--text-muted);
+            font-weight: 400;
+            transition: var(--transition);
+        }
+
+        .highlight-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .highlight-list li:hover {
+            color: var(--text-main);
+        }
+        
+        /* --- 經典對白引用區塊 (現代文學雙語排版) --- */
+        .quote-container {
+            margin: 4.5rem 0;
+            border-left: 2px solid var(--accent);
+            padding: 0.5rem 0 0.5rem 2rem;
+            background-color: #FDFBF7; /* 極淡、溫潤的莫蘭迪紙張底色 */
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .quote-block {
+            margin-bottom: 3rem;
+        }
+
+        .quote-block:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 中文樣式 */
+        .quote-zh {
+            font-size: 1.05rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        /* 英文樣式：稍微縮小、顏色調淡、字距拉開，拉出優美的層次感 */
+        .quote-en {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            letter-spacing: 0.01em;
+        }
+
+        .quote-author {
+            text-align: right;
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+        }
+        
+        /* --- RWD 行動裝置回應式微調 --- */
+        @media (max-width: 768px) {
+            .container {
+                padding: 3rem 1.2rem 4rem;
+            }
+            
+            .back-home {
+                margin-bottom: 2.5rem;
+            }
+
+            .post-title {
+                font-size: 1.95rem;
+            }
+            
+            h2 {
+                font-size: 1.35rem;
+                margin: 3.5rem 0 1.5rem;
+            }
+
+            .quote-container {
+                padding-left: 1.2rem;
+                margin: 3.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <!-- 返回部落格首頁 -->
+        <a href="/blog.html" class="back-home"><span>←</span> Back to Blog</a>
+        
+        <article class="post">
+            <!-- 文章標頭 -->
+            <header class="post-header">
+                <h1 class="post-title serif">《苦盡柑來遇見你》</h1>
+                <div class="post-meta serif">lkhmemories — May 6, 2026</div>
+            </header>
+            
+            <!-- 文章主體內容 -->
+            <div class="post-content">
+                <figure>
+                    <img src="https://www.moredetailnews.com/wp-content/uploads/2025/03/my_prefix_1743406847-png.webp" alt="求婚大作戰劇照"/>
+                    <figcaption class="serif">《苦盡柑來遇見你》劇照</figcaption>
+                </figure>
+                
+                <p>第一次看《苦盡柑來遇見你》時，我以為那只是一個發生在濟州島的愛情故事。直到看完最後一集才發現，它真正描寫的從來不只是愛情，而是一段關於人生的旅程。</p>
+                
+                <p>劇中的人物在歲月裡相遇、相愛、失去、成長，經歷著每個人都可能面對的遺憾與幸福。它沒有轟轟烈烈的情節，卻用最平凡的日常，勾勒出生命最深刻的模樣。</p>
+                <p>或許正因如此，《苦盡柑來遇見你》最打動我的地方，不是某個感人的瞬間，而是它讓我明白：人生從來不是等到苦難結束後才開始幸福，而是在漫長的歲月裡，依然願意珍惜眼前的人，並溫柔地活下去。</p>
+
+                <h2 id="Intro" class="serif">Intro</h2>
+                
+                <p>故事以濟州島為背景，講述叛逆而熱烈的吳愛純與沉默卻始終堅定的梁寬植，從青春走到白頭的人生旅程。從 1950 年代到數十年後的現代，兩人在時代洪流與生活困境中相互扶持，共同面對愛情、家庭與成長的課題。</p>
+                
+                <p>如果要用一句話概括這部劇，我會說：</p>
+                
+                <p>這不是一部關於相愛的故事，而是一部關於陪伴的故事。</p>
+                
+                <h2 id="Why-first" class="serif">比起愛情，它更像一封寫給人生的情書</h2>
+                
+                <p>許多愛情劇都在描寫相遇。</p>
+                
+                <p>《苦盡柑來遇見你》卻更在意相遇之後的事。</p>
+                
+                <p>它沒有轟轟烈烈的橋段，也沒有刻意製造戲劇性的衝突。相反地，它花了大量篇幅去描寫那些看似平凡的日常：一起吃飯、一起工作、一起承受生活的重量。</p>
+                <p>而正是這些瑣碎的瞬間，構成了人生最真實的樣貌。</p>
+                <p>有時候看著愛純與寬植，我甚至忘記自己是在看戲。</p>
+                <p>更像是在翻閱某個人的人生相簿。</p>
+               
+                <h2 id="Why-is-it-impressive" class="serif">最殘酷的反派，其實是時間</h2>
+                
+                <p>《求婚大作戰》談的是遺憾。《苦盡柑來遇見你》談的則是失去。</p>
+
+<p>這部劇最讓我動容的地方，在於它從不逃避人生的殘酷。</p>
+<p>有人離開，有人老去；夢想未必實現，努力未必得到回報。很多時候，打敗我們的不是壞人，而是時間本身。這也是許多觀眾產生強烈共鳴的原因——劇中的苦難與幸福，都像真實人生的縮影。</p>
+<p>然而即使如此，它仍然選擇相信愛。
+
+不是童話式的愛，而是一種願意陪伴彼此走過風雨的愛。</p>
+                
+                
+                <h2 id="paragraph01" class="serif">為什麼這部劇令我印象深刻</h2>
+                
+                <p>它讓我開始思考，父母年輕的時候是不是也曾像劇中的角色一樣，有過夢想、有過迷惘、有過想放棄卻又不得不堅持下去的時刻。</p>
+                
+                <p>我們總是習慣把父母視為「父母」。卻忘記了在成為父母之前，他們也曾經是某個人的孩子。</p>
+                
+                <p>這部劇最厲害的地方，是讓觀眾重新理解愛與家庭的重量。許多觀眾都提到，劇中的親情與代際關係讓人重新思考自己與家人的關係。</p>
+                
+                <h2 id="paragraph02" class="serif">為什麼選擇寫下這部劇</h2>
+                
+                <p>如果《求婚大作戰》讓我學會珍惜當下的勇氣，那麼《苦盡柑來遇見你》則讓我學會珍惜身邊的人。
+
+<p>它沒有告訴我如何成功，也沒有教我如何避免失敗。</p>
+
+<p>它只是很溫柔地提醒我：</p>
+
+<p>人生其實沒有那麼多驚天動地的時刻。</p>
+
+<p>真正重要的，往往是那些看似平凡、卻再也無法重來的日常。</p>
+
+<p>並不是所有問題都需要立刻解決。</p>
+
+        </article>
+    </main>
+
+</body>
+</html>
