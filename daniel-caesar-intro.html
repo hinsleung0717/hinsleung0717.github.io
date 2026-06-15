@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel Caesar Live - lkhmemories</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@400;500;600&display=swap');
+        
+        :root {
+            /* 沉穩優雅的獨立音樂底色 */
+            --primary: #1a5877;      /* 深海藍 */
+            --secondary: #7d715d;    /* 大地灰褐 */
+            --dark: #121824;         /* 深邃黑夜 */
+            --light: #f8fafc;        /* 溫潤米白 */
+            --gray: #64748b;         /* 鋼鐵灰 */
+            --accent: rgba(0, 0, 0, 0.05);
+            
+            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+        }
+
+        .serif {
+            font-family: "Times New Roman", Georgia, "Noto Serif TC", serif;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 780px; /* 寬度稍微放大，給 Live 影片最好的舞台 */
+            margin: 0 auto;
+            padding: 3rem 1.5rem 6rem;
+        }
+
+        /* --- 返回按鈕 --- */
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            margin-bottom: 4rem;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .back-home span {
+            display: inline-block;
+            transition: var(--transition);
+            margin-right: 0.6rem;
+        }
+
+        .back-home:hover {
+            color: var(--primary);
+        }
+
+        .back-home:hover span {
+            transform: translateX(-5px);
+        }
+        
+        /* --- 文章標頭 --- */
+        .post-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .post-title {
+            color: var(--dark);
+            font-size: 2.8rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: lowercase; /* 呼應全小寫美學 */
+            margin-bottom: 0.8rem;
+        }
+        
+        .post-meta {
+            color: var(--gray);
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .post-meta::before, .post-meta::after {
+            content: '';
+            width: 15px;
+            height: 1px;
+            background-color: var(--secondary);
+            opacity: 0.3;
+        }
+
+        /* --- 極簡音樂人簡介區塊 --- */
+        .artist-intro {
+            max-width: 600px; /* 縮窄寬度，營造雜誌專欄感 */
+            margin: 0 auto 4.5rem;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .artist-intro p {
+            font-family: "Noto Serif TC", serif;
+            font-size: 1.02rem;
+            color: var(--dark);
+            line-height: 1.85;
+            letter-spacing: 0.02em;
+            text-align: justify;
+            text-justify: inter-ideograph;
+        }
+
+        /* --- 現場影片放映架構 --- */
+        .live-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 5.5rem; /* 影片與影片之間的呼吸留白 */
+        }
+
+        .video-item {
+            width: 100%;
+        }
+
+        /* 響應式影片外框 (16:9) */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; 
+            height: 0;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.06);
+            background: #000;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
+        /* 影片下方的精緻手札圖說 */
+        .video-caption {
+            margin-top: 1.2rem;
+            padding: 0 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-top: 1px solid var(--accent);
+            padding-top: 1rem;
+        }
+
+        .video-info {
+            max-width: 70%;
+        }
+
+        .track-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            letter-spacing: 0.02em;
+            margin-bottom: 0.4rem;
+        }
+
+        .personal-note {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+
+        .timestamp {
+            font-size: 0.8rem;
+            color: var(--gray);
+            letter-spacing: 0.05em;
+            text-align: right;
+            white-space: nowrap;
+        }
+        
+        /* --- 行動裝置微調 --- */
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1.2rem 4rem;
+            }
+            
+            .post-header {
+                margin-bottom: 2.5rem;
+            }
+
+            .post-title {
+                font-size: 2.2rem;
+            }
+
+            .artist-intro {
+                margin-bottom: 3.5rem;
+            }
+
+            .live-gallery {
+                gap: 4rem;
+            }
+
+            .video-caption {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .video-info {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <!-- 返回首頁 -->
+        <a href="/" class="back-home serif"><span>←</span> BACK TO ARCHIVE</a>
+        
+        <article class="post">
+            <!-- 文章標頭 -->
+            <header class="post-header">
+                <h1 class="post-title serif">daniel caesar live</h1>
+                <div class="post-meta serif">lkhmemories — Jun 16, 2026</div>
+            </header>
+            
+            <!-- 音樂人小簡介：低調文藝的引言排版 -->
+            <section class="artist-intro">
+                <p>
+                    不同於一般 R&B 歌手刻意展現技巧的唱法，Daniel Caesar 的聲音總帶著一種真誠而脆弱的質感，彷彿是在用音樂記錄愛情裡最細膩的情緒。
+從〈Best Part〉到〈Japanese Denim〉，再到〈Always〉，他的作品總能在簡約的旋律中蘊藏深刻的情感。沒有過分煽情的歌詞，卻總能唱出愛與失去、成長與遺憾之間最真實的模樣。對我而言，Daniel Caesar 的音樂像深夜裡的一場長談，溫柔而坦誠，讓人不自覺地沉浸其中，也因此成為歌單裡始終捨不得刪除的存在。
+                </p>
+            </section>
+            
+            <!-- 演唱會視頻展示庫 -->
+            <div class="live-gallery">
+                
+                <!-- 影片 01 -->
+                <div class="video-item">
+                    <div class="video-wrapper">
+                        <!-- ⚠️ 請將其中的 src 網址，更換為你現場錄製影片上傳後的 YouTube 嵌入網址 -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vBy7FaapGRo?si=9vRgT5R26oWo8GDg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>                    </div>
+                    <div class="video-caption">
+                        <div class="video-info">
+                            <h2 class="track-title serif">01. Best Part</h2>
+                            <p class="personal-note">當這首歌的前奏吉他聲一出來，全場瞬間整齊地大合唱。聚光燈打在他身上，那種絲滑而溫柔的音色，完美得讓人想起微風吹過海面的冬日午後。</p>
+                        </div>
+                        <div class="timestamp serif">LIVE REC / 01:04</div>
+                    </div>
+                </div>
+
+                <!-- 影片 02 -->
+                <div class="video-item">
+                    <div class="video-wrapper">
+                        <!-- ⚠️ 更換為第二段現場影片網址 -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pKFd12id5oQ?si=g1ZqTD05ERRZmImt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>                    </div>
+                    <div class="video-caption">
+                        <div class="video-info">
+                            <h2 class="track-title serif">02. Always</h2>
+                            <p class="personal-note">鋼琴聲落下的瞬間，真假音切換時細微的換氣聲透過音響傳遍整個場館，把靈魂樂裡最純粹的情感和遺憾，毫無保留地揉進了每個人心裡。</p>
+                        </div>
+                        <div class="timestamp serif">LIVE REC / 00:58</div>
+                    </div>
+                </div>
+
+            </div>
+        </article>
+    </main>
+
+</body>
+</html>
