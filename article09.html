@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+
+<html lang="zh-TW">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>逃避雖可恥但有用 - lkhmemories</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        :root {
+
+            /* 延續新版低飽和、文藝沉穩色彩配置 */
+
+            --bg-color: #FAFAFA;
+
+            --surface-color: #FFFFFF;
+
+            --text-main: #1A1A1A;
+
+            --text-muted: #737373;
+
+            --primary: #2C3E50;       /* 內斂的石墨深灰藍 */
+
+            --accent: #D4A373;        /* 溫暖柔和的莫蘭迪金（核心點綴色） */
+
+            --border-color: #EAEAEA;
+
+            
+
+            /* 全局設計規範 */
+
+            --radius-md: 12px;
+
+            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.02);
+
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+        }
+
+
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+
+
+        html {
+
+            scroll-behavior: smooth;
+
+        }
+
+
+
+        body {
+
+            font-family: 'Plus Jakarta Sans', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+
+            line-height: 1.85; /* 微調行高，大幅提升長文閱讀舒適度 */
+
+            color: var(--text-main);
+
+            background-color: var(--bg-color);
+
+            -webkit-font-smoothing: antialiased;
+
+        }
+
+
+
+        /* 襯線體：用於文章標題、小標、引言與時間，營造故事溫度 */
+
+        h1, h2, .serif {
+
+            font-family: 'Noto Serif TC', serif;
+
+        }
+
+
+
+        .container {
+
+            width: 100%;
+
+            max-width: 760px; /* 完美散文黃金比例寬度 */
+
+            margin: 0 auto;
+
+            padding: 4rem 1.5rem 6rem;
+
+        }
+
+
+
+        /* --- 返回部落格/首頁按鈕 --- */
+
+        .back-home {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            color: var(--text-muted);
+
+            text-decoration: none;
+
+            font-size: 0.85rem;
+
+            font-weight: 500;
+
+            letter-spacing: 0.08em;
+
+            margin-bottom: 4rem;
+
+            text-transform: uppercase;
+
+            transition: var(--transition);
+
+        }
+
+
+
+        .back-home span {
+
+            display: inline-block;
+
+            transition: var(--transition);
+
+            margin-right: 0.5rem;
+
+        }
+
+
+
+        .back-home:hover {
+
+            color: var(--accent);
+
+        }
+
+
+
+        .back-home:hover span {
+
+            transform: translateX(-4px); /* 高級的向左位移動畫 */
+
+        }
+
+
+
+        /* --- 文章標頭區塊 --- */
+
+        .post-header {
+
+            text-align: center;
+
+            margin-bottom: 4rem;
+
+        }
+
+        
+
+        .post-title {
+
+            color: var(--text-main);
+
+            font-size: 2.5rem;
+
+            font-weight: 500;
+
+            letter-spacing: 0.02em;
+
+            margin-bottom: 1.5rem;
+
+            line-height: 1.4;
+
+        }
+
+        
+
+        .post-meta {
+
+            color: var(--text-muted);
+
+            font-size: 0.85rem;
+
+            letter-spacing: 0.06em;
+
+            font-weight: 400;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 1rem;
+
+        }
+
+
+
+        .post-meta::before, .post-meta::after {
+
+            content: '';
+
+            width: 16px;
+
+            height: 1px;
+
+            background-color: var(--border-color);
+
+        }
+
+
+
+        /* --- 文章主體內容 --- */
+
+        .post-content {
+
+            font-size: 1.05rem;
+
+            color: var(--text-main);
+
+        }
+
+        
+
+        .post-content p {
+
+            margin-bottom: 2rem;
+
+            text-align: justify;
+
+            text-justify: inter-ideograph;
+
+        }
+
+
+
+        /* 圖片與圖說排版 */
+
+        figure {
+
+            margin: 3.5rem 0;
+
+        }
+
+        
+
+        .post-content img {
+
+            width: 100%;
+
+            height: auto;
+
+            display: block;
+
+            border-radius: var(--radius-md);
+
+            box-shadow: var(--shadow-subtle);
+
+        }
+
+        
+
+        figcaption {
+
+            font-size: 0.85rem;
+
+            color: var(--text-muted);
+
+            text-align: center;
+
+            margin-top: 1rem;
+
+            letter-spacing: 0.03em;
+
+        }
+
+        
+
+        /* 小標題 H2 設計 */
+
+        h2 {
+
+            font-size: 1.5rem;
+
+            font-weight: 500;
+
+            color: var(--primary);
+
+            margin: 4.5rem 0 1.8rem;
+
+            letter-spacing: 0.02em;
+
+            position: relative;
+
+            padding-bottom: 0.8rem;
+
+        }
+
+
+
+        /* 高級、乾淨的低飽和細下襯線線條 */
+
+        h2::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            bottom: 0;
+
+            height: 1px;
+
+            width: 100%;
+
+            background: linear-gradient(to right, var(--accent) 12%, var(--border-color) 12%);
+
+        }
+
+        
+
+        /* 條列項目樣式優化 */
+
+        .highlight-list {
+
+            list-style: none;
+
+            margin: 2rem 0 2,5rem 1rem;
+
+        }
+
+
+
+        .highlight-list li {
+
+            position: relative;
+
+            padding-left: 1.5rem;
+
+            margin-bottom: 0.9rem;
+
+            font-style: italic;
+
+            color: var(--text-muted);
+
+            font-weight: 400;
+
+            transition: var(--transition);
+
+        }
+
+
+
+        .highlight-list li::before {
+
+            content: "•";
+
+            position: absolute;
+
+            left: 0;
+
+            color: var(--accent);
+
+            font-weight: bold;
+
+        }
+
+
+
+        .highlight-list li:hover {
+
+            color: var(--text-main);
+
+        }
+
+        
+
+        /* --- 經典對白引用區塊 (現代文學雙語排版) --- */
+
+        .quote-container {
+
+            margin: 4.5rem 0;
+
+            border-left: 2px solid var(--accent);
+
+            padding: 0.5rem 0 0.5rem 2rem;
+
+            background-color: #FDFBF7; /* 極淡、溫潤的莫蘭迪紙張底色 */
+
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+
+            box-shadow: var(--shadow-subtle);
+
+        }
+
+
+
+        .quote-block {
+
+            margin-bottom: 3rem;
+
+        }
+
+
+
+        .quote-block:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+
+
+        /* 中文樣式 */
+
+        .quote-zh {
+
+            font-size: 1.05rem;
+
+            color: var(--text-main);
+
+            margin-bottom: 1rem;
+
+            text-align: justify;
+
+        }
+
+
+
+        /* 英文樣式：稍微縮小、顏色調淡、字距拉開，拉出優美的層次感 */
+
+        .quote-en {
+
+            font-size: 0.9rem;
+
+            color: var(--text-muted);
+
+            line-height: 1.7;
+
+            margin-bottom: 1rem;
+
+            font-family: 'Plus Jakarta Sans', sans-serif;
+
+            letter-spacing: 0.01em;
+
+        }
+
+
+
+        .quote-author {
+
+            text-align: right;
+
+            display: block;
+
+            font-size: 0.8rem;
+
+            font-weight: 500;
+
+            color: var(--accent);
+
+            letter-spacing: 0.08em;
+
+            margin-top: 0.5rem;
+
+            text-transform: uppercase;
+
+        }
+
+        
+
+        /* --- RWD 行動裝置回應式微調 --- */
+
+        @media (max-width: 768px) {
+
+            .container {
+
+                padding: 3rem 1.2rem 4rem;
+
+            }
+
+            
+
+            .back-home {
+
+                margin-bottom: 2.5rem;
+
+            }
+
+
+
+            .post-title {
+
+                font-size: 1.95rem;
+
+            }
+
+            
+
+            h2 {
+
+                font-size: 1.35rem;
+
+                margin: 3.5rem 0 1.5rem;
+
+            }
+
+
+
+            .quote-container {
+
+                padding-left: 1.2rem;
+
+                margin: 3.5rem 0;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+
+    <main class="container">
+
+        <!-- 返回部落格首頁 -->
+
+        <a href="/blog.html" class="back-home"><span>←</span> Back to Blog</a>
+
+        
+
+        <article class="post">
+
+            <!-- 文章標頭 -->
+
+            <header class="post-header">
+
+                <h1 class="post-title serif">《逃避雖可恥但有用》</h1>
+
+                <div class="post-meta serif">lkhmemories — May 6, 2026</div>
+
+            </header>
+
+            
+
+            <!-- 文章主體內容 -->
+
+            <div class="post-content">
+
+                <figure>
+
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRN6WD1F906341mocnkzfMkMleuLr-BgVAjA&s" alt="求婚大作戰劇照"/>
+
+                    <figcaption class="serif">《逃避雖可恥但有用》劇照</figcaption>
+
+                </figure>
+
+                
+
+                <p>有些電視劇讓人心動，有些電視劇讓人反思，而《逃避雖可恥但有用》則是一部讓我學會與自己和解的作品。</p>
+
+                
+
+                <p>第一次看這部劇時，我以為它只是一部輕鬆的愛情喜劇。契約婚姻、職場困境、溫暖幽默的對白，再加上輕快的節奏，讓人很容易把它當成一部療癒系作品。然而多年後回頭再看，我才發現它真正打動我的，並不是愛情本身，而是它對「不夠優秀」這件事的溫柔理解。</p>
+
+
+
+                <h2 id="Intro" class="serif">Intro</h2>
+
+                
+
+                <p>森山實栗是一名高學歷卻難以找到理想工作的年輕女性。在求職與現實的挫折之間，她意外與工程師津崎平匡展開一段特殊的契約婚姻。</p>
+
+                
+
+                <p>兩人以雇主與員工的關係共同生活，將家務、情感與責任明碼標價。原本只是一場理性的合作，卻在朝夕相處之中，逐漸發展出超越契約的感情。</p>
+
+                
+
+                <p>看似浪漫喜劇的外殼之下，包裹的其實是關於工作、家庭、自我價值與親密關係的討論。</p>
+
+                
+
+                <h2 id="Why-first" class="serif">一個關於「逃避」的故事</h2>
+
+                
+
+                <p>劇名《逃避雖可恥但有用》來自一句匈牙利諺語：「逃避雖然可恥，但有用。」</p>
+
+                
+
+                <p>第一次聽見這句話時，總覺得有些矛盾。</p>
+
+                
+
+                <p>從小到大，我們總被教育要勇敢面對問題、迎難而上。於是當自己感到疲憊、害怕或無力時，往往會因為想逃跑而產生罪惡感。</p>
+
+                <p>但這部劇提出了一個不同的觀點。</p>
+
+                <p>有時候，離開不適合自己的環境並不是失敗；承認自己撐不下去，也不代表懦弱。適度的退後一步，反而可能是重新出發的開始。</p>
+
+               
+
+                <h2 id="Why-is-it-impressive" class="serif">比起愛情，它更關心人的價值</h2>
+
+                
+
+                <p>《逃避雖可恥但有用》最吸引我的地方，在於它從不把角色塑造成完美的人。
+
+
+
+實栗害怕被否定，渴望被需要；平匡習慣封閉自己，不知道如何建立親密關係。
+
+
+
+他們都有缺點，也都有無法跨越的心理障礙。</p>
+
+
+
+<p>正因如此，他們的成長才顯得格外真實。
+
+
+
+這部劇並沒有告訴觀眾，只要努力就一定能獲得幸福。它更在意的是：當我們無法成為理想中的自己時，是否依然願意接納自己。</p>
+
+                
+
+                
+
+                <h2 id="paragraph01" class="serif">為什麼這部劇令我印象深刻</h2>
+
+                
+
+                <p>很多年來，我一直覺得成長是一件向前衝刺的事。
+
+
+
+後來才慢慢發現，真正的成長，有時候是承認自己的極限。</p>
+
+                
+
+                <p>《逃避雖可恥但有用》讓我明白，人生並不是一場永無止境的競賽。我們不需要每一次都成為最勇敢、最優秀的人，也不需要永遠符合別人的期待。</p>
+
+                
+
+                <p>有些時候，允許自己休息、允許自己迷惘、甚至允許自己逃跑，反而是一種成熟。
+
+
+
+因為只有接受自己的脆弱，才有機會重新找到前進的力量。</p>
+
+                
+
+                <h2 id="paragraph02" class="serif">為什麼選擇寫下這部劇</h2>
+
+                
+
+                <p>如果《求婚大作戰》教會我不要為錯過的人生停留太久，那麼《逃避雖可恥但有用》則教會我另一件事：
+
+
+
+並不是所有問題都需要立刻解決。</p>
+
+                
+
+                <p>有些答案，需要時間慢慢浮現；有些傷口，也需要空間慢慢癒合。</p>
+
+                
+
+                <p>它讓我開始理解，人生並非只有向前衝這一種姿態。有時候停下腳步、繞一點路，甚至暫時離開原本的軌道，也未必是一件壞事。</p>
+
+                
+
+                <h2 id="My-favorite-quote" class="serif">My favorite quote</h2>
+
+                
+
+                <!-- ✨ 具備線上文學雜誌張力的雙語對白區塊 -->
+
+                <div class="quote-container">
+
+                    <!-- 第一組對白 -->
+
+                    <div class="quote-block">
+
+                        <p class="quote-zh">「逃跑雖然可恥，但學會生存下來更重要。」</p>
+
+                        <span class="quote-author serif">— 《逃避雖可恥但有用》</span>
+
+                    </div>
+
+                    
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </main>
+
+
+
+</body>
+
+</html>
