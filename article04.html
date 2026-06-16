@@ -3,218 +3,289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>象牙塔尖的仲夏夢｜夢的起始</title>
+    <title>夢的起始 - lkhmemories</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600;700&display=swap');
-
         :root {
-            --primary-color: #1a5877;
-            --secondary-color: #7d715d;
-            --text-color: #333;
-            --light-text: #666;
-            --bg-color: #f9f9f7;
+            /* 延續低飽和、沉穩文藝色彩配置 */
+            --bg-color: #FAFAFA;
+            --surface-color: #FFFFFF;
+            --text-main: #1A1A1A;
+            --text-muted: #737373;
+            --primary: #1A5877;       /* 經典柏克萊深海藍調 */
+            --accent: #7D715D;        /* 沉穩的大地灰褐 */
+            --border-color: #EAEAEA;
+            
+            /* 全局設計規範 */
+            --radius-md: 12px;
+            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.02);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.8;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: var(--text-color);
+            font-family: 'Plus Jakarta Sans', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            line-height: 1.85; /* 舒適的黃金閱讀行高 */
+            color: var(--text-main);
             background-color: var(--bg-color);
+            -webkit-font-smoothing: antialiased;
         }
-        
-        .post {
-            margin-bottom: 60px;
+
+        /* 襯線體：用於主標題、副標題與時間，營造故事厚度 */
+        h1, h2, .serif {
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 820px; /* 稍微放寬以容納精美的雙欄圖文 */
+            margin: 0 auto;
+            padding: 4rem 1.5rem 6rem;
+        }
+
+        /* --- 返回按鈕微動效 --- */
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            margin-bottom: 4rem;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .back-home span {
+            display: inline-block;
+            transition: var(--transition);
+            margin-right: 0.5rem;
+        }
+
+        .back-home:hover {
+            color: var(--primary);
+        }
+
+        .back-home:hover span {
+            transform: translateX(-4px);
+        }
+
+        /* --- 文章標頭區塊 --- */
+        .post-header {
+            text-align: center;
+            margin-bottom: 4.5rem;
         }
         
         .post-title {
-            color: white;
-            background-color: var(--primary-color);
-            padding: 20px 25px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            font-size: 2.2rem;
-            font-weight: 700;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(237, 237, 237, 1);
-            font-family: 'Noto Sans TC', serif;
+            color: var(--text-main);
+            font-size: 2.3rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
         }
         
         .post-meta {
-            color: var(--light-text);
-            font-size: 0.9em;
-            margin: 15px 0 30px;
-            text-align: center;
-            font-weight: 300;
-            font-family: 'Noto Sans TC', serif;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            font-weight: 400;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
         }
-        
+
+        .post-meta::before, .post-meta::after {
+            content: '';
+            width: 16px;
+            height: 1px;
+            background-color: var(--border-color);
+        }
+
+        /* --- 文章主體內容 --- */
         .post-content {
             font-size: 1.05rem;
-            font-family: "Times New Roman", Times, serif;
+            color: var(--text-main);
         }
         
         .post-content p {
-            margin-bottom: 1.5em;
+            margin-bottom: 1.8rem;
             text-align: justify;
         }
-        
-        .home-link {
-            font-family: 'Noto Sans TC', serif;
-            color: var(--secondary-color);
-            text-decoration: none;
-            transition: color 0.3s;
-            font-weight: 500;
-            display: block;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
+
+        /* 經典首字放大設計 */
+        .drop-cap::first-letter {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 3.2rem;
+            float: left;
+            margin-right: 0.6rem;
+            line-height: 1;
+            color: var(--primary);
+            font-weight: 600;
         }
-        
-        .home-link:hover {
-            color: var(--primary-color);
-            text-decoration: underline;
-        }
-        
+
+        /* --- 高級圖文並排（Image Row）系統 --- */
         .image-row {
             display: flex;
-            gap: 30px;
-            margin: 40px 0;
-            align-items: flex-start; /* 修改为flex-start而不是center */
+            gap: 40px;
+            margin: 3.5rem 0;
+            align-items: flex-start;
         }
 
         .text-content {
-            flex: 1;
-            align-self: flex-start; /* 确保文字内容始终顶部对齐 */
+            flex: 58; /* 內文佔據黃金比例 */
         }
 
         .image-wrapper {
-            flex: 1;
+            flex: 42; /* 圖片組佔據較窄比例 */
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            align-items: flex-start; /* 图片容器也顶部对齐 */
+            gap: 28px;
         }
         
-        .image-wrapper img {
+        /* 圖字包裝器 */
+        .figure-container {
+            width: 100%;
+            margin: 0;
+        }
+
+        .figure-container img {
             width: 100%;
             height: auto;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-          margin-bottom: 0;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition);
+            display: block;
         }
-          .image-caption {
-        font-size: 0.85rem;
-        color: var(--light-text);
-        text-align: center;
-        margin-top: 8px;
-        font-style: italic;
-        line-height: 1.4;
-    }
-        
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 比例 */
-            margin: 40px 0;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+
+        .figure-container img:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.04);
+        }
+
+        .image-caption {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 0.8rem;
+            font-style: italic;
+            letter-spacing: 0.03em;
+            line-height: 1.4;
         }
         
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
+        /* --- RWD 行動裝置回應式優化 --- */
         @media (max-width: 768px) {
-            body {
-                padding: 15px;
+            .container {
+                padding: 3rem 1.2rem 4rem;
             }
             
+            .back-home {
+                margin-bottom: 2.5rem;
+            }
+
             .post-title {
                 font-size: 1.8rem;
-                padding: 15px 20px;
             }
-            
+
+            /* 手機端自動切換為垂直單欄 */
             .image-row {
                 flex-direction: column;
+                gap: 2rem;
+                margin: 2.5rem 0;
             }
-            
+
             .text-content, .image-wrapper {
                 width: 100%;
+                flex: none;
             }
-            
-            .image-wrapper img {
-                margin-top: 20px;
+
+            /* 手機端圖片改為橫向並列，縮短頁面長度 */
+            .image-wrapper {
+                flex-direction: row;
+                gap: 15px;
             }
-        }
-      blockquote {
-            color: var(--light-text);
-            font-size: 0.9rem;
-            border-left: 4px solid var(--primary-color);
-            padding: 15px 20px;
-            margin: 30px 0;
-            font-style: italic;
-            background-color: rgba(237, 237, 237, 1);
-            border-radius: 0 8px 8px 0;
-            line-height: 1.7;
-        }
-        
-        .quote-section footer {
-            text-align: right;
-            font-style: normal;
-            color: var(--light-text);
-            margin-top: 1.5em;
-            font-size: 0.9rem;
+
+            .figure-container {
+                flex: 1;
+            }
+
+            .image-caption {
+                font-size: 0.78rem;
+                margin-top: 0.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <a href="/" class="home-link">← HOME</a>
-    <div class="post">
-        <h1 class="post-title">象牙塔尖的仲夏夢｜夢的起始</h1>
-        <div class="post-meta">lkhmemories — Dec 27, 2025</div>
-        <div class="post-content">
-                    <p>加州大學柏克萊分校（UC Berkeley）是一所公立大學，與斯坦福、哈佛、耶魯、麻省這類私立名校不同。它在美國公立大學中常年名列前茅，在 QS 全球排名也長期位於前二十。我參加的項目是 Berkeley 的 Summer Session，這是學校每年對內校生、其他美本學生，以及國際生開放的暑期課程。</p>
-        <div class="image-row">
-            <div class="text-content">
-                    <p>申請伯克萊其實有些意外。當時我看到申請通知，我想參加的項目已經截止，剩下最理想的選擇只有 Berkeley。對於伯克萊，我的印象並不具體——美國本身對我來說很遙遠，也不是我人生規劃中的優先選項；就這樣，從沒想過此生會踏進美洲大陸的我抱著既期待又淡然的心情完成了申請。直到飛機將我帶到那座校園之前，一切都還有些不真實。</p>
-                    <p>在時差與期末考的雙重夾擊下，我完成了選課、繳費、租房與簽證面談的所有手續。租房的過程並非一帆風順，幸運的是最後我住進了 International House——那裡成了我認識許多朋友的起點。這個宿舍比一般學生宿舍昂貴，但包三餐，且常有各式免費活動；宿舍是男女混住的、樓齡偏老，但基本設施齊全，也因此多了些生活的溫度與交互的機會。</p>
-                    <p>期末考讓我的行前準備被擠壓到極限。考試結束當晚我便搭上從上海返澳的航班，抵達已是深夜；隔天我僅有一日的時間收拾行李、整理文件，隨即出發前往美國。由於澳門沒有直飛美國的航線，我的行程是澳門—台北—三藩市。在桃園機場的轉機等待中，我意外嘗到一款物美價廉、味道出乎意料的銅鑼燒（翻遍整個相冊也沒有找到照片），短暫的甜食時刻成了緊湊行程中的一點溫暖，看來選擇在台北轉機是正確的。</p>
-            </div>
-       <div class="image-wrapper">
-           <div class="image-with-caption">
-               <img src="article0401.jpg" alt="Blue hour sky">
-               <p class="image-caption"> Visa application </p>
-           </div>
-           <div class="image-with-caption">
-               <img src="article0402.jpg" alt="Blue hour landscape">
-               <p class="image-caption"> Taking the last flight back to mac </p>
-           </div>
-       </div>
-    </div>
-        <div class="image-row">
-            <div class="text-content">
-                    <p>到了真正踏出機場的那一刻，我才真正感受到：我真的踏足到美洲土地了！！！之後我便打車去宿舍。在車上我和一位年輕白人男司機聊起天，話題從家鄉、天氣慢慢轉到安全感。當我提到新聞裡常見的「零元購」、遍佈流浪漢、毒品和治安差的報導時，他直率地否認：「加州很安全，我從來沒遇過那種事。」我心裡有些鬆口氣，覺得或許是媒體放大了個別事件。然而，就在車行至宿舍門口前，我們經過一輛停著的車——車窗被敲破，玻璃散落在座位上。司機看到後沉默了幾秒，尷尬地笑著說：「也許這會讓你對加州的印象變差。」那一刻，我體驗到一種矛盾：新聞、個人敘述與現實場景交錯，讓原本模糊的想像有了真實的切面。 </p>
-            </div>
-           <div class="image-wrapper">
-           <div class="image-with-caption">
-               <img src="article0404.jpg" alt="Blue hour sky">
-               <p class="image-caption"> Car with Broken windows </p>
-           </div>
-           <div class="image-with-caption">
-               <img src="article0405.jpg" alt="Blue hour sky">
-               <p class="image-caption"> My home key </p>
-           </div>
-           </div>
-        </div>
 
-</div>
+    <main class="container">
+        <!-- 返回部落格首頁 -->
+        <a href="/blog.html" class="back-home"><span>←</span> Back to Blog</a>
+        
+        <article class="post">
+            <!-- 文章標頭 -->
+            <header class="post-header">
+                <h1 class="post-title serif">夢的起始</h1>
+                <div class="post-meta serif">lkhmemories — Dec 27, 2025</div>
+            </header>
+            
+            <!-- 文章主體內容 -->
+            <div class="post-content">
+                <p class="drop-cap">加州大學柏克萊分校（UC Berkeley）是一所公立大學，與斯坦福、哈佛、耶魯、麻省這類私立名校不同。它在美國公立大學中常年名列前茅，在 QS 全球排名也長期位於前二十。我參加的項目是 Berkeley 的 Summer Session，這是學校每年對內校生、其他美本學生，以及國際生開放的暑期課程。</p>
+                
+                <!-- 第一組圖文並排 -->
+                <div class="image-row">
+                    <div class="text-content">
+                        <p>申請伯克萊其實有些意外。當時我看到申請通知，我想參加的項目已經截止，剩下最理想的選擇只有 Berkeley。對於伯克萊，我的印象並不具體——美國本身對我來說很遙遠，也不是我人生規劃中的優先選項；就這樣，從沒想過此生會踏進美洲大陸的我抱著既期待又淡然的心情完成了申請。直到飛機將我帶到那座校園之前，一切都還有些不真實。</p>
+                        <p>在時差與期末考的雙重夾擊下，我完成了選課、繳費、租房與簽證面談的所有手續。租房的過程並非一帆風順，幸運的是最後我住進了 International House——那裡成了我認識許多朋友的起點。這個宿舍比一般學生宿舍昂貴，但包三餐，且常有各式免費活動；宿舍是男女混住的、樓齡偏老，但基本設施齊全，也因此多了些生活的溫度與交互的機會。</p>
+                        <p>期末考讓我的行前準備被擠壓到極限。考試結束當晚我便搭上從上海返澳的航班，抵達已是深夜；隔天我僅有一日的時間收拾行李、整理文件，隨即出發前往美國。由於澳門沒有直飛美國的航線，我的行程是澳門—台北—三藩市。在桃園機場的轉機等待中，我意外嘗到一款物美價廉、味道出乎意料的銅鑼燒（翻遍整個相冊也沒有找到照片），短暫的甜食時刻成了緊湊行程中的一點溫暖，看來選擇在台北轉機是正確的。</p>
+                    </div>
+                    
+                    <div class="image-wrapper">
+                        <figure class="figure-container">
+                            <img src="article0401.jpg" alt="Visa application document">
+                            <figcaption class="image-caption">Visa application</figcaption>
+                        </figure>
+                        <figure class="figure-container">
+                            <img src="article0402.jpg" alt="Taking the last flight back to Macao">
+                            <figcaption class="image-caption">Taking the last flight back to Mac</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                
+                <!-- 第二組圖文並排 -->
+                <div class="image-row">
+                    <div class="text-content">
+                        <p>到了真正踏出機場的那一刻，我才真正感受到：我真的踏足到美洲土地了！！！之後我便打車去宿舍。在車上我和一位年輕白人男司機聊起天，話題從家鄉、天氣慢慢轉到安全感。當我提到新聞裡常見的「零元購」、遍佈流浪漢、毒品和治安差的報導時，他直率地否認：「加州很安全，我從來沒遇過那種事。」我心裡有些鬆口氣，覺得或許是媒體放大了個別事件。</p>
+                        <p>然而，就在車行至宿舍門口前，我們經過一輛停著的車——車窗被敲破，玻璃散落在座位上。司機看到後沉默了幾秒，尷尬地笑著說：「也許這會讓你對加州的印象變差。」那一刻，我體驗到一種矛盾：新聞、個人敘述與現實場景交錯，讓原本模糊的想像有了真實的切面。</p>
+                    </div>
+                    
+                    <div class="image-wrapper">
+                        <figure class="figure-container">
+                            <img src="article0404.jpg" alt="Car with broken windows in California">
+                            <figcaption class="image-caption">Car with Broken windows</figcaption>
+                        </figure>
+                        <figure class="figure-container">
+                            <img src="article0405.jpg" alt="International House room key">
+                            <figcaption class="image-caption">My home key</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+            </div>
+        </article>
+    </main>
+
 </body>
-</html>        
+</html>
