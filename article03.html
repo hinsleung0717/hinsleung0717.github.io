@@ -3,214 +3,356 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meaningness</title>
+    <title>意義 Meaningness - lkhmemories</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600;700&display=swap');
-
         :root {
-            --primary-color: #1a5877;
-            --secondary-color: #7d715d;
-            --text-color: #333;
-            --light-text: #666;
-            --bg-color: #f9f9f7;
+            /* 延續整體部落格低飽和、文藝沉穩色彩配置 */
+            --bg-color: #FAFAFA;
+            --surface-color: #FFFFFF;
+            --text-main: #1A1A1A;
+            --text-muted: #737373;
+            --primary: #2C3E50;       /* 內斂的石墨深灰藍 */
+            --accent: #D4A373;        /* 溫暖柔和的莫蘭迪金 */
+            --border-color: #EAEAEA;
+            
+            /* 全局設計規範 */
+            --radius-md: 12px;
+            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.02);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.8;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: var(--text-color);
+            font-family: 'Plus Jakarta Sans', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            line-height: 1.85; /* 黃金閱讀行高 */
+            color: var(--text-main);
             background-color: var(--bg-color);
+            -webkit-font-smoothing: antialiased;
         }
-        
-        .post {
-            margin-bottom: 60px;
+
+        /* 襯線體：用於主標題、副標題與時間，營造人文厚度 */
+        h1, h2, .serif {
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 760px; /* 最佳獨立雜誌散文寬度 */
+            margin: 0 auto;
+            padding: 4rem 1.5rem 6rem;
+        }
+
+        /* --- 返回按鈕微動效 --- */
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            margin-bottom: 4rem;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .back-home span {
+            display: inline-block;
+            transition: var(--transition);
+            margin-right: 0.5rem;
+        }
+
+        .back-home:hover {
+            color: var(--accent);
+        }
+
+        .back-home:hover span {
+            transform: translateX(-4px);
+        }
+
+        /* --- 文章標頭區塊 --- */
+        .post-header {
+            text-align: center;
+            margin-bottom: 4rem;
         }
         
         .post-title {
-            color: white;
-            background-color: var(--primary-color);
-            padding: 20px 25px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            font-size: 2.2rem;
-            font-weight: 700;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(237, 237, 237, 1);
-            font-family: 'Noto Sans TC', serif;
+            color: var(--text-main);
+            font-size: 2.5rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
         }
         
         .post-meta {
-            color: var(--light-text);
-            font-size: 0.9em;
-            margin: 15px 0 30px;
-            text-align: center;
-            font-weight: 300;
-            font-family: 'Noto Sans TC', serif;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            font-weight: 400;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
         }
-        
+
+        .post-meta::before, .post-meta::after {
+            content: '';
+            width: 16px;
+            height: 1px;
+            background-color: var(--border-color);
+        }
+
+        /* --- 文章主體內容 --- */
         .post-content {
             font-size: 1.05rem;
-            font-family: "Times New Roman", Times, serif;
+            color: var(--text-main);
         }
         
         .post-content p {
-            margin-bottom: 1.5em;
+            margin-bottom: 2rem;
             text-align: justify;
         }
-        
-        .home-link {
-            font-family: 'Noto Sans TC', serif;
-            color: var(--secondary-color);
-            text-decoration: none;
-            transition: color 0.3s;
+
+        /* 重點強調詞彙 */
+        .keyword {
+            font-weight: 600;
+            color: var(--primary);
+            letter-spacing: 0.02em;
+        }
+
+        /* 哲學隨筆獨有的首字放大設計 */
+        .drop-cap::first-letter {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 3.2rem;
+            float: left;
+            margin-right: 0.6rem;
+            line-height: 1;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* --- H2 小標題優化 --- */
+        h2 {
+            font-size: 1.6rem;
             font-weight: 500;
-            display: block;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
+            color: var(--primary);
+            margin: 4.5rem 0 2rem;
+            letter-spacing: 0.03em;
+            position: relative;
+            padding-bottom: 0.8rem;
         }
-        
-        .home-link:hover {
-            color: var(--primary-color);
-            text-decoration: underline;
+
+        h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 1px;
+            width: 100%;
+            background: linear-gradient(to right, var(--accent) 12%, var(--border-color) 12%);
         }
-        
-        .image-row {
-            display: flex;
-            gap: 30px;
-            margin: 40px 0;
-            align-items: center;
+
+        /* --- 紀錄片海報排版 --- */
+        figure.image-wrapper {
+            margin: 4rem 0;
+            text-align: center;
         }
-        
-        .text-content {
-            flex: 1;
-        }
-        
-.image-wrapper img {
-    max-width: 500px;
-    margin: 20px auto;
-    display: block;
-}
-        
-        .image-wrapper img {
+
+        figure.image-wrapper img {
             width: 100%;
             height: auto;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            max-width: 680px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition);
         }
-        figure.image-wrapper {
-    margin: 20px 0;
-    text-align: center;
-}
 
-figure.image-wrapper img {
-    max-width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
+        figure.image-wrapper img:hover {
+            transform: translateY(-2px);
+        }
 
-figcaption {
-    margin-top: 10px;
-    font-size: 0.85rem;  /* 更小的字體大小 */
-    color: var(--light-text);
-    font-style: italic;
-    text-align: center;  /* 文字置中 */
-    max-width: 80%;     /* 限制文字寬度 */
-    margin-left: auto;  /* 配合 max-width 達到置中效果 */
-    margin-right: auto;
-    line-height: 1.4;   /* 調整行高 */
-}
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 比例 */
-            margin: 40px 0;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        figcaption {
+            margin-top: 1.2rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 0.04em;
+            text-align: center;
         }
         
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
+        /* --- 深度哲學引言區塊 --- */
+        blockquote {
+            margin: 4rem 0;
+            border-left: 2px solid var(--accent);
+            padding: 0.5rem 0 0.5rem 2.2rem;
+            background-color: #FDFBF7; /* 溫潤的莫蘭迪紙張底色 */
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            box-shadow: var(--shadow-subtle);
         }
-        
-        @media (max-width: 768px) {
-            body {
-                padding: 15px;
-            }
-            
-            .post-title {
-                font-size: 1.8rem;
-                padding: 15px 20px;
-            }
-            
-            .image-row {
-                flex-direction: column;
-            }
-            
-            .text-content, .image-wrapper {
-                width: 100%;
-            }
-            
-            .image-wrapper img {
-                margin-top: 20px;
-            }
-        }
-      blockquote {
-            color: var(--light-text);
-            font-size: 0.9rem;
-            border-left: 4px solid var(--primary-color);
-            padding: 15px 20px;
-            margin: 30px 0;
+
+        blockquote p {
+            font-size: 1.05rem;
             font-style: italic;
-            background-color: rgba(237, 237, 237, 1);
-            border-radius: 0 8px 8px 0;
-            line-height: 1.7;
+            color: #3A3A3A;
+            line-height: 1.85;
+            margin-bottom: 1.5rem !important;
+        }
+
+        blockquote p:last-of-type {
+            margin-bottom: 0 !important;
+        }
+
+        blockquote footer {
+            text-align: right;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            margin-top: 1rem;
+            text-transform: uppercase;
         }
         
-        .quote-section footer {
-            text-align: right;
-            font-style: normal;
-            color: var(--light-text);
-            margin-top: 1.5em;
-            font-size: 0.9rem;
+        /* --- 文藝感延伸閱讀連結卡片 --- */
+        .read-more-box {
+            margin-top: 5rem;
+            padding: 2rem;
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .read-more-box:hover {
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+        }
+
+        .read-more-label {
+            font-size: 0.75rem;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .read-more-link {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .read-more-link:hover {
+            color: var(--primary);
+        }
+        
+        /* --- RWD 行動裝置回應式微調 --- */
+        @media (max-width: 768px) {
+            .container {
+                padding: 3rem 1.2rem 4rem;
+            }
+            
+            .back-home {
+                margin-bottom: 2.5rem;
+            }
+
+            .post-title {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+                margin: 3.5rem 0 1.5rem;
+            }
+
+            blockquote {
+                padding-left: 1.2rem;
+                margin: 3rem 0;
+            }
+
+            .read-more-box {
+                padding: 1.5rem;
+                margin-top: 4rem;
+            }
         }
     </style>
 </head>
 <body>
-    <a href="/" class="home-link">← HOME</a>
-    <div class="post">
-        <h1 class="post-title">意義 Meaningness｜Examined Life </h1>
-        <div class="post-meta">lkhmemories — Dec 16, 2025</div>
-        <div class="post-content">
-                    <p><b><i>What's the meaning of life?</b></i></p>
-          <p><b>I don’t think this is a question that comes with a final answer.</b> At least, I have never believed it should. Whenever I hear this question, what interests me is not the solution, but the fact that people keep asking it — again and again, at different stages of their lives.</p>
-                    <p>In the documentary "Examined Life", <b><i>Cornel West</i></b> responds to this question:</p>
-<div class="image-wrapper">
-    <img src="https://static01.nyt.com/images/2009/02/22/arts/22lim_600.jpg?year=2009&h=336&w=600&s=5b1888e303b1ab83b292349f49000ae8393b2867b02848148e22804daac3f489&k=ZQJBKqZ0VN" alt="Examined Life documentary poster">
-</div>    
-          <p><i> "I think the problem of meaning is very important. <b><i>Nihilism</b></i> is a serious challenge. <b><i>Meaninglessness</b></i> is a serious challenge. Even making sense of meaninglessness itself is a kind of discipline and achievement. The problem, of course, is that you never reach it. It's not a static, stationary telos — not an end or final aim. It's a process that one never reaches. It's <b>Sisyphean</b>. You're pushing the rock up the hill looking for better meanings or grander, more ennobling, more enabling meanings, but you never reach it. <b>In that sense you die without having the whole, in the language of romantic discourse.</b>" </i></p>
-            <p>This idea naturally led me to Albert Camus.</p>
-            <h2><b><i>Sisyphus</i></b></h2>        
-          <p><b>IN THE MYTH OF SISYPHUS</b>, Camus describes what he calls the <b>“ABSURD”</b>: the tension between our deep desire for meaning and the universe’s complete indifference to that desire. We want answers. The universe offers none. According to Camus, this confrontation is unavoidable.</p>
-          <p>What struck me most was his insistence on what not to do. Faced with the absurd, Camus rejects both physical suicide and philosophical escape — whether through religion, metaphysics, or blind optimism. To flee from the absurd is to lie to oneself. <b>The only honest response, he argues, is to face it fully and remain conscious within it.</b></p>
-          <p>And then there is <b><i>Sisyphus.</b></i></p>
-          <p>Condemned to push a boulder up a mountain, only to watch it roll back down every time, Sisyphus seems like the ultimate symbol of meaningless labor.<b><i> Yet Camus famously concludes that “one must imagine Sisyphus happy.”</b></i> Not because the task changes, but because Sisyphus becomes aware of his condition and chooses to accept it without illusion.
-          </p>
-          <p>When I think about it, this myth feels uncomfortably familiar. <b>Daily routines, repetitive work, deadlines, commuting — much of modern life resembles pushing the same stone up the same hill.</b> Nothing dramatic happens most of the time. There is no grand revelation waiting at the top. And yet, Camus suggests that meaning does not come from the result, but <i>from the act of pushing itself — from the awareness, persistence, and refusal to surrender consciousness.</i></p>
-<p>This perspective quietly shifts how I think about meaning. Perhaps meaning is not something I am supposed to find. Perhaps it is something that forms as I continue to ask questions, that shows up in my life.</p>
-<p><i>Meaning, then, is not an answer. It is an attitude. A way of staying awake.</p></i>
 
-          <p><blockquote>Read more about Cornel West: https://www.nytimes.com/2009/02/22/movies/22lim.html?smid=url-share</p></blockquote>
+    <main class="container">
+        <!-- 返回部落格首頁 -->
+        <a href="/blog.html" class="back-home"><span>←</span> Back to Blog</a>
+        
+        <article class="post">
+            <!-- 文章標頭 -->
+            <header class="post-header">
+                <h1 class="post-title serif">意義 Meaningness ｜ Examined Life</h1>
+                <div class="post-meta serif">lkhmemories — Dec 16, 2025</div>
+            </header>
+            
+            <!-- 文章主體內容 -->
+            <div class="post-content">
+                <p><strong><em>What's the meaning of life?</em></strong></p>
+                
+                <p class="drop-cap">I don’t think this is a question that comes with a final answer. At least, I have never believed it should. Whenever I hear this question, what interests me is not the solution, but the fact that people keep asking it — again and again, at different stages of their lives.</p>
+                
+                <p>In the documentary "Examined Life", <strong>Cornel West</strong> responds to this question:</p>
 
-        </div>
-    </div>
+                <!-- 電影海報區塊 -->
+                <figure class="image-wrapper">
+                    <img src="https://static01.nyt.com/images/2009/02/22/arts/22lim_600.jpg?year=2009&h=336&w=600&s=5b1888e303b1ab83b292349f49000ae8393b2867b02848148e22804daac3f489&k=ZQJBKqZ0VN" alt="Examined Life documentary poster">
+                    <figcaption class="serif">"Examined Life" Documentary Poster</figcaption>
+                </figure>
+                
+                <!-- 精緻哲學深度引言 -->
+                blockquote>
+                    <p>"I think the problem of meaning is very important. <span class="keyword">Nihilism</span> is a serious challenge. <span class="keyword">Meaninglessness</span> is a serious challenge. Even making sense of meaninglessness itself is a kind of discipline and achievement. The problem, of course, is that you never reach it. It's not a static, stationary telos — not an end or final aim. It's a process that one never reaches. It's <span class="keyword">Sisyphean</span>. You're pushing the rock up the hill looking for better meanings or grander, more ennobling, more enabling meanings, but you never reach it. <strong>In that sense you die without having the whole, in the language of romantic discourse.</strong>"</p>
+                    <footer class="serif">— Cornel West, "Examined Life"</footer>
+                </blockquote>
+
+                <p>This idea naturally led me to Albert Camus.</p>
+                
+                <h2 class="serif">Sisyphus</h2>
+                
+                <p><strong>IN THE MYTH OF SISYPHUS</strong>, Camus describes what he calls the <strong>“ABSURD”</strong>: the tension between our deep desire for meaning and the universe’s complete indifference to that desire. We want answers. The universe offers none. According to Camus, this confrontation is unavoidable.</p>
+                
+                <p>What struck me most was his insistence on what not to do. Faced with the absurd, Camus rejects both physical suicide and philosophical escape — whether through religion, metaphysics, or blind optimism. To flee from the absurd is to lie to oneself. <strong>The only honest response, he argues, is to face it fully and remain conscious within it.</strong></p>
+                
+                <p>And then there is <span class="keyword">Sisyphus</span>.</p>
+                
+                <p>Condemned to push a boulder up a mountain, only to watch it roll back down every time, Sisyphus seems like the ultimate symbol of meaningless labor. <strong><em>Yet Camus famously concludes that “one must imagine Sisyphus happy.”</em></strong> Not because the task changes, but because Sisyphus becomes aware of his condition and chooses to accept it without illusion.</p>
+                
+                <p>When I think about it, this myth feels uncomfortably familiar. <strong>Daily routines, repetitive work, deadlines, commuting — much of modern life resembles pushing the same stone up the same hill.</strong> Nothing dramatic happens most of the time. There is no grand revelation waiting at the top. And yet, Camus suggests that meaning does not come from the result, but <em>from the act of pushing itself — from the awareness, persistence, and refusal to surrender consciousness.</em></p>
+                
+                <p>This perspective quietly shifts how I think about meaning. Perhaps meaning is not something I am supposed to find. Perhaps it is something that forms as I continue to ask questions, that shows up in my life.</p>
+                
+                <p><em>Meaning, then, is not an answer. It is an attitude. A way of staying awake.</em></p>
+
+                <!-- 延伸閱讀卡片化設計 -->
+                <div class="read-more-box">
+                    <span class="read-more-label">Extended Reading</span>
+                    <a href="https://www.nytimes.com/2009/02/22/movies/22lim.html?smid=url-share" target="_blank" class="read-more-link">
+                        Read more about Cornel West on The New York Times →
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
 </body>
-</html>        
+</html>
