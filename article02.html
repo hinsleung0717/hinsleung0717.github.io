@@ -3,113 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blue Hour</title>
+    <title>藍調時刻 Blue Hour - lkhmemories</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600;700&display=swap');
-
         :root {
-            --primary-color: #1a5877;
-            --secondary-color: #7d715d;
-            --text-color: #333;
-            --light-text: #666;
-            --bg-color: #f9f9f7;
+            /* 延續整體部落格低飽和、文藝沉穩色彩配置 */
+            --bg-color: #FAFAFA;
+            --surface-color: #FFFFFF;
+            --text-main: #1A1A1A;
+            --text-muted: #737373;
+            --primary: #2C3E50;       /* 內斂的石墨深灰藍 */
+            --accent: #D4A373;        /* 溫暖柔和的莫蘭迪金 */
+            --border-color: #EAEAEA;
+            
+            /* 全局設計規範 */
+            --radius-md: 12px;
+            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.02);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.8;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: var(--text-color);
+            font-family: 'Plus Jakarta Sans', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            line-height: 1.85; /* 黃金閱讀行高 */
+            color: var(--text-main);
             background-color: var(--bg-color);
+            -webkit-font-smoothing: antialiased;
         }
-        
-        .post {
-            margin-bottom: 60px;
+
+        /* 襯線體：用於主標題、部分強調與時間，營造底片故事感 */
+        h1, .serif {
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 760px; /* 最佳獨立雜誌散文寬度 */
+            margin: 0 auto;
+            padding: 4rem 1.5rem 6rem;
+        }
+
+        /* --- 返回按鈕微動效 --- */
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            margin-bottom: 4rem;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .back-home span {
+            display: inline-block;
+            transition: var(--transition);
+            margin-right: 0.5rem;
+        }
+
+        .back-home:hover {
+            color: var(--accent);
+        }
+
+        .back-home:hover span {
+            transform: translateX(-4px);
+        }
+
+        /* --- 文章標頭區塊 --- */
+        .post-header {
+            text-align: center;
+            margin-bottom: 4rem;
         }
         
         .post-title {
-            color: white;
-            background-color: var(--primary-color);
-            padding: 20px 25px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            font-size: 2.2rem;
-            font-weight: 700;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(237, 237, 237, 1);
-            font-family: 'Noto Sans TC', serif;
+            color: var(--text-main);
+            font-size: 2.5rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
         }
         
         .post-meta {
-            color: var(--light-text);
-            font-size: 0.9em;
-            margin: 15px 0 30px;
-            text-align: center;
-            font-weight: 300;
-            font-family: 'Noto Sans TC', serif;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            font-weight: 400;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
         }
-        
+
+        .post-meta::before, .post-meta::after {
+            content: '';
+            width: 16px;
+            height: 1px;
+            background-color: var(--border-color);
+        }
+
+        /* --- 文章主體內容 --- */
         .post-content {
             font-size: 1.05rem;
-            font-family: "Times New Roman", Times, serif;
+            color: var(--text-main);
         }
         
         .post-content p {
-            margin-bottom: 1.5em;
+            margin-bottom: 2rem;
             text-align: justify;
         }
-        
-        .home-link {
-            font-family: 'Noto Sans TC', serif;
-            color: var(--secondary-color);
-            text-decoration: none;
-            transition: color 0.3s;
+
+        /* 專為科學數據或名詞設計的優雅微調 */
+        .highlight-text {
+            font-style: italic;
+            color: var(--primary);
             font-weight: 500;
-            display: block;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
         }
-        
-        .home-link:hover {
-            color: var(--primary-color);
-            text-decoration: underline;
-        }
-        
+
+        /* --- 多圖與圖文並排排版系統 --- */
         .image-row {
             display: flex;
-            gap: 30px;
-            margin: 40px 0;
-            align-items: center;
+            gap: 3.5rem;
+            margin: 3.5rem 0;
+            align-items: flex-start;
         }
         
         .text-content {
-            flex: 1;
+            flex: 1.2;
         }
         
         .image-wrapper {
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 1.5rem;
         }
         
         .image-wrapper img {
             width: 100%;
             height: auto;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            display: block;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition);
+        }
+
+        .image-wrapper img:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
         }
         
+        /* --- 影片容器排版 --- */
         .video-container {
             position: relative;
             width: 100%;
             padding-bottom: 56.25%; /* 16:9 比例 */
-            margin: 40px 0;
-            border-radius: 12px;
+            margin: 3.5rem 0;
+            border-radius: var(--radius-md);
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-subtle);
         }
         
         .video-container iframe {
@@ -121,87 +184,106 @@
             border: none;
         }
         
+        /* --- 經典名言區塊 --- */
+        blockquote {
+            margin: 4.5rem 0;
+            border-left: 2px solid var(--accent);
+            padding: 0.5rem 0 0.5rem 2rem;
+            background-color: #FDFBF7; /* 溫潤的莫蘭迪紙張底色 */
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        blockquote p {
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 0 !important; /* 蓋掉段落預設間距 */
+        }
+        
+        /* --- RWD 行動裝置回應式微調 --- */
         @media (max-width: 768px) {
-            body {
-                padding: 15px;
+            .container {
+                padding: 3rem 1.2rem 4rem;
             }
             
+            .back-home {
+                margin-bottom: 2.5rem;
+            }
+
             .post-title {
-                font-size: 1.8rem;
-                padding: 15px 20px;
+                font-size: 2rem;
             }
             
             .image-row {
                 flex-direction: column;
+                gap: 2rem;
+                margin: 2.5rem 0;
             }
             
             .text-content, .image-wrapper {
                 width: 100%;
             }
             
-            .image-wrapper img {
-                margin-top: 20px;
+            .image-wrapper {
+                gap: 1.2rem;
             }
-        }
-      blockquote {
-            color: var(--light-text);
-            font-size: 0.9rem;
-            border-left: 4px solid var(--primary-color);
-            padding: 15px 20px;
-            margin: 30px 0;
-            font-style: italic;
-            background-color: rgba(237, 237, 237, 1);
-            border-radius: 0 8px 8px 0;
-            line-height: 1.7;
-        }
-        
-        .quote-section footer {
-            text-align: right;
-            font-style: normal;
-            color: var(--light-text);
-            margin-top: 1.5em;
-            font-size: 0.9rem;
+
+            .video-container, blockquote {
+                margin: 2.5rem 0;
+            }
+
+            blockquote {
+                padding-left: 1.2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <a href="/" class="home-link">← HOME</a>
-    <div class="post">
-        <h1 class="post-title">藍調時刻 Blue Hour</h1>
-        <div class="post-meta">lkhmemories — Dec 16, 2025</div>
-        <div class="post-content">
-            <div class="image-row">
-                <div class="text-content">
-                    <p> When I travel, I often find that the most memorable moments are not the landmarks themselves, but the quiet intervals in between. One of those moments is what photographers call the blue hour. </p>
-                    <p><b><i>The blue hour — a term that comes from the French l’heure bleue — </b></i>refers to the short period just before sunrise or right after sunset. During this time, the sky takes on a deep, soft blue, and the world seems to slow down. The light is dim but gentle, wrapping buildings and streets in a calm, almost cinematic atmosphere.</p>
-                </div>
-            </div>
-            
-            <div class="image-row">
-                <div class="text-content">
-                    <p>What makes the blue hour especially fascinating is that it is not just poetic, but scientific. As sunlight passes through the Earth’s atmosphere at a low angle, certain wavelengths of light <b><i>— roughly between 575 and 603 nanometers — </i></b>are absorbed by the ozone layer. What remains is the scattering of shorter blue wavelengths, which dominate the sky and give the scene its distinctive tone. </p>
-                    <p>Yet, science alone cannot explain why this moment feels so special when you are standing there, camera in hand, or simply watching the city change its mood. During the blue hour, streets grow quieter, lights begin to glow, and familiar places feel temporarily unfamiliar. It is a brief pause between day and night, movement and stillness.</p>
-                    <p><i>Here are a few blue hour moments captured through my lens. </p></i>
-                </div>
-                <div class="image-wrapper">
-                    <img src="article0201.jpg" alt="Blue hour sky">                
-                    <img src="article0202.jpg" alt="Blue hour landscape">
-                </div>
-            </div>
 
-            <p><b><i> Links TV</i> - a travel blogger I greatly admire,</b> has also produced a dedicated video exploring and capturing Japan's blue hour. </p>
-            <div class="video-container">
-                <iframe 
-                    src="https://www.youtube.com/embed/bGWQJqxKzU4" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-            <blockquote>
-            <p> If you are watching a sunset, stay for another thirty minutes. The waiting itself becomes meaningful once the sky turns blue.</p>
+    <main class="container">
+        <a href="/blog.html" class="back-home"><span>←</span> Back to Blog</a>
+        
+        <article class="post">
+            <header class="post-header">
+                <h1 class="post-title serif">藍調時刻 Blue Hour</h1>
+                <div class="post-meta serif">lkhmemories — Dec 16, 2025</div>
+            </header>
+            
+            <div class="post-content">
+                <p>When I travel, I often find that the most memorable moments are not the landmarks themselves, but the quiet intervals in between. One of those moments is what photographers call the blue hour.</p>
+                
+                <p><span class="highlight-text">The blue hour — a term that comes from the French l’heure bleue —</span> refers to the short period just before sunrise or right after sunset. During this time, the sky takes on a deep, soft blue, and the world seems to slow down. The light is dim but gentle, wrapping buildings and streets in a calm, almost cinematic atmosphere.</p>
+                
+                <div class="image-row">
+                    <div class="text-content">
+                        <p>What makes the blue hour especially fascinating is that it is not just poetic, but scientific. As sunlight passes through the Earth’s atmosphere at a low angle, certain wavelengths of light <span class="highlight-text">— roughly between 575 and 603 nanometers —</span> are absorbed by the ozone layer. What remains is the scattering of shorter blue wavelengths, which dominate the sky and give the scene its distinctive tone.</p>
+                        <p>Yet, science alone cannot explain why this moment feels so special when you are standing there, camera in hand, or simply watching the city change its mood. During the blue hour, streets grow quieter, lights begin to glow, and familiar places feel temporarily unfamiliar. It is a brief pause between day and night, movement and stillness.</p>
+                        <p><em>Here are a few blue hour moments captured through my lens.</em></p>
+                    </div>
+                    <div class="image-wrapper">
+                        <img src="article0201.jpg" alt="Blue hour sky">        
+                        <img src="article0202.jpg" alt="Blue hour landscape">
+                    </div>
+                </div>
+
+                <p><strong>Links TV</strong> - a travel blogger I greatly admire, has also produced a dedicated video exploring and capturing Japan's blue hour.</p>
+                
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/bGWQJqxKzU4" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                
+                <blockquote>
+                    <p>If you are watching a sunset, stay for another thirty minutes. The waiting itself becomes meaningful once the sky turns blue.</p>
                 </blockquote>
-        </div>
-    </div>
+            </div>
+        </article>
+    </main>
+
 </body>
-</html>        
+</html>
