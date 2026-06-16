@@ -3,212 +3,293 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meaningness</title>
+    <title>意義 Meaningness ｜ Soul - lkhmemories</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600;700&display=swap');
-
         :root {
-            --primary-color: #1a5877;
-            --secondary-color: #7d715d;
-            --text-color: #333;
-            --light-text: #666;
-            --bg-color: #f9f9f7;
+            /* 延續部落格一致的低飽和、文藝沉穩色彩配置 */
+            --bg-color: #FAFAFA;
+            --surface-color: #FFFFFF;
+            --text-main: #1A1A1A;
+            --text-muted: #737373;
+            --primary: #1A5877;       /* 內斂沉穩的深海藍 */
+            --accent: #7D715D;        /* 溫潤的莫蘭迪大地色 */
+            --border-color: #EAEAEA;
+            
+            /* 全局設計規範 */
+            --radius-md: 12px;
+            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.02);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.8;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: var(--text-color);
+            font-family: 'Plus Jakarta Sans', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            line-height: 1.85; /* 黃金閱讀行高 */
+            color: var(--text-main);
             background-color: var(--bg-color);
+            -webkit-font-smoothing: antialiased;
         }
-        
-        .post {
-            margin-bottom: 60px;
+
+        /* 襯線體：用於標題與哲學概念，營造人文厚度 */
+        h1, h2, .serif {
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 760px; /* 最佳現代線上雜誌閱讀寬度 */
+            margin: 0 auto;
+            padding: 4rem 1.5rem 6rem;
+        }
+
+        /* --- 返回按鈕微動效 --- */
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            margin-bottom: 4rem;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .back-home span {
+            display: inline-block;
+            transition: var(--transition);
+            margin-right: 0.5rem;
+        }
+
+        .back-home:hover {
+            color: var(--primary);
+        }
+
+        .back-home:hover span {
+            transform: translateX(-4px);
+        }
+
+        /* --- 文章標頭區塊 --- */
+        .post-header {
+            text-align: center;
+            margin-bottom: 4.5rem;
         }
         
         .post-title {
-            color: white;
-            background-color: var(--primary-color);
-            padding: 20px 25px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            font-size: 2.2rem;
-            font-weight: 700;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(237, 237, 237, 1);
-            font-family: 'Noto Sans TC', serif;
+            color: var(--text-main);
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
         }
         
         .post-meta {
-            color: var(--light-text);
-            font-size: 0.9em;
-            margin: 15px 0 30px;
-            text-align: center;
-            font-weight: 300;
-            font-family: 'Noto Sans TC', serif;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            font-weight: 400;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
         }
-        
+
+        .post-meta::before, .post-meta::after {
+            content: '';
+            width: 16px;
+            height: 1px;
+            background-color: var(--border-color);
+        }
+
+        /* --- 文章主體內容 --- */
         .post-content {
             font-size: 1.05rem;
-            font-family: "Times New Roman", Times, serif;
+            color: var(--text-main);
         }
         
         .post-content p {
-            margin-bottom: 1.5em;
+            margin-bottom: 2rem;
             text-align: justify;
         }
-        
-        .home-link {
-            font-family: 'Noto Sans TC', serif;
-            color: var(--secondary-color);
-            text-decoration: none;
-            transition: color 0.3s;
+
+        /* 核心觀念強調詞彙 */
+        .keyword {
+            font-weight: 600;
+            color: var(--primary);
+            letter-spacing: 0.01em;
+        }
+
+        /* 經典首字放大設計 */
+        .drop-cap::first-letter {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 3.2rem;
+            float: left;
+            margin-right: 0.6rem;
+            line-height: 1;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* --- H2 小標題優化 --- */
+        h2 {
+            font-size: 1.6rem;
             font-weight: 500;
-            display: block;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
+            color: var(--text-main);
+            margin: 4.5rem 0 2rem;
+            letter-spacing: 0.03em;
+            position: relative;
+            padding-bottom: 0.8rem;
         }
-        
-        .home-link:hover {
-            color: var(--primary-color);
-            text-decoration: underline;
+
+        h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 1px;
+            width: 100%;
+            background: linear-gradient(to right, var(--primary) 12%, var(--border-color) 12%);
         }
-        
-        .image-row {
-            display: flex;
-            gap: 30px;
-            margin: 40px 0;
-            align-items: center;
+
+        /* --- 電影劇照精修排版 --- */
+        figure.image-wrapper {
+            margin: 4rem 0;
+            text-align: center;
         }
-        
-        .text-content {
-            flex: 1;
-        }
-        
-.image-wrapper img {
-    max-width: 500px;
-    margin: 20px auto;
-    display: block;
-}
-        
-        .image-wrapper img {
+
+        figure.image-wrapper img {
             width: 100%;
             height: auto;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            max-width: 700px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition);
         }
-        figure.image-wrapper {
-    margin: 20px 0;
-    text-align: center;
-}
 
-figure.image-wrapper img {
-    max-width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
+        figure.image-wrapper img:hover {
+            transform: translateY(-2px);
+        }
 
-figcaption {
-    margin-top: 10px;
-    font-size: 0.85rem;  /* 更小的字體大小 */
-    color: var(--light-text);
-    font-style: italic;
-    text-align: center;  /* 文字置中 */
-    max-width: 80%;     /* 限制文字寬度 */
-    margin-left: auto;  /* 配合 max-width 達到置中效果 */
-    margin-right: auto;
-    line-height: 1.4;   /* 調整行高 */
-}
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 比例 */
-            margin: 40px 0;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-        
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                padding: 15px;
-            }
-            
-            .post-title {
-                font-size: 1.8rem;
-                padding: 15px 20px;
-            }
-            
-            .image-row {
-                flex-direction: column;
-            }
-            
-            .text-content, .image-wrapper {
-                width: 100%;
-            }
-            
-            .image-wrapper img {
-                margin-top: 20px;
-            }
-        }
-      blockquote {
-            color: var(--light-text);
-            font-size: 0.9rem;
-            border-left: 4px solid var(--primary-color);
-            padding: 15px 20px;
-            margin: 30px 0;
+        figcaption {
+            margin-top: 1.2rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 0.04em;
+            text-align: center;
             font-style: italic;
-            background-color: rgba(237, 237, 237, 1);
-            border-radius: 0 8px 8px 0;
-            line-height: 1.7;
         }
         
-        .quote-section footer {
-            text-align: right;
-            font-style: normal;
-            color: var(--light-text);
-            margin-top: 1.5em;
-            font-size: 0.9rem;
+        /* --- 結尾高質感金句卡片 --- */
+        blockquote {
+            margin: 5rem 0 2rem;
+            border-left: 3px solid var(--accent);
+            padding: 1.5rem 2rem;
+            background-color: #FDFBF7; /* 溫潤的莫蘭迪紙張底色 */
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        blockquote p {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: #2C2C2C;
+            line-height: 1.8;
+            margin-bottom: 0 !important;
+            text-align: center !important;
+            letter-spacing: 0.02em;
+        }
+        
+        /* --- RWD 行動裝置回應式微調 --- */
+        @media (max-width: 768px) {
+            .container {
+                padding: 3rem 1.2rem 4rem;
+            }
+            
+            .back-home {
+                margin-bottom: 2.5rem;
+            }
+
+            .post-title {
+                font-size: 1.9rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+                margin: 3.5rem 0 1.5rem;
+            }
+
+            blockquote {
+                padding: 1.2rem 1.5rem;
+                margin: 4rem 0 1rem;
+            }
+
+            blockquote p {
+                font-size: 1.05rem;
+            }
         }
     </style>
 </head>
 <body>
-    <a href="/" class="home-link">← HOME</a>
-    <div class="post">
-        <h1 class="post-title">意義 Meaningness｜Soul </h1>
-        <div class="post-meta">lkhmemories — Dec 27, 2025</div>
-        <div class="post-content">
-                    <p><b><i>What's the meaning of life?</b> In a movie called <b>"Soul"</b>, it tells:</p></i>
-<div class="image-wrapper">
-    <img src="https://img.voguehk.com/media/2021/02/pixar_soul_disney_stream.2e16d0ba.fill-735x490.png" alt="Examined Life documentary poster">
-</div>    
-          <p> In Soul, there’s a character named <b><i>Dez</b></i>. On the outside, he looks like someone who has it all figured out: a talented barber who clearly enjoys his work. To <b><i>Joe</b>, the protagonist</i>, it seems obvious that Dez has found his <b><i>“spark”</b> — the one thing that gives his life meaning.</i> If you are good at something and you love doing it, then that must be your purpose, right?</p>
-          <p>But when <b><i>22</b></i>, temporarily inhabiting Joe’s body, chats with Dez out of curiosity, a different story emerges. Dez reveals that his real dream was never to become a barber. He wanted to be a veterinarian. Unfortunately, his family could not afford the cost of veterinary school, so he chose a barber school instead, simply because it was cheaper. That practical decision ended up shaping the course of his entire life.</p>
-          <p>At first, <b><i>Joe and 22</b> assume Dez must be living with regret.</i> But Dez surprises them — and me. He says he is genuinely happy. Barbering wasn’t his dream, and he doesn’t believe he was <b><i>“born”</b></i> to do it, yet interacting with people, making them feel good about themselves, makes his days meaningful. <i>That subtle revelation felt like a wake-up call: meaning might not come from destiny but from how we show up in ordinary moments.</i></p>
-          <h2><b><i>Nihilism</i></b></h2>        
-      <p>This idea resonates with <b><i>Nietzsche’s concept of nihilism,</b></i> but not the passive kind that simply denies value. Nietzsche described a situation that feels eerily familiar: when the traditional sources of meaning — religion, moral absolutes, social norms — fade, we are left to confront a world without predetermined answers. <i>The challenge is not whether life has meaning in itself, but whether we are willing to live fully and responsibly in a world that offers no guaranteed meaning.</i></p>
-      <p> Nietzsche urged what we might call an <b><i>“active nihilism.”</b></i> After acknowledging that the world does not hand us meaning on a platter, we are invited to take responsibility for creating value —<i> not once and for all, but continuously, through how we live.</i></p>
-      <p>What Soul suggests — quietly and tenderly — is that life’s worth is not found in some grand calling but in the way we engage with the present. A meal shared, a breeze felt, a genuine conversation — these seemingly ordinary moments are where life begins to shine again. Not because they point to a larger destiny, but because they are lived fully.</p>
-      <p>Nietzsche’s thought experiment of <b><i>eternal recurrence</b></i> asks a haunting question: if every moment of your life were to repeat forever, would you choose to live it again, exactly as it is? <i>The film doesn’t give a dramatic or radical answer. Instead, it offers something softer: as long as you are willing to live, to feel, and to connect with the world around you, then even without a “spark” or a grand dream, your life is already worth repeating.</i></p>
-          <p><i>Perhaps a “spark” is not a mission waiting to be discovered, but something that is truly ignited only when we decide to live earnestly.</i></p>
-          <div class="quote-section">
-                <blockquote>
+
+    <main class="container">
+        <!-- 返回部落格首頁 -->
+        <a href="/blog.html" class="back-home"><span>←</span> Back to Blog</a>
+        
+        <article class="post">
+            <!-- 文章標頭 -->
+            <header class="post-header">
+                <h1 class="post-title serif">意義 Meaningness ｜ Soul</h1>
+                <div class="post-meta serif">lkhmemories — Dec 27, 2025</div>
+            </header>
+            
+            <!-- 文章主體內容 -->
+            <div class="post-content">
+                <p class="drop-cap"><strong><em>What's the meaning of life?</em></strong> In a movie called <strong>"Soul"</strong>, it tells a story that reframes everything we think we know about purpose and ambition.</p>
+
+                <!-- 電影劇照區塊 -->
+                <figure class="image-wrapper">
+                    <img src="https://img.voguehk.com/media/2021/02/pixar_soul_disney_stream.2e16d0ba.fill-735x490.png" alt="Pixar Soul movie scene">
+                    <figcaption class="serif">Joe Gardner and 22 in Pixar's "Soul"</figcaption>
+                </figure>
+                
+                <p>In Soul, there’s a character named <span class="keyword">Dez</span>. On the outside, he looks like someone who has it all figured out: a talented barber who clearly enjoys his work. To <strong>Joe</strong>, the protagonist, it seems obvious that Dez has found his <span class="keyword">“spark”</span> — the one thing that gives his life meaning. If you are good at something and you love doing it, then that must be your purpose, right?</p>
+                
+                <p>But when <strong>22</strong>, temporarily inhabiting Joe’s body, chats with Dez out of curiosity, a different story emerges. Dez reveals that his real dream was never to become a barber. He wanted to be a veterinarian. Unfortunately, his family could not afford the cost of veterinary school, so he chose a barber school instead, simply because it was cheaper. That practical decision ended up shaping the course of his entire life.</p>
+                
+                <p>At first, <em>Joe and 22 assume Dez must be living with regret.</em> But Dez surprises them — and me. He says he is genuinely happy. Barbering wasn’t his dream, and he doesn’t believe he was “born” to do it, yet interacting with people, making them feel good about themselves, makes his days meaningful. <em>That subtle revelation felt like a wake-up call: meaning might not come from destiny but from how we show up in ordinary moments.</em></p>
+                
+                <h2 class="serif">Nihilism</h2>
+                
+                <p>This idea resonates with <strong>Nietzsche’s concept of nihilism</strong>, but not the passive kind that simply denies value. Nietzsche described a situation that feels eerily familiar: when the traditional sources of meaning — religion, moral absolutes, social norms — fade, we are left to confront a world without predetermined answers. <em>The challenge is not whether life has meaning in itself, but whether we are willing to live fully and responsibly in a world that offers no guaranteed meaning.</em></p>
+                
+                <p>Nietzsche urged what we might call an <span class="keyword">“active nihilism.”</span> After acknowledging that the world does not hand us meaning on a platter, we are invited to take responsibility for creating value — <em>not once and for all, but continuously, through how we live.</em></p>
+                
+                <p>What Soul suggests — quietly and tenderly — is that life’s worth is not found in some grand calling but in the way we engage with the present. A meal shared, a breeze felt, a genuine conversation — these seemingly ordinary moments are where life begins to shine again. Not because they point to a larger destiny, but because they are lived fully.</p>
+                
+                <p>Nietzsche’s thought experiment of <span class="keyword">eternal recurrence</span> asks a haunting question: if every moment of your life were to repeat forever, would you choose to live it again, exactly as it is? <em>The film doesn’t give a dramatic or radical answer. Instead, it offers something softer: as long as you are willing to live, to feel, and to connect with the world around you, then even without a “spark” or a grand dream, your life is already worth repeating.</em></p>
+                
+                <p><em>Perhaps a “spark” is not a mission waiting to be discovered, but something that is truly ignited only when we decide to live earnestly.</em></p>
+                
+                <!-- 精緻文藝結尾金句 -->
+                <blockquote class="serif">
                     <p>The meaning of your life is defined the moment you decide to find a meaning for your life.</p>
                 </blockquote>
-          </div>
-        </div>
-    </div>
+            </div>
+        </article>
+    </main>
+
 </body>
-</html>        
+</html>
