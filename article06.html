@@ -3,161 +3,288 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>全知讀者視角 1 第四面墻</title>
+    <title>第四面墻 - lkhmemories</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600;700&display=swap');
-
         :root {
-            --primary-color: #1a5877;
-            --secondary-color: #7d715d;
-            --text-color: #333;
-            --light-text: #666;
-            --bg-color: #f9f9f7;
+            /* 延續低飽和、沉穩文藝色彩配置 */
+            --bg-color: #FAFAFA;
+            --surface-color: #FFFFFF;
+            --text-main: #1A1A1A;
+            --text-muted: #737373;
+            --primary: #1A5877;       /* 經典深海藍 */
+            --accent: #7D715D;        /* 溫潤大地灰褐 */
+            --border-color: #EAEAEA;
+            
+            /* 全局設計規範 */
+            --radius-md: 12px;
+            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.02);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.8;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: var(--text-color);
+            font-family: 'Plus Jakarta Sans', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            line-height: 1.9;
+            color: var(--text-main);
             background-color: var(--bg-color);
+            -webkit-font-smoothing: antialiased;
         }
-        
-        .post {
-            margin-bottom: 60px;
+
+        /* 襯線體：用於主副標題與文學性金句 */
+        h1, h2, .serif {
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 780px; /* 最佳閱讀寬度 */
+            margin: 0 auto;
+            padding: 4rem 1.5rem 6rem;
+        }
+
+        /* --- 返回按鈕微動效 --- */
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            margin-bottom: 4rem;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .back-home span {
+            display: inline-block;
+            transition: var(--transition);
+            margin-right: 0.5rem;
+        }
+
+        .back-home:hover {
+            color: var(--primary);
+        }
+
+        .back-home:hover span {
+            transform: translateX(-4px);
+        }
+
+        /* --- 文章標頭區塊 --- */
+        .post-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
         }
         
         .post-title {
-            color: white;
-            background-color: var(--primary-color);
-            padding: 20px 25px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            font-size: 2.2rem;
-            font-weight: 700;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(237, 237, 237, 1);
-            font-family: 'Noto Sans TC', serif;
+            color: var(--text-main);
+            font-size: 2.3rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
         }
         
         .post-meta {
-            color: var(--light-text);
-            font-size: 0.9em;
-            margin: 15px 0 30px;
-            text-align: center;
-            font-weight: 300;
-            font-family: 'Noto Sans TC', serif;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            font-weight: 400;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
         }
-        
+
+        .post-meta::before, .post-meta::after {
+            content: '';
+            width: 16px;
+            height: 1px;
+            background-color: var(--border-color);
+        }
+
+        /* --- 文章主體內容 --- */
         .post-content {
             font-size: 1.05rem;
-            font-family: "Times New Roman", Times, serif;
+            color: var(--text-main);
         }
         
         .post-content p {
-            margin-bottom: 1.5em;
+            margin-bottom: 1.8rem;
             text-align: justify;
         }
-        
-        .home-link {
-            font-family: 'Noto Sans TC', serif;
-            color: var(--secondary-color);
-            text-decoration: none;
-            transition: color 0.3s;
-            font-weight: 500;
-            display: block;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
+
+        .post-intro {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 2.5rem;
+            text-align: center;
         }
 
-              h2 {
-            font-family: 'Noto Serif TC', serif;
+        .keyword {
             font-weight: 600;
-            color: var(--secondary-color);
-            margin: 2.5em 0 1em;
-            font-size: 1.6rem;
-            position: relative;
-            padding-left: 15px;
-            letter-spacing: 1px;
+            color: var(--primary);
         }
-        
-        h2::before {
+
+        /* --- H2 現代文藝雜誌風格標題 --- */
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-main);
+            margin: 4.5rem 0 2rem;
+            letter-spacing: 0.03em;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        h2::after {
             content: "";
             position: absolute;
             left: 0;
-            top: 0.3em;
-            height: 1.2em;
-            width: 5px;
-            background-color: var(--primary-color);
-            border-radius: 3px;
+            bottom: 0;
+            height: 1px;
+            width: 100%;
+            background: linear-gradient(to right, var(--primary) 15%, var(--border-color) 15%);
         }
-        
-        h2#What,
-        h2#Why-first,
-        h2#Why-is-it-impressive,
-        h2#paragraph01,
-        h2#paragraph02,
-        h2#paragraph03,
-        h2#My-favorite-quote {
-            font-style: italic;
-        }
-        .home-link:hover {
-            color: var(--primary-color);
-            text-decoration: underline;
-        }
-        
+
+        /* --- 精緻圖文並列系統 --- */
         .image-row {
             display: flex;
-            gap: 30px;
-            margin: 40px 0;
-            align-items: flex-start; /* 修改为flex-start而不是center */
+            gap: 40px;
+            margin: 2.5rem 0 3.5rem;
+            align-items: flex-start;
         }
 
         .text-content {
-            flex: 1;
-            align-self: flex-start; /* 确保文字内容始终顶部对齐 */
+            flex: 62;
         }
 
         .image-wrapper {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            align-items: flex-start; /* 图片容器也顶部对齐 */
+            flex: 38;
+            margin: 0;
         }
-        
+
         .image-wrapper img {
             width: 100%;
             height: auto;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-          margin-bottom: 0;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition);
+            display: block;
         }
-.post-content .caption-font {
-    font-size: 0.85rem;
-    color: var(--light-text);
-    font-style: italic;
-    line-height: 1.4;
-}
 
-.image-caption {
-    font-size: 0.85rem;
-    color: var(--light-text);
-    text-align: center;
-    margin-top: 8px;
-    font-style: italic;
-    line-height: 1.4;
-}
+        .image-wrapper img:hover {
+            transform: translateY(-3px);
+        }
+
+        .image-caption {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: justify;
+            margin-top: 0.9rem;
+            font-style: italic;
+            line-height: 1.5;
+            letter-spacing: 0.02em;
+        }
+
+        /* --- 解讀清單排版 --- */
+        .concept-list {
+            list-style: none;
+            margin: 2.5rem 0;
+            padding: 0;
+        }
+
+        .concept-item {
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .concept-item::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 1.2rem;
+            top: -2px;
+        }
+
+        .concept-title {
+            font-weight: 600;
+            color: var(--text-main);
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        .concept-desc {
+            color: #333333;
+            font-size: 1rem;
+            text-align: justify;
+        }
+
+        /* 經典打破第四面牆列表 */
+        .break-list {
+            list-style: none;
+            margin: 1.5rem 0 2.5rem 1rem;
+        }
+
+        .break-list li {
+            position: relative;
+            padding-left: 1.2rem;
+            margin-bottom: 0.6rem;
+            color: #444444;
+        }
+
+        .break-list li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--text-muted);
+        }
+
+        /* --- 留白詩意金句區塊 --- */
+        .poetic-quote {
+            margin: 3.5rem 0;
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px dashed var(--border-color);
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .poetic-line {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .poetic-line.highlight {
+            color: var(--text-main);
+            font-weight: 500;
+            margin-top: 1.2rem;
+        }
+
+        /* --- 響應式影片容器 --- */
         .video-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 比例 */
-            margin: 40px 0;
-            border-radius: 12px;
+            padding-bottom: 56.25%; /* 16:9 黃金比例 */
+            margin: 3.5rem 0;
+            border-radius: var(--radius-md);
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-subtle);
         }
         
         .video-container iframe {
@@ -169,95 +296,129 @@
             border: none;
         }
         
+        /* --- RWD 行動裝置極致優化 --- */
         @media (max-width: 768px) {
-            body {
-                padding: 15px;
+            .container {
+                padding: 3rem 1.2rem 4rem;
             }
             
+            .back-home {
+                margin-bottom: 2.5rem;
+            }
+
             .post-title {
                 font-size: 1.8rem;
-                padding: 15px 20px;
             }
-            
+
             .image-row {
                 flex-direction: column;
+                gap: 2rem;
+                margin: 2rem 0;
             }
-            
+
             .text-content, .image-wrapper {
                 width: 100%;
+                flex: none;
             }
-            
-            .image-wrapper img {
-                margin-top: 20px;
+
+            h2 {
+                font-size: 1.35rem;
+                margin: 3.5rem 0 1.5rem;
             }
-        }
-      blockquote {
-            color: var(--light-text);
-            font-size: 0.9rem;
-            border-left: 4px solid var(--primary-color);
-            padding: 15px 20px;
-            margin: 30px 0;
-            font-style: italic;
-            background-color: rgba(237, 237, 237, 1);
-            border-radius: 0 8px 8px 0;
-            line-height: 1.7;
-        }
-        
-        .quote-section footer {
-            text-align: right;
-            font-style: normal;
-            color: var(--light-text);
-            margin-top: 1.5em;
-            font-size: 0.9rem;
+
+            .poetic-line {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <a href="/" class="home-link">← HOME</a>
-    <div class="post">
-        <h1 class="post-title">全知讀者視角 1 第四面墻</h1>
-        <div class="post-meta">lkhmemories — Dec 30, 2025</div>
-        <div class="post-content">
-                    <p><i>（之後也會討論一些我感興趣的詞語）</i></p>
-        <div class="image-row">
-            <div class="text-content">
-                    <p><b>「第四面牆」</b>這個詞是我從<b>《全知讀者視角》（韓文：전지적 독자 시점）</b>認識的—一部我從高中就開始看的小說。故事主角<b><i>金獨子（韓文含「讀者」之意）</b></i>原本只是個平凡上班族。十年來是那部長篇網路小說《在滅亡的世界中存活的三種方法》（簡稱「滅活法」）的唯一讀者。當他在某次看完最終話後，小說內容竟化為現實：城市成為煉獄，小說規則與角色入侵日常，而他也成為唯一知曉結局的人。正是在這種「知道結局卻無力改變」的殘酷處境中，小說把「第四面牆」具象化為金獨子的專屬技能——一道能隔離心理創傷、緩解痛苦並以敘事者語氣與他對話的存在，從而成為他在新世界中生存與抉擇的重要工具。</p>
+
+    <main class="container">
+        <!-- 返回部落格首頁 -->
+        <a href="/blog.html" class="back-home"><span>←</span> Back to Blog</a>
+        
+        <article class="post">
+            <!-- 文章標頭 -->
+            <header class="post-header">
+                <h1 class="post-title serif">第四面墻</h1>
+                <div class="post-meta serif">lkhmemories — Dec 30, 2025</div>
+            </header>
+            
+            <!-- 文章主體內容 -->
+            <div class="post-content">
+                <p class="post-intro">（之後也會討論一些我感興趣的詞語）</p>
+                
+                <!-- 精修圖文並列區塊 -->
+                <div class="image-row">
+                    <div class="text-content">
+                        <p><span class="keyword">「第四面牆」</span>這個詞是我從《全知讀者視角》（韓文：전지적 독자 시점）認識的——一部我從高中就開始看的小說。故事主角<strong>金獨子</strong>（韓文含「讀者」之意）原本只是個平凡上班族。十年來，他是那部長篇網路小說《在滅亡的世界中存活的三種方法》（簡稱「滅活法」）的唯一讀者。當他在某次看完最終話後，小說內容竟化為現實：城市成為煉獄，小說規則與角色入侵日常，而他也成為唯一知曉結局的人。</p>
+                        <p>正是在這種「知道結局卻無力改變」的殘酷處境中，小說把「第四面牆」具象化為金獨子的專屬技能——一道能隔離心理創傷、緩解痛苦並以敘事者語氣與他對話的存在，從而成為他在新世界中生存與抉擇的重要工具。</p>
+                    </div>
+                    
+                    <figure class="image-wrapper">
+                        <img src="https://swebtoon-phinf.pstatic.net/20210627_121/1624765244140bgg75_PNG/8E585A8E79FA5.png?type=crop540_540" alt="ORV Webtoon Cover">
+                        <figcaption class="image-caption">主角 Dokja 的名字漢字可寫作「讀」（母親偏好）或「獨」（父親偏好），分別對應「讀者」與「孤獨」的雙重意涵。</figcaption>
+                    </figure>
+                </div>
+                
+                <p>第四面牆轉換為實體技能首次出現於 ep.02〈主角（5）〉，它被視為理解金獨子心理層次的核心，故事中常見以下三類漸進式的解讀：</p>
+                
+                <!-- 結構化解讀清單 -->
+                <ul class="concept-list">
+                    <li class="concept-item">
+                        <span class="concept-title">1. 初期 — 心理隔離與情緒調節的象徵</span>
+                        <p class="concept-desc">最初的第四面牆，是一種心理止痛劑，也是他作為讀者的生存方式。它讓金獨子能把殘酷的現實世界「當成小說」來看待，避免在日常秩序崩潰時發瘋；當牆發生動搖或暫時失效時，往往對應著他第一次無法僅作旁觀者、真正被劇中情感擊中的時刻。</p>
+                    </li>
+                    <li class="concept-item">
+                        <span class="concept-title">2. 中期 — 讀者身份的延伸，同時也是自我欺騙</span>
+                        <p class="concept-desc">牆協助金獨子清晰地區分虛構與現實，但同時也演變成一種逃避機制。當過往真實的童年記憶（例如與母親的複雜互動）介入時，牆便會變得無比脆弱。這顯示出那些無法被簡單歸類為「既定劇情」的真實痛苦，終究會突破防線——「知道結局」並不等於「能承受結局」。</p>
+                    </li>
+                    <li class="concept-item">
+                        <span class="concept-title">3. 後期 — 強大但具備代價的系統根基</span>
+                        <p class="concept-desc">隨著情節推展，牆逐步被揭示為與世界結構、星流回歸系統、以及敘事運作密切相關的核心存在。它成為跨越不同敘事層級的鑰匙——不只是保護特定角色，更是決定了在這個宇宙中，誰能觀看、誰能書寫、以及誰必須去承擔故事延續代價的裝置。當金獨子成為新的「最古老的夢」時，他也正式從牆後的讀者，轉變為維繫整個世界敘事本身的基石。</p>
+                    </li>
+                </ul>
+                
+                <p>回顧第四面牆在小說中的軌跡，它從一種被動的心理防護，逐步揭示為牽動整個作品靈魂的核心象徵：當你終於無法再躲在那道牆後面，卻仍然選擇凝視、繼續看下去時，你既是閱聽者，也是參與者，乃至於這段敘事的承擔者。這種由外而內的轉變，正是《全知讀者視角》最殘酷卻也最深刻的魅力所在。</p>
+                
+                <h2>什麼是「第四面牆」？</h2>
+                <p>在劇場理論中，「第四面牆」指的是舞台或銀幕與觀眾之間那道想像中的透明屏障。傳統寫實舞台上，演員活動的空間通常只有三面實體牆：左牆、右牆與後牆；面向觀眾的一側並沒有牆，卻在敘事慣例中被當成一面<strong>「看不見、但確實存在」</strong>的玻璃。</p>
+                <p>這個設定下，角色彷彿生活在一個完全封閉的世界裡——他們彼此對話、經歷命運，完全無視觀眾的存在；而觀眾則安靜地待在暗處偷窺。這個概念最早可追溯至 18 世紀法國哲學家狄德羅。到了 20 世紀之後，尤其是在後現代藝術與先鋒戲劇中，這面牆不再是必須遵守的死板規範，反而成為一種可以被強調、扭曲，甚至徹底取消的後設裝置。有作品選擇維持牆的沉浸效果，有作品則刻意拆解它以揭示敘事的虛構性。</p>
+                
+                <h2>「打破第四面牆」</h2>
+                <p>當角色突然意識到自己身處於故事中、意識到觀眾的存在，並主動越過那道無形的界線時，第四面牆就被打破了。</p>
+                <p>最常見的形式包括：</p>
+                <ul class="break-list">
+                    <li>角色突然直視鏡頭，對著台下的觀眾或讀者說話</li>
+                    <li>角色公開承認自己只是一個被創作出來的虛構人物</li>
+                    <li>在台詞中提及編劇的劇本安排、創作者，甚至吐槽故事本身的漏洞</li>
+                    <li>在互動遊戲中，角色直接跨越媒介對屏幕前的玩家作出回應</li>
+                </ul>
+                
+                <h2>為什麼我們需要第四面牆？</h2>
+                <p>第四面牆的存在，本質上是創作者與受眾之間的一種默契。它替虛構與現實劃出了安全的邊界。打破第四面牆可以製造幽默、諷刺，甚至強烈的不安感，但也因為有這面牆，觀眾平日裡得以「認真地相信」眼前發生的一切。這種心理狀態在美學上被稱為<span class="keyword">「懸置懷疑」（Suspension of Disbelief）</span>——我們明知道那是假的，卻在感官上選擇暫時相信。</p>
+                <p>換句話說，第四面牆最初的目的不是為了隔絕，而是為了讓受眾更深地浸入故事，進而在牆破裂的瞬間，重新審視角色的命運、敘事的權力，以及媒介本身的限制。</p>
+                
+                <!-- 留白詩意金句組 -->
+                <div class="poetic-quote">
+                    <p class="poetic-line">當它完好無缺，我們感受的是故事；</p>
+                    <p class="poetic-line">當它被打破，我們開始思考故事。</p>
+                    <p class="poetic-line highlight serif">也正是在這兩者之間的擺盪中，敘事藝術得以不斷進化。</p>
+                </div>
+                
+                <h2>經典後設實例：《Annie Hall》</h2>
+                <p>例如，傳奇導演伍迪·艾倫（Woody Allen）的電影就以巧妙運用這種後設（Meta）技巧而聞名，尤其擅長在喜劇作品中拆解敘事機制。他自導自演的奧斯卡經典電影《安妮霍爾》（Annie Hall）就是一個絕佳的範例。</p>
+                <p>其中一個最經典的場景是主角 Alvy 和 Annie 在電影院大廳排隊。他們身後一位大嗓門的教授正喋喋不休地用極其自大且膚淺的方式談論著傳播學大師馬歇爾·麥克盧漢（Marshall McLuhan）的媒體理論，讓排隊的 Alvy 煩躁無比。終於忍無可忍的 Alvy 突然轉身面向鏡頭，對著觀眾發洩不滿：「當你在電影院排隊，後面跟著這麼個傢伙時，你會怎麼辦？」</p>
+                <p>更絕的是，Alvy 隨後直接從旁邊的看板後請出了麥克盧漢本尊，大師對著那位教授冷冷地說：「你完全不懂我的學說。」讓那傢伙羞愧閉嘴。接著 Alvy 轉向鏡頭咧嘴一笑：「要是現實生活真能像這樣就好了！」這一幕完美地打破了第四面牆，在諷刺知識份子的同時也對電影媒介本身進行了高級調侃，將幽默推向了最高峰。</p>
+                
+                <!-- YouTube 影片嵌入 -->
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/vTSmbMm7MDg?si=ICAtBowAAbBG6_bz" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
             </div>
-       <div class="image-wrapper">
-           <div class="image-with-caption">
-               <img src="https://swebtoon-phinf.pstatic.net/20210627_121/1624765244140bgg75_PNG/8E585A8E79FA5.png?type=crop540_540" alt="Blue hour sky">
-               <p class="image-caption"> 主角 Dokja 的名字漢字可寫作「讀」(母親偏好)或「獨」(父親偏好)，分別對應「讀者」與「孤獨」的雙重意涵。</p>
-           </div>
-       </div>
-    </div>
-                    <p>第四面牆首次出現於 ep.02〈主角（5）〉，被視為理解金獨子的關鍵，常見三類解讀：</p>
-                    <p class="caption-font"><b>1. 初期—心理隔離與情緒調節的象徵：</b>最初的第四面牆，是一種心理止痛劑，也是他作為讀者的生存方式，讓金獨子能把世界「當成小說」看待，避免在殘酷情境中崩潰；當牆動搖或失效時，往往對應他第一次無法僅作旁觀者、真正被情感擊中的時刻。</p>
-                    <p class="caption-font"><b>2. 中期—讀者身份的延伸，同時也是自我欺騙：</b>協助金獨子區分虛構與現實，但也成為一種逃避：當過往的真實記憶（例如與母親的互動）介入，牆會變得脆弱，顯示那些無法簡化為「劇情」的痛苦會突破防線，「知道結局」不再等於能承受結局。</p>
-                    <p class="caption-font"><b>3. 後期—強大但有條件性：</b>逐步被揭示為與世界結構、回歸系統、敘事運作密切相關的存在，成為跨敘事層級的鑰匙與根基——不只是保護角色，而是決定誰能觀看、誰能書寫、誰要承擔故事延續代價的裝置。當金獨子成為新的「最古老的夢」時，他也從牆後的讀者，轉變為維繫敘事本身的存在。</p>
-                    <p>回顧第四面牆在小說中的軌跡，它從一種心理防護、讀者身分的外衣，逐步揭示為牽動整個作品主題的核心象徵：當你終於無法再躲在那道牆後面，仍然選擇繼續看下去時，你既是閱聽者，也是參與者，乃至敘事的承擔者。 這種由外而內的轉變，正是《全知讀者視角》最殘酷卻也最深刻的魅力所在。</p>
-                    <h2 id="What">什麼是「第四面牆」？</h2>
-                    <p>「第四面牆」指的是舞台或銀幕與觀眾之間那道想像中的透明屏障。傳統舞台上，演員活動的空間通常只有三面實體牆：左牆、右牆與後牆；面向觀眾的一側並沒有牆，卻在敘事慣例中被當成一面<b>「看不見、但確實存在」</b>的牆。</p>
-          <p>這個設定下，角色彷彿生活在一個封閉的世界裡——他們彼此對話、行動、掙扎，完全無視觀眾的存在；而觀眾正是這道牆，讓他們能暫時忘記自己坐在觀眾席上，得以全身心投入故事。這個概念最早可以追溯到18世紀法國哲學家狄德羅。到了20世紀之後，尤其是在後現代藝術中，這面牆不再是必須遵守的規範，成為一種可以被強調、扭曲，甚至徹底取消的裝置。有作品選擇維持牆的沉浸效果，有作品則刻意拆解它以揭示敘事的建構性。</p>
-                    <h2 id="What">「打破第四面牆」</h2>
-          <p>當角色突然意識到觀眾的存在，並主動越過那道無形的界線時，第四面牆就被打破了。</p>
-          <p>最常見的形式包括：</p>
-          <p class="caption-font">- 角色直視鏡頭，對觀眾說話</p>
-<p class="caption-font">- 角色承認自己是虛構人物</p>
-<p class="caption-font">- 提及劇情安排、創作者，甚至吐槽故事本身</p>
-<p class="caption-font">- 在遊戲中，角色直接對玩家作出回應</p>
-                     <h2 id="What">為什麼我們需要第四面牆？</h2>
-          <p>第四面牆的存在，其實是一種默契。它替虛構與現實劃出界線，打破第四面牆可以製造幽默、諷刺，甚至強烈的不安感，也讓觀眾得以「認真地相信」眼前發生的一切。這種心理狀態，在美學上被稱為<b>「懸置懷疑」——我們明知道那不是真的，卻選擇暫時相信。</b>換句話說，第四面牆不是為了隔絕觀眾，而是為了讓觀眾更深地進入故事，重新審視角色的命運、敘事的權力，或媒介本身的限制。</p>
-                               <h2 id="What">牆的存在，與牆的消失</h2>
-          <p>有趣的是，第四面牆的價值，往往只在它被注意到的時候才顯現。</p>
-<p class="caption-font">當它完好無缺，我們感受的是故事；</p>
-<p class="caption-font">當它被打破，我們開始思考故事。</p>
-<p>也正是在這兩者之間的來回擺盪中，敘事藝術得以不斷進化。</p>
-                     <h2 id="What">《Annie Hall》</h2>
-<p>例如， Woody Allen 的電影就以巧妙運用這種技巧而聞名，尤其是在他的喜劇和後設小說作品中。</p>
-<p class="caption-font">他自導自演的電影《Annie Hall》就是一個絕佳的例子，其中有幾個場景都打破了第四面牆。</p>
-<p class="caption-font">其中一個經典場景是 Alvy 和 Annie（ Diane Keaton 飾）在電影院大廳排隊。他們身後一個大嗓門喋喋不休地談論著媒體理論家 Marshall McLuhan，惹得 Alvy 心煩意亂。終於忍無可忍的 Alvy 轉向鏡頭說道：「當你在電影院排隊，後面跟著這麼個傢伙時，你會怎麼辦？」 基本上，他是在向我們發洩不滿。然後， Alvy 請出了 McLuhan 本人來讓那傢伙閉嘴，他對著鏡頭咧嘴一笑，說道：“要是生活真像這樣就好了！”</p>
-<p class="caption-font">這一幕打破了第四面牆，同時又諷刺了電影這個媒介本身，從而將喜劇效果推向了高潮。</p>
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/vTSmbMm7MDg?si=ICAtBowAAbBG6_bz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+        </article>
+    </main>
+
 </body>
-</html>        
+</html>
